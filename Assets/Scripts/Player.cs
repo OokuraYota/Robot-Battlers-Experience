@@ -68,8 +68,11 @@ public class Player : MonoBehaviour
         //マウスを左クリックした瞬間にanimatorのAttackTrigerを呼ぶ
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("剣 攻撃１");
-            animator.SetTrigger("Attack Trigger");
+            //Debug.Log("剣 攻撃１");
+            //animator.SetTrigger("Attack Trigger");
+
+            Debug.Log("Locomotion");
+            animator.SetBool("Attack", true);
         }
 
         //AnimationControllerのParametersに数値を送ってアニメーションを出す
