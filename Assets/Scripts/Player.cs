@@ -71,13 +71,13 @@ public class Player : MonoBehaviour
             //Debug.Log("剣 攻撃１");
             //animator.SetTrigger("Attack Trigger");
 
-            Debug.Log("Locomotion");
+            Debug.Log("剣攻撃");
             animator.SetBool("Attack", true);
         }
 
         //AnimationControllerのParametersに数値を送ってアニメーションを出す
-        animator.SetFloat("X", horizontalInput * 50);
-        animator.SetFloat("Y", verticalInput * 80);
+        animator.SetFloat("X", horizontalInput * 55);//50
+        animator.SetFloat("Y", verticalInput * 85);//80
 
         //horizontalInputとverticalInputの数値に基づいて移動
         transform.position += transform.forward * verticalInput + transform.right * horizontalInput;
