@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Playerの後ろについてくれるCamera
+/// </summary>
 public class Camera : MonoBehaviour
 {
     public Transform target;
