@@ -1,9 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.UI;
 
 
-public class BulletScript : MonoBehaviour
+public class EnemyRobot : MonoBehaviour
 {
     /// <summary>
     /// 攻撃の速度
@@ -25,40 +28,41 @@ public class BulletScript : MonoBehaviour
 
     void Start()
     {
-        InvokeRepeating("Shot", 1, 1); //1秒後に1秒ごとにShotを繰り出す
+        
     }
 
     void Update()
     {
-        
+        colliderAttack();
+        Debug.Log("7");
     }
 
-    void Shot()
+    private void colliderAttack()
     {
-        GameObject BulletsObject = Instantiate(bulletObject.gameObject, transform.position, transform.rotation);
-        Vector3 Force;  //弾にかける力
-        Force = transform.forward * 400; //弾にかける力を重工の前方向に設定する
-        BulletsObject.GetComponent<Rigidbody>().AddForce(Force); //弾に力をかける
-       
-        //弾を完全に削除します。（Immediate = 即座）
-        Destroy(BulletsObject.gameObject,2);
+        throw new NotImplementedException();
+        Debug.Log("6");
     }
 
-    /*void colliderJudgment(Collider collider)
+    void colliderAttack(Collider collider)
     {
         if (collider.CompareTag("Player"))
         {
+            Debug.Log("1");
             GameObject bulletObjects = Instantiate(bulletObject) as GameObject;
 
+            Debug.Log("2");
             Vector3 force;
 
+            Debug.Log("3");
             force = this.gameObject.transform.forward * attackTimingTime;
 
+            Debug.Log("4");
             //Rigidbodyに力を加えて発射
             bulletObject.GetComponent<Rigidbody>().AddForce(force);
 
+            Debug.Log("5");
             //弾の位置を調整
             bulletObject.transform.position = muzzle.position;
         }
-    }*/
+    }
 }
