@@ -15964,7 +15964,6 @@ GameObject:
   m_Component:
   - component: {fileID: 839306680465882390}
   - component: {fileID: 839306680453884984}
-  - component: {fileID: 839306680465383735}
   - component: {fileID: 839306680465383737}
   m_Layer: 0
   m_Name: AssaultRifle
@@ -15973,21 +15972,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &839306680465383735
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 839306680465383734}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 669184dcfd8e3504aa9bc06b87a69450, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackTimingTime: 5
-  bulletObject: {fileID: 0}
-  muzzle: {fileID: 1631886664}
 --- !u!1 &839306680465383736
 GameObject:
   m_ObjectHideFlags: 0
@@ -16017,7 +16001,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackTimingTime: 5
-  bulletObject: {fileID: 0}
+  bulletObject: {fileID: 5580735325931630229, guid: a3a5d78e2bfcaa04bacb13c40135ff79,
+    type: 3}
   muzzle: {fileID: 1631886664}
 --- !u!1 &839306680465383738
 GameObject:
