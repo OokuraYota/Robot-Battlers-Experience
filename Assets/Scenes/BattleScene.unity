@@ -16517,6 +16517,8 @@ GameObject:
   - component: {fileID: 839306680465383801}
   - component: {fileID: 839306680465383805}
   - component: {fileID: 839306680465383807}
+  - component: {fileID: 839306680465383809}
+  - component: {fileID: 839306680465383808}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -16645,6 +16647,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &839306680465383808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839306680465383800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 093a11cbe77bba94e850b9695a2be969, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackCooldown: 0.5
+  attackCollider: {fileID: 0}
+--- !u!114 &839306680465383809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839306680465383800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c17d7519398a260428be45b412a3857a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeMax: 10
 --- !u!4 &839306680465882368
 Transform:
   m_ObjectHideFlags: 0
@@ -19101,7 +19130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1001d1e6eb0fee14a88758f9e0b1157b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2
+  moveSpeed: 3.7
   rotateSpeed: 1
 --- !u!1 &2836004475689877875
 GameObject:

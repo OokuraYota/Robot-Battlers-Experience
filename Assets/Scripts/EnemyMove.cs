@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -9,6 +10,7 @@ using UnityEngine.UI;
 /// 目的地を指定するスクリプト
 /// </summary>
 [RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(MobStatus))]
 public class EnemyMove : MonoBehaviour
 {
     /*[SerializeField]
@@ -17,11 +19,14 @@ public class EnemyMove : MonoBehaviour
 
     private NavMeshAgent _agent;
 
+    private EnemyStatus _status;
+
     //private RaycastHit[] _raycastHits = new RaycastHit[10];
 
     private void Start()
     {
         _agent = GetComponent<NavMeshAgent>();//NavMeshAgentを保持しておく
+        _status = GetComponent<EnemyStatus>();
     }
 
     /*private void Update()
@@ -33,6 +38,11 @@ public class EnemyMove : MonoBehaviour
     //CollisionDetectorのonTriggerStayにセットし、衝突判定を受け取るメソッド
     public void OnDetectObject(Collider collider)
     {
+        if (!_status.IsMovable)
+        {
+            _agent.isStopped = true;
+            return;
+        }
         //検知したオブジェクトに『 Player 』のタグが付いていれば、そのオブジェクトを追いかける
         if (collider.CompareTag("Player"))
         {
@@ -69,5 +79,9 @@ public class EnemyMove : MonoBehaviour
             //要求された目的地に最も近い有効な NavMesh の位置にエージェントを移動させることを要求します。
             _agent.destination = collider.transform.position;
         }
+        /*else  //もし範囲を出たなら
+        {
+            return;
+        }*/
     }
 }
