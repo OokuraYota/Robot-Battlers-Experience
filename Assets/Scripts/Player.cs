@@ -76,8 +76,8 @@ public class Player : MonoBehaviour
         }
 
         //AnimationControllerのParametersに数値を送ってアニメーションを出す
-        animator.SetFloat("X", horizontalInput * 55);//50
-        animator.SetFloat("Y", verticalInput * 85);//80
+        animator.SetFloat("X", horizontalInput * 55);
+        animator.SetFloat("Y", verticalInput * 85);
 
         //horizontalInputとverticalInputの数値に基づいて移動
         transform.position += transform.forward * verticalInput + transform.right * horizontalInput;
