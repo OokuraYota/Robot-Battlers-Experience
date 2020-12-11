@@ -34,33 +34,26 @@ public class EnemyRobot : MonoBehaviour
     void Update()
     {
         colliderAttack();
-        Debug.Log("7");
     }
 
     private void colliderAttack()
     {
         throw new NotImplementedException();
-        Debug.Log("6");
     }
 
     void colliderAttack(Collider collider)
     {
         if (collider.CompareTag("Player"))
         {
-            Debug.Log("1");
             GameObject bulletObjects = Instantiate(bulletObject) as GameObject;
 
-            Debug.Log("2");
             Vector3 force;
 
-            Debug.Log("3");
             force = this.gameObject.transform.forward * attackTimingTime;
 
-            Debug.Log("4");
             //Rigidbodyに力を加えて発射
             bulletObject.GetComponent<Rigidbody>().AddForce(force);
 
-            Debug.Log("5");
             //弾の位置を調整
             bulletObject.transform.position = muzzle.position;
         }
