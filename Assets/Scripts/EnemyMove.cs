@@ -23,11 +23,10 @@ public class EnemyMove : MonoBehaviour
         animator = GetComponent<Animator>();//Animatorを保持しておく
     }
 
-    /*private void Update()
+    private void Update()
     {
-        //Playerを目指して進む
-        _agent.destination = Player.transform.position;
-    }*/
+        
+    }
 
     //CollisionDetectorのonTriggerStayにセットし、衝突判定を受け取るメソッド
     public void OnDetectObject(Collider collider)
