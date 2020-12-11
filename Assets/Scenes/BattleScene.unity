@@ -560,9 +560,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 1966385228}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 973ba651851965449a50e0f908e856a2, type: 3}
+  m_Script: {fileID: 11500000, guid: 9f87b3bd47b42734c80acfc2805a6b88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onTriggerStay:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 839306680465383801}
+        m_MethodName: OnDetectObject
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!135 &1966385231
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -16587,7 +16601,6 @@ GameObject:
   - component: {fileID: 839306681410028253}
   - component: {fileID: 839306680465383803}
   - component: {fileID: 839306680465383801}
-  - component: {fileID: 839306680465383809}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -16677,23 +16690,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &839306680465383809
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 839306680465383800}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c17d7519398a260428be45b412a3857a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lifeMax: 10
-  _animator: {fileID: 0}
-  _state: 0
-  _life: 0
-  _agent: {fileID: 0}
 --- !u!4 &839306680465882368
 Transform:
   m_ObjectHideFlags: 0
