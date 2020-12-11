@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(Collider))]
+
 public class CollisionDetector : MonoBehaviour
 {
     [SerializeField] private TriggerEvent onTriggerEnter = new TriggerEvent();
