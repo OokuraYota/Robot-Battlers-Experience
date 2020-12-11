@@ -413,7 +413,7 @@ GameObject:
   - component: {fileID: 874573479}
   - component: {fileID: 874573478}
   m_Layer: 5
-  m_Name: Image
+  m_Name: LifeBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19657,6 +19657,7 @@ GameObject:
   - component: {fileID: 2836004475689877876}
   - component: {fileID: 2836004475689877874}
   - component: {fileID: 2836004475689877878}
+  - component: {fileID: 2836004475689877880}
   m_Layer: 9
   m_Name: PBRCharacter
   m_TagString: Player
@@ -19678,6 +19679,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 3.7
   rotateSpeed: 1
+  life: 5
+  maxLife: 5
 --- !u!1 &2836004475689877875
 GameObject:
   m_ObjectHideFlags: 0
@@ -19753,6 +19756,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &2836004475689877880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2836004475689877873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6c51651f13739a44a3090fcc8a30dcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GoldHP: {fileID: 1097463266}
+  purpleHP: {fileID: 874573478}
 --- !u!1 &2836004475689877881
 GameObject:
   m_ObjectHideFlags: 0

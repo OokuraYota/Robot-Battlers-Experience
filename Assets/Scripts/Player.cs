@@ -43,6 +43,12 @@ public class Player : MonoBehaviour
     /// </summary>
     Rigidbody rigid = null;
 
+    public float life;
+
+    public float maxLife;
+
+    protected PlayerGauge playerGauge;
+
 
 
     /// <summary>
@@ -54,6 +60,8 @@ public class Player : MonoBehaviour
     {
         //Animatorコンポーネントを取得
         animator = GetComponent<Animator>();
+        playerGauge = GameObject.FindObjectOfType<PlayerGauge>();
+        playerGauge.SetPlayer(this);
     }
 
     void Update()
@@ -149,5 +157,11 @@ public class Player : MonoBehaviour
     private void Rotate()
     {
         //rigid.MoveRotation(rigid.rotation + rotateSpeed * -horizontalInput * Time.deltaTime);
+    }
+
+    public void Damage(float power)
+    {
+        playerGauge.GaugeReduction(power);
+        life -= power;
     }
 }
