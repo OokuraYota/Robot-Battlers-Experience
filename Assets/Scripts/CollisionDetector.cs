@@ -5,8 +5,18 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Collider))]
 public class CollisionDetector : MonoBehaviour
 {
+    [SerializeField] private TriggerEvent onTriggerEnter = new TriggerEvent();
+
     [SerializeField]
     private TriggerEvent onTriggerStay = new TriggerEvent();
+
+    //現在のColliderDetectorは、Coliider内にオブジェクトが止まっていることしけ検出出来ませんので、オブジェクトがColldierに重なったときも検知できるようにしましょう。
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        onTriggerEnter.Invoke(other);
+    }
 
     private void OnTriggerStay(Collider other)
     {
