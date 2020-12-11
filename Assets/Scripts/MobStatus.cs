@@ -58,6 +58,9 @@ public abstract class MobStatus : MonoBehaviour //2020/12/11
         _life = lifeMax;
         _animator = GetComponentInChildren<Animator>();
 
+        //ライフゲージの表示開始
+        //LifeGaugeContainer.Instance.Add(this);
+
     }
 
     /// <summary>
@@ -65,7 +68,8 @@ public abstract class MobStatus : MonoBehaviour //2020/12/11
     /// </summary>
     protected virtual void OnDie()
     {
-
+        //ライフゲージ表示終了
+        //LifeGaugeContainer.Instance.Remove(this);
     }
 
     /// <summary>
@@ -76,6 +80,7 @@ public abstract class MobStatus : MonoBehaviour //2020/12/11
     {
         if (_state == StateEnum.Die) return;//既に死んでいるときは処理を返しているのかな？
 
+        Debug.Log("ライフが減りました");
         _life -= damage;
         if (_life > 0) return;//現在のライフ値がまだ０より値が大きいなら処理を返す
 

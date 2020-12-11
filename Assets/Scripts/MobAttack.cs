@@ -26,6 +26,8 @@ public class MobAttack : MonoBehaviour
         //ステータスと衝突したオブジェクトで攻撃可否を判断
         if (!_status.IsAttackable) return;
 
+
+        Debug.Log("攻撃可能");
         _status.GoToAttackStateIfPossible();
     }
 
@@ -35,6 +37,7 @@ public class MobAttack : MonoBehaviour
     /// <param name="collider"></param>
     public void OnAttackRangeEnter(Collider collider)
     {
+        Debug.Log("攻撃対象が攻撃範囲内に入った時に呼ばれる");
         AttackIfPossible();
     }
 
@@ -43,6 +46,7 @@ public class MobAttack : MonoBehaviour
     /// </summary>
     public void OnAttackStart()
     {
+        Debug.Log("攻撃開始");
         attackCollider.enabled = true;
     }
 
@@ -56,6 +60,7 @@ public class MobAttack : MonoBehaviour
         if (null == targetMob) return;
 
         //プレイヤーにダメージを与える
+        Debug.Log("ダメージを喰らった");
         targetMob.Damage(1);
     }
 
