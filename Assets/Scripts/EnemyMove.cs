@@ -13,11 +13,14 @@ public class EnemyMove : MonoBehaviour
 
     private NavMeshAgent _agent;
 
+    private Animator animator;
+
     //private RaycastHit[] _raycastHits = new RaycastHit[10];　今回はレイキャストを使っていないからここはコメントアウトした
 
     private void Start()
     {
         _agent = GetComponent<NavMeshAgent>();//NavMeshAgentを保持しておく
+        animator = GetComponent<Animator>();//Animatorを保持しておく
     }
 
     /*private void Update()
@@ -65,7 +68,11 @@ public class EnemyMove : MonoBehaviour
 
             //要求された目的地に最も近い有効な NavMesh の位置にエージェントを移動させることを要求します。 AI.NavMeshAgent - destination - 
             _agent.destination = collider.transform.position;
-            //_agent.destination = collider.transform.position;
+            animator.SetBool("Run", true);  //Runにする
+        }
+        else
+        {
+            animator.SetBool("Run", false);
         }
         /*else  //もし範囲を出たなら
         {
