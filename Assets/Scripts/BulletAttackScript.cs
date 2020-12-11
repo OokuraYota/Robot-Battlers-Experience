@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class BulletAttackScript : MonoBehaviour
 {
+    public Player player;
+
+    //public float DamageValue;
+
+    void Start()
+    {
+        player = GetComponent<Player>();
+    }
+
     /// <summary>
     /// オブジェクト同士が重なった『瞬間』に呼び出される
     /// </summary>
@@ -56,6 +65,14 @@ public class BulletAttackScript : MonoBehaviour
             //内容：重なり合ったオブジェクト同士が離れた瞬間呼び出される
 
             Debug.Log("BulletPrefabが" + other.name + "Colliderから、今離れました！");
+
+
+            //player.Damage(1);
+
+            //player.life -= other.gameObject.GetComponent<Player>().Damage(1.0f);
+
+            //DamageValue = player.GetComponent<Player>().Damage(1.0f);
+            //Debug.Log("PlayerのHPは" + player.life);*/
         }
     }
 }
