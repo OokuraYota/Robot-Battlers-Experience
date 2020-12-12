@@ -69,7 +69,7 @@ public class BulletAttackScript : MonoBehaviour
 
             //player.Damage(1);
 
-            //player.life -= other.gameObject.GetComponent<Player>().Damage(1.0f);
+            other.gameObject.GetComponent<Player>().Damage(1.0f);
 
             //DamageValue = player.GetComponent<Player>().Damage(1.0f);
             //Debug.Log("PlayerのHPは" + player.life);*/

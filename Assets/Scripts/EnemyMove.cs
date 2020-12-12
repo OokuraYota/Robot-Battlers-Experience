@@ -28,11 +28,18 @@ public class EnemyMove : MonoBehaviour
         
     }
 
+    public void OnDetectObjectExit(Collider collider)
+    {
+        if (collider.CompareTag("Player"))
+        {
+            _agent.isStopped = true;
+            animator.SetBool("Run", false);
+        }
+    }
+
     //CollisionDetectorのonTriggerStayにセットし、衝突判定を受け取るメソッド
     public void OnDetectObject(Collider collider)
     {
-
-
         //検知したオブジェクトに『 Player 』のタグが付いていれば、そのオブジェクトを追いかける
         if (collider.CompareTag("Player"))
         {
@@ -66,12 +73,9 @@ public class EnemyMove : MonoBehaviour
             }*/
 
             //要求された目的地に最も近い有効な NavMesh の位置にエージェントを移動させることを要求します。 AI.NavMeshAgent - destination - 
+            _agent.isStopped = false;
             _agent.destination = collider.transform.position;
             animator.SetBool("Run", true);  //Runにする
-        }
-        else
-        {
-            animator.SetBool("Run", false);
         }
         /*else  //もし範囲を出たなら
         {

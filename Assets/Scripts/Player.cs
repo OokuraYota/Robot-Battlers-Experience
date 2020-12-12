@@ -159,6 +159,10 @@ public class Player : MonoBehaviour
         //rigid.MoveRotation(rigid.rotation + rotateSpeed * -horizontalInput * Time.deltaTime);
     }
 
+    /// <summary>
+    /// ダメージ処理
+    /// </summary>
+    /// <param name="power"></param>
     public void Damage(float power)
     {
         playerGauge.GaugeReduction(power);

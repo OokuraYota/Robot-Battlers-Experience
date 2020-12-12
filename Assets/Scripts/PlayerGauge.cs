@@ -17,7 +17,7 @@ public class PlayerGauge : MonoBehaviour
         var valueFrom = player.life / player.maxLife;
         var valueTo = (player.life - reducationValue) / player.maxLife;
 
-        // 緑ゲージ減少
+        // 金ゲージ減少
         GoldHP.fillAmount = valueTo;
 
         if (purpleHPTween != null)
@@ -25,7 +25,7 @@ public class PlayerGauge : MonoBehaviour
             purpleHPTween.Kill();
         }
 
-        // 赤ゲージ減少
+        // 紫ゲージ減少
         purpleHPTween = DOTween.To(
             () => valueFrom,
             x => {
