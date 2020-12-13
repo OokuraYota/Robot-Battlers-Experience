@@ -15,6 +15,16 @@ public class EnemyMove : MonoBehaviour
 
     private Animator animator;
 
+    /// <summary>
+    /// 現在のライフ値
+    /// </summary>
+    public float life;
+
+    /// <summary>
+    /// ライフの最大値
+    /// </summary>
+    public float maxLife;
+
     //private RaycastHit[] _raycastHits = new RaycastHit[10];　今回はレイキャストを使っていないからここはコメントアウトした
 
     private void Start()
