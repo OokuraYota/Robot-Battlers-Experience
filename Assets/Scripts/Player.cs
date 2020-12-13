@@ -43,8 +43,14 @@ public class Player : MonoBehaviour
     /// </summary>
     Rigidbody rigid = null;
 
+    /// <summary>
+    /// 現在のライフ値
+    /// </summary>
     public float life;
 
+    /// <summary>
+    /// ライフの最大値
+    /// </summary>
     public float maxLife;
 
     protected PlayerGauge playerGauge;
