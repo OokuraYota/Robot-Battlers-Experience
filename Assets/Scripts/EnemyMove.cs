@@ -25,12 +25,17 @@ public class EnemyMove : MonoBehaviour
     /// </summary>
     public float maxLife;
 
+    protected EnemyGauge EnemyGauge;
+
     //private RaycastHit[] _raycastHits = new RaycastHit[10];　今回はレイキャストを使っていないからここはコメントアウトした
 
-    private void Start()
+    public void Start()
     {
         _agent = GetComponent<NavMeshAgent>();//NavMeshAgentを保持しておく
         animator = GetComponent<Animator>();//Animatorを保持しておく
+
+        EnemyGauge = GameObject.FindObjectOfType<EnemyGauge>();
+        EnemyGauge.SetEnemy(this);
     }
 
     private void Update()
@@ -91,5 +96,15 @@ public class EnemyMove : MonoBehaviour
         {
             return;
         }*/
+    }
+
+    /// <summary>
+    /// ダメージ処理
+    /// </summary>
+    /// <param name="power"></param>
+    public void Damage(float power)
+    {
+        EnemyGauge.GaugeReduction(power);
+        life -= power;
     }
 }

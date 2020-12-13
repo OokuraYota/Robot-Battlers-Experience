@@ -7,12 +7,12 @@ using UnityEngine;
 /// </summary>
 public class SwordAttackCollider : MonoBehaviour
 {
-    ////public Player player;
+    public EnemyMove enemy;
 
-    /*void Start()
+    void Start()
     {
-        ////player = GetComponent<Player>();
-    }*/
+        enemy = GetComponent<EnemyMove>();
+    }
 
     /// <summary>
     /// オブジェクト同士が重なった『瞬間』に呼び出される
@@ -56,6 +56,6 @@ public class SwordAttackCollider : MonoBehaviour
 
         Debug.Log("Swordが" + other.name + "Colliderから、今離れました！");
 
-        ////other.gameObject.GetComponent<Player>().Damage(1.0f);
+        other.gameObject.GetComponent<EnemyMove>().Damage(1.0f);
     }
 }
