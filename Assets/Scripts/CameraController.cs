@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// Playerの後ろについてくれるCamera
 /// </summary>
-public class Camera : MonoBehaviour
+public class CameraController: MonoBehaviour
 {
     public Transform target;
     public float smoothing = 5f;
