@@ -25,6 +25,7 @@ public class ShottingScript : MonoBehaviour
     void Start()
     {
         InvokeRepeating("Shot", 1, 1); //1秒後に1秒ごとにShotを繰り出す
+        //ここのコードをEnemyMoveのPlayerTagで発見したらShotを繰り出すコードに変更したい
     }
 
     void Update()
