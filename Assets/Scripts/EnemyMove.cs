@@ -27,7 +27,7 @@ public class EnemyMove : MonoBehaviour
 
     protected EnemyGauge EnemyGauge;
 
-    //protected ShottingScript shotting;
+    protected ShottingScript shotting;
 
     //private RaycastHit[] _raycastHits = new RaycastHit[10];　今回はレイキャストを使っていないからここはコメントアウトした
 
@@ -96,7 +96,7 @@ public class EnemyMove : MonoBehaviour
             _agent.destination = collider.transform.position;
             animator.SetBool("Run", true);  //Runにする
 
-            InvokeRepeating("Shot", 1, 1f);//1秒後に1秒ごとにShotを繰り出す
+            ////InvokeRepeating("Shot", 1, 1f);//1秒後に1秒ごとにShotを繰り出す
         }
         /*else  //もし範囲を出たなら
         {
