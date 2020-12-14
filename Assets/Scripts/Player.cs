@@ -66,6 +66,7 @@ public class Player : MonoBehaviour
     {
         //Animatorコンポーネントを取得
         animator = GetComponent<Animator>();
+
         playerGauge = GameObject.FindObjectOfType<PlayerGauge>();
         playerGauge.SetPlayer(this);
     }
@@ -173,5 +174,6 @@ public class Player : MonoBehaviour
     {
         playerGauge.GaugeReduction(power);
         life -= power;
+        Debug.Log("残りライフは" + life);
     }
 }
