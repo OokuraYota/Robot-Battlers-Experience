@@ -159,6 +159,10 @@ PlayableDirector:
     value: {fileID: 0}
   - key: {fileID: 6706428882975203437, guid: 41f79dd72c5a3064fa53803fb6d8de52, type: 2}
     value: {fileID: 963194231}
+  - key: {fileID: 1179250050880766936, guid: 41f79dd72c5a3064fa53803fb6d8de52, type: 2}
+    value: {fileID: 1141958218}
+  - key: {fileID: 6959568839211295986, guid: 41f79dd72c5a3064fa53803fb6d8de52, type: 2}
+    value: {fileID: 195787892}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &53787330
@@ -285,7 +289,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 10, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &174758474
 MonoBehaviour:
@@ -431,6 +435,7 @@ GameObject:
   - component: {fileID: 195787890}
   - component: {fileID: 195787889}
   - component: {fileID: 195787888}
+  - component: {fileID: 195787892}
   m_Layer: 5
   m_Name: "Robot Image\u3010Canvas\u3011"
   m_TagString: Untagged
@@ -518,6 +523,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!95 &195787892
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 195787887}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &403569574
 GameObject:
   m_ObjectHideFlags: 0
@@ -563,7 +587,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 403569574}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -1743,6 +1767,7 @@ GameObject:
   - component: {fileID: 1141958216}
   - component: {fileID: 1141958215}
   - component: {fileID: 1141958214}
+  - component: {fileID: 1141958218}
   m_Layer: 5
   m_Name: "TimelineBackground\u3010Canvas\u3011"
   m_TagString: Untagged
@@ -1830,6 +1855,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!95 &1141958218
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1141958213}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1266855242
 GameObject:
   m_ObjectHideFlags: 0
@@ -19617,12 +19661,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
-  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
-    are already bound by a Humanoid avatar. These transforms can only be changed
-    by Humanoid clips.\n\tTransform 'Index_Proximal_Right'\n\tTransform 'Shoulder_Left'\n\tTransform
-    'Index_Intermediate_Right'\n\tTransform 'Index_Distal_Left'\n\tTransform 'Hand_Right'\n\tTransform
-    'UpperLeg_Left'\n\tTransform 'Index_Intermediate_Left'\n\tTransform 'Thumb_Proximal_Left'\n\tTransform
-    'RestOfFingers_Proximal_Left'\n\tTransform 'UpperLeg_Right'\n\tand more ..."
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
