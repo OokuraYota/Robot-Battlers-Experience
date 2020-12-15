@@ -7566,7 +7566,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.6933962, g: 0.78699106, b: 1, a: 0.2509804}
+      maxColor: {r: 1, g: 0.8950387, b: 0.2971698, a: 0.2509804}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -19661,12 +19661,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
-  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
-    are already bound by a Humanoid avatar. These transforms can only be changed
-    by Humanoid clips.\n\tTransform 'Index_Proximal_Right'\n\tTransform 'Shoulder_Left'\n\tTransform
-    'Index_Intermediate_Right'\n\tTransform 'Index_Distal_Left'\n\tTransform 'Hand_Right'\n\tTransform
-    'UpperLeg_Left'\n\tTransform 'Index_Intermediate_Left'\n\tTransform 'Thumb_Proximal_Left'\n\tTransform
-    'RestOfFingers_Proximal_Left'\n\tTransform 'UpperLeg_Right'\n\tand more ..."
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
@@ -21604,7 +21599,7 @@ Transform:
   - {fileID: 2836004475690179855}
   m_Father: {fileID: 2836004475690179945}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -23.8, y: -68.26, z: -2.2680001}
 --- !u!4 &2836004475690179885
 Transform:
   m_ObjectHideFlags: 0
@@ -22067,7 +22062,7 @@ Transform:
   - {fileID: 2836004475690179883}
   m_Father: {fileID: 2836004475690179905}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 4.875, y: 22, z: 19.988}
 --- !u!4 &2836004475690179947
 Transform:
   m_ObjectHideFlags: 0
