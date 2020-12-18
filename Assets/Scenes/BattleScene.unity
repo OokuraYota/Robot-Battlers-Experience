@@ -1311,13 +1311,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.0964538, y: 0, z: 0, w: 0.9953375}
-  m_LocalPosition: {x: 0, y: 2.87, z: -5.96}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -0.0000004401006, y: -0.000000002020926, z: 0.2099955}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &963194229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1731,7 +1731,7 @@ PlayableDirector:
   m_SceneBindings:
   - key: {fileID: 3520529346650370063, guid: 41f79dd72c5a3064fa53803fb6d8de52, type: 2}
     value: {fileID: 2836004473680634580}
-  - key: {fileID: -7446112739334004870, guid: 41f79dd72c5a3064fa53803fb6d8de52, type: 2}
+  - key: {fileID: 657655848175986599, guid: 41f79dd72c5a3064fa53803fb6d8de52, type: 2}
     value: {fileID: 963194231}
   m_ExposedReferences:
     m_References: []
