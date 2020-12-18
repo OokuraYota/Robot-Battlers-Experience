@@ -1317,7 +1317,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -0.0000001909952, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0.0000004401006, y: -0.000000002020926, z: 0.2099955}
 --- !u!114 &963194229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1731,7 +1731,7 @@ PlayableDirector:
   m_SceneBindings:
   - key: {fileID: 3520529346650370063, guid: 41f79dd72c5a3064fa53803fb6d8de52, type: 2}
     value: {fileID: 2836004473680634580}
-  - key: {fileID: -4177556585974218705, guid: 41f79dd72c5a3064fa53803fb6d8de52, type: 2}
+  - key: {fileID: -7446112739334004870, guid: 41f79dd72c5a3064fa53803fb6d8de52, type: 2}
     value: {fileID: 963194231}
   m_ExposedReferences:
     m_References: []
