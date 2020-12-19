@@ -18,6 +18,15 @@ public class TimelineSpecialMoveManager : MonoBehaviour
 
     Vector3 PlayerRotation;
 
+    Vector3 CameraPosition;
+
+    Vector3 CameraRotation;
+
+    //transformは、スクリプトがついているオブジェクトの位置
+    //だからシリアライズフィールドとかしてカメラの角度を
+
+    [SerializeField] Camera camera;
+
     void Update()
     {
         //もし、キーボードのGを押したら
@@ -27,11 +36,23 @@ public class TimelineSpecialMoveManager : MonoBehaviour
              * オブジェクトの中から探し出して取得する。
              */
             Vector3 PlayerPositon = GameObject.Find("PlayerRobot").transform.position;
-            Debug.Log("プレイヤーの位置は : " + PlayerPosition);
+            Debug.Log("プレイヤーの位置を取得 : " + PlayerPositon);
 
             //角度も取得
             Vector3 PlayerRotation = GameObject.Find("PlayerRobot").transform.eulerAngles;
-            Debug.Log("プレイヤーの角度は" + PlayerRotation);
+            Debug.Log("プレイヤーの角度を取得" + PlayerRotation);
+
+            //Cameraの位置と角度も取得
+            /*Vector3 CameraPosition = GameObject.Find("Main Camera").transform.position;
+            Debug.Log("カメラの位置を取得" + CameraPosition);*/
+            Vector3 CameraPosition = camera.transform.position;
+            Debug.Log("プレイヤーの位置を取得" + CameraPosition);
+
+            /*Vector3 CameraRotation = GameObject.Find("Main Camera").transform.eulerAngles;
+            Debug.Log("カメラの角度を取得" + CameraRotation);*/
+            Vector3 CameraRotation = camera.transform.eulerAngles;
+            Debug.Log("カメラの角度を取得" + CameraRotation);
+            
 
             Debug.Log("必殺技Buttonが押されました");
             playableDirector.Play();
@@ -42,8 +63,6 @@ public class TimelineSpecialMoveManager : MonoBehaviour
              */
             //transform.position = PlayerPosition;
             //transform.eulerAngles = PlayerRotation;
-
-
         }   
     }
 
@@ -67,6 +86,15 @@ public class TimelineSpecialMoveManager : MonoBehaviour
             Debug.Log("Playerの現在の位置は" + PlayerPosition);
             transform.eulerAngles = PlayerRotation;
             Debug.Log("Playerの現在の角度は" + PlayerRotation);
+
+            /*transform.position = CameraPosition;
+            Debug.Log("Cameraの現在の位置は" + CameraPosition);
+            transform.eulerAngles = CameraRotation;
+            Debug.Log("Cameraの現在の角度は" + CameraRotation);*/
+            camera.transform.position = CameraPosition;
+            Debug.Log("Cameraの現在位置は" + CameraPosition);
+            camera.transform.eulerAngles = CameraRotation;
+            Debug.Log("Cameraの現在の角度は" + CameraRotation);
         }
     }
 
