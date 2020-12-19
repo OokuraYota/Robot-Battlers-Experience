@@ -2376,7 +2376,6 @@ GameObject:
   - component: {fileID: 1544869995}
   - component: {fileID: 1544869994}
   - component: {fileID: 1544869993}
-  - component: {fileID: 1544869992}
   m_Layer: 5
   m_Name: TimelineButton
   m_TagString: Untagged
@@ -2404,19 +2403,6 @@ RectTransform:
   m_AnchoredPosition: {x: -494, y: -367}
   m_SizeDelta: {x: 194.84, y: 134.3}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1544869992
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1544869990}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c748c9f1d137f884e8820aa771ec70e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playableDirector: {fileID: 1131749074}
 --- !u!114 &1544869993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2459,18 +2445,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1544869994}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1544869992}
-        m_MethodName: OnClick
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1544869994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19945,7 +19920,12 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
-  m_WarningMessage: 
+  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
+    are already bound by a Humanoid avatar. These transforms can only be changed
+    by Humanoid clips.\n\tTransform 'Index_Proximal_Right'\n\tTransform 'Shoulder_Left'\n\tTransform
+    'Index_Intermediate_Right'\n\tTransform 'Index_Distal_Left'\n\tTransform 'Hand_Right'\n\tTransform
+    'UpperLeg_Left'\n\tTransform 'Index_Intermediate_Left'\n\tTransform 'Thumb_Proximal_Left'\n\tTransform
+    'RestOfFingers_Proximal_Left'\n\tTransform 'UpperLeg_Right'\n\tand more ..."
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
@@ -21390,8 +21370,9 @@ GameObject:
   - component: {fileID: 2836004475689877874}
   - component: {fileID: 2836004475689877878}
   - component: {fileID: 2836004475689877880}
+  - component: {fileID: 2836004475689877882}
   m_Layer: 9
-  m_Name: PBRCharacter
+  m_Name: PlayerRobot
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21518,6 +21499,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &2836004475689877882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2836004475689877873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c748c9f1d137f884e8820aa771ec70e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playableDirector: {fileID: 1131749074}
 --- !u!1 &2836004475689877883
 GameObject:
   m_ObjectHideFlags: 0
