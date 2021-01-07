@@ -19,7 +19,7 @@ public class CollisionDetector : MonoBehaviour
 
     /*private void OnTriggerEnter(Collider other)
     {
-            onTriggerEnter.Invoke(other);
+        onTriggerEnter.Invoke(other);
     }*/
 
     private void OnTriggerStay(Collider other)
