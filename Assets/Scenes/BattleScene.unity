@@ -18259,6 +18259,7 @@ MonoBehaviour:
   bulletObject: {fileID: 5766623004690333519, guid: cde8fa7e4890b8347b37c12917b4046c,
     type: 3}
   muzzle: {fileID: 1631886664}
+  enemyMove: {fileID: 839306680465383801}
 --- !u!1 &839306680465383736
 GameObject:
   m_ObjectHideFlags: 0

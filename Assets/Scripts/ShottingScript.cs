@@ -22,27 +22,40 @@ public class ShottingScript : MonoBehaviour
     [SerializeField]
     Transform muzzle = null;
 
+    public EnemyMove enemyMove;
+
+
+
     void Start()
     {
-        InvokeRepeating("Shot", 1, 1); //1秒後に1秒ごとにShotを繰り出す
+        //1秒後に１秒毎にShotを繰り返す
+        InvokeRepeating("Shot", 1.0f, 1.0f);
         //ここのコードをEnemyMoveのPlayerTagで発見したらShotを繰り出すコードに変更したい
     }
 
     void Update()
     {
-
+        if (enemyMove.life == 0)
+        {
+            CancelInvoke("Shot");
+        }
     }
 
-    void Shot()
+    public void Shot()
     {
-        GameObject BulletsObject = Instantiate(bulletObject.gameObject, transform.position, transform.rotation);
+        //Instantiate(生成するオブジェクト,位置,回転)　オブジェクトを指定された位置、回転で生成する
+        GameObject BulletsObject = Instantiate(bulletObject.gameObject, transform.position, Quaternion.identity);
         Vector3 Force;  //弾にかける力
         Force = transform.forward * 400; //弾にかける力を重工の前方向に設定する
         BulletsObject.GetComponent<Rigidbody>().AddForce(Force); //弾に力をかける
 
+
+
         //弾を完全に削除します。（Immediate = 即座）
         Destroy(BulletsObject.gameObject, 2);
     }
+
+
 
     /*void colliderJudgment(Collider collider)
     {

@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using System.Runtime.CompilerServices;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -53,6 +54,10 @@ public class EnemyMove : MonoBehaviour
         {
             _agent.isStopped = true;
             animator.SetBool("Run", false);
+
+            //Invokeを止める
+            //CancelInvoke();
+            //Debug.Log("Playerが範囲を出たので、Invokeを止める");
         }
     }
 
@@ -96,11 +101,24 @@ public class EnemyMove : MonoBehaviour
             _agent.destination = collider.transform.position;
             animator.SetBool("Run", true);  //Runにする
 
+
+
             ////InvokeRepeating("Shot", 1, 1f);//1秒後に1秒ごとにShotを繰り出す
+
+            //Debug.Log("呼び出されているか？ :" + IsInvoking("Shot"));
+            //InvokeRepeating("Shot", 1.0f, 1.0f);
+
+            //1秒後に呼び出され、１秒毎に呼び出される
+            //shotting.InvokeRepeating("Shot", 1, 1);
+            //Invokeが呼び出されているか？
+            //Debug.Log("呼び出されているか :" + IsInvoking("Shot"));
+            //Invoke("Shot", 1); //1秒後に1秒ごとにShotを繰り出す
         }
         /*else  //もし範囲を出たなら
         {
-            return;
+            //Invokeを止める
+            CancelInvoke();
+            Debug.Log("Playerが範囲を出たので、Invokeを止める");
         }*/
     }
 
