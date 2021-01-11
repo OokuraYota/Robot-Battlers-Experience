@@ -21390,6 +21390,8 @@ MonoBehaviour:
   rotateSpeed: 1
   life: 5
   maxLife: 5
+  effectDeadPrefab: {fileID: 7325822782179180573, guid: c4b06beba748d004e8c7fd3812f2ad1f,
+    type: 3}
 --- !u!1 &2836004475689877875
 GameObject:
   m_ObjectHideFlags: 0
