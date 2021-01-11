@@ -56,8 +56,8 @@ public class Player : MonoBehaviour
     protected PlayerGauge playerGauge;
 
     //ライフが半分になったら煙が出るエフェクト 2021/01/11
-    //[SerializeField]
-    //GameObject malfunction = null;
+    [SerializeField]
+    GameObject XXX = null;
 
     // 死亡時に再生するエフェクト 2021/01/11
     [SerializeField]
@@ -75,6 +75,11 @@ public class Player : MonoBehaviour
 
         playerGauge = GameObject.FindObjectOfType<PlayerGauge>();
         playerGauge.SetPlayer(this);
+
+        //スクリプト側で参照をとってからアクティブの管理を行う
+        //最初はアクティブになっているが、スクリプトで非アクティブにしている。
+        XXX = GameObject.Find("Malfunction");  //←オブジェクトの名前
+        XXX.SetActive(false);
     }
 
     void Update()
@@ -182,16 +187,15 @@ public class Player : MonoBehaviour
         life -= power;
         Debug.Log("残りライフは" + life);
 
-        //もし、ライフが半分以下になったら
-        /*if (life == 3)
+        //もし、ライフが半分(今は２)になったら
+        if (life == 2)
         {
-            //機体から故障の煙が出る　音も出来れば出したい　きしむ音とか
-            //GameObject XXX = Instantiate(malfunction);
-            //XXX.SetActive(true);
-            GameObject XXX = GameObject.FindGameObjectWithTag("Malfunction");
-            XXX.gameObject.SetActive(true);
+            //機体から故障の煙が出る Start()で非アクティブからアクティブにする
+            Debug.Log("HPが半分になったので、点灯します");
+            XXX.SetActive(true);
+            //音も出来れば出したい　きしむ音とか
         }
-        */
+
 
         //もし、現在のライフが０になったら死亡　20200111
         if (life <= 0)
@@ -206,7 +210,7 @@ public class Player : MonoBehaviour
             Debug.Log("Playerが死亡判定されたため" + effectDeadPrefab +"を再生");
 
             //ゲームオブジェクトを非アクティブにして、非表示にする
-            gameObject.SetActive(false);
+            gameObject.SetActive(false);  //全部非アクティブにする
         }
     }
 }
