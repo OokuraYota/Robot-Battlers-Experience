@@ -18760,6 +18760,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   life: 3
   maxLife: 3
+  effectDeadPrefab: {fileID: 7325822782179180573, guid: c4b06beba748d004e8c7fd3812f2ad1f,
+    type: 3}
 --- !u!1 &839306680465383802
 GameObject:
   m_ObjectHideFlags: 0

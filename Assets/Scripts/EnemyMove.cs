@@ -30,6 +30,10 @@ public class EnemyMove : MonoBehaviour
 
     protected ShottingScript shotting;
 
+    // 死亡時に再生するエフェクト 2020/01/11
+    [SerializeField]
+    GameObject effectDeadPrefab = null;
+
     //private RaycastHit[] _raycastHits = new RaycastHit[10];　今回はレイキャストを使っていないからここはコメントアウトした
 
     public void Start()
@@ -130,5 +134,21 @@ public class EnemyMove : MonoBehaviour
     {
         EnemyGauge.GaugeReduction(power);
         life -= power;
+
+        //もし、現在のライフが０になったら死亡　20200111
+        if (life <= 0)
+        {
+            //マイナス値になったら0にする
+            life = 0;
+
+            //死亡エフェクト再生
+            GameObject instance = Instantiate(effectDeadPrefab);
+            instance.transform.position = transform.position;
+
+            Debug.Log("Playerが死亡判定されたため" + effectDeadPrefab + "を再生");
+
+            //ゲームオブジェクトを非アクティブにして、非表示にする
+            gameObject.SetActive(false);
+        }
     }
 }
