@@ -55,7 +55,9 @@ public class Player : MonoBehaviour
 
     protected PlayerGauge playerGauge;
 
-
+    // 死亡時に再生するエフェクト 2020/01/11
+    [SerializeField]
+    GameObject effectDeadPrefab = null;
 
     /// <summary>
     /// プレイヤーのポジション
@@ -175,5 +177,19 @@ public class Player : MonoBehaviour
         playerGauge.GaugeReduction(power);
         life -= power;
         Debug.Log("残りライフは" + life);
+
+        //もし、現在のライフが０になったら死亡　20200111
+        if (life <= 0)
+        {
+            //マイナス値になったら0にする
+            life = 0;
+
+            //死亡エフェクト再生
+            GameObject instance = Instantiate(effectDeadPrefab);
+            instance.transform.position = transform.position;
+
+            //ゲームオブジェクトを非アクティブにして、非表示にする
+            gameObject.SetActive(false);
+        }
     }
 }
