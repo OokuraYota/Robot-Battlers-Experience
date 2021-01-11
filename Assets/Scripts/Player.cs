@@ -188,6 +188,8 @@ public class Player : MonoBehaviour
             GameObject instance = Instantiate(effectDeadPrefab);
             instance.transform.position = transform.position;
 
+            Debug.Log("Player死亡" + effectDeadPrefab);
+
             //ゲームオブジェクトを非アクティブにして、非表示にする
             gameObject.SetActive(false);
         }
