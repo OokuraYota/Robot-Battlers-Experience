@@ -55,7 +55,11 @@ public class Player : MonoBehaviour
 
     protected PlayerGauge playerGauge;
 
-    // 死亡時に再生するエフェクト 2020/01/11
+    //ライフが半分になったら煙が出るエフェクト 2021/01/11
+    //[SerializeField]
+    //GameObject malfunction = null;
+
+    // 死亡時に再生するエフェクト 2021/01/11
     [SerializeField]
     GameObject effectDeadPrefab = null;
 
@@ -177,6 +181,17 @@ public class Player : MonoBehaviour
         playerGauge.GaugeReduction(power);
         life -= power;
         Debug.Log("残りライフは" + life);
+
+        //もし、ライフが半分以下になったら
+        /*if (life == 3)
+        {
+            //機体から故障の煙が出る　音も出来れば出したい　きしむ音とか
+            //GameObject XXX = Instantiate(malfunction);
+            //XXX.SetActive(true);
+            GameObject XXX = GameObject.FindGameObjectWithTag("Malfunction");
+            XXX.gameObject.SetActive(true);
+        }
+        */
 
         //もし、現在のライフが０になったら死亡　20200111
         if (life <= 0)
