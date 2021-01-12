@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 //CapsuleColliderとRigidbodyを追加
 [RequireComponent(typeof(CapsuleCollider))]
@@ -64,6 +65,12 @@ public class Player : MonoBehaviour
     GameObject effectDeadPrefab = null;
 
     /// <summary>
+    /// プレイヤーが死亡した時の管理
+    /// </summary>
+    public PlayerDieSceneManager playerDieSceneManager;
+
+
+    /// <summary>
     /// プレイヤーのポジション
     /// </summary>
     //private Vector3 Player_pos;
@@ -84,6 +91,8 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+
+
         GetInputs();
         //W・Sキー　↕キーで前後移動
         //float z = Input.GetAxisRaw("Vertical") * Time.deltaTime * speed;
@@ -200,6 +209,9 @@ public class Player : MonoBehaviour
         //もし、現在のライフが０になったら死亡　20200111
         if (life <= 0)
         {
+            //PlayerDieSceneManagerのSceneTransitionを呼び出す
+            playerDieSceneManager.SceneTransition();
+
             //マイナス値になったら0にする
             life = 0;
 
@@ -211,6 +223,35 @@ public class Player : MonoBehaviour
 
             //ゲームオブジェクトを非アクティブにして、非表示にする
             gameObject.SetActive(false);  //全部非アクティブにする
+
+
+
+            //Playerが死亡した場合のSceneに飛ぶ
+            //EndBattle();
+
+            //EndBattleCoroutine();  
+            //↑ここに書くと、ゲームオブジェクトが非アクティブになるため、コルーチンが開始できない
         }
     }
+
+    /*public void EndBattleCoroutine()
+    {
+        //コルーチンを呼び出す
+        StartCoroutine("EndBattle");
+    }*/
+
+    //コルーチン
+    /*private IEnumerator EndBattle()
+    {
+        //3秒経過してから
+        yield return new WaitForSeconds(3.0f);
+        //Scene遷移
+        SceneManager.LoadScene("PlayerDieScene");
+    }*/
+
+    /*void EndBattle()
+    {
+            Debug.Log("PlayerのHPが0になった為、ゲーム終了");
+            SceneManager.LoadScene("PlayerDieScene");
+    }*/
 }
