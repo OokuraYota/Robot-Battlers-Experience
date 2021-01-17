@@ -33,6 +33,9 @@ public class EnemyMove : MonoBehaviour
     // 死亡時に再生するエフェクト 2020/01/11
     [SerializeField]
     GameObject effectDeadPrefab = null;
+    
+    //死亡爆破音
+    public AudioClip audioClip;
 
     //private RaycastHit[] _raycastHits = new RaycastHit[10];　今回はレイキャストを使っていないからここはコメントアウトした
 
@@ -140,6 +143,8 @@ public class EnemyMove : MonoBehaviour
         {
             //マイナス値になったら0にする
             life = 0;
+
+            AudioSource.PlayClipAtPoint(audioClip, this.gameObject.transform.position);
 
             //死亡エフェクト再生
             GameObject instance = Instantiate(effectDeadPrefab);
