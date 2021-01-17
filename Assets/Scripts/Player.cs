@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -70,6 +71,11 @@ public class Player : MonoBehaviour
     public PlayerDieSceneManager playerDieSceneManager;
 
 
+    //public AudioSource audioSource;
+    public AudioClip audioClip;
+    
+
+
     /// <summary>
     /// プレイヤーのポジション
     /// </summary>
@@ -79,6 +85,9 @@ public class Player : MonoBehaviour
     {
         //Animatorコンポーネントを取得
         animator = GetComponent<Animator>();
+        
+        //AudioSourceコンポーネントを取得
+       // audioSource = GetComponent<AudioSource>();
 
         playerGauge = GameObject.FindObjectOfType<PlayerGauge>();
         playerGauge.SetPlayer(this);
@@ -214,6 +223,8 @@ public class Player : MonoBehaviour
 
             //マイナス値になったら0にする
             life = 0;
+
+            AudioSource.PlayClipAtPoint(audioClip, this.gameObject.transform.position);
 
             //死亡エフェクト再生
             GameObject instance = Instantiate(effectDeadPrefab);
