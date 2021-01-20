@@ -39,6 +39,9 @@ public class TextGameManager : MonoBehaviour
     //パラメーターを追加 ページの区切り文字は＆　これをページの跨ぎたい箇所の間に挟む　a『b』＆c『d』なら　Name a Main b クリックすると Name c 『d』と表示される
     private string _text = "大倉『こんにちは\nこんばんわ\nおはようございます』&大倉『これはテキストの表示サンプルです』&芝間『こんにちは』";
 
+    [SerializeField]
+    private GameObject nextpageImage;
+
     //MonoBehaviorを継承している場合限定で
     //最初の更新関数（Updateメソッド）が呼ばれるときに最初に呼ばれる。
     private void Start()
@@ -69,7 +72,11 @@ public class TextGameManager : MonoBehaviour
     private bool OutputChar()
     {
         //キューに何も格納されていなければfalseを返す
-        if (_charQueue.Count <= 0) return false;
+        if (_charQueue.Count <= 0)
+        {
+            nextpageImage.SetActive(true);
+            return false;
+        }
 
         //キューからは値を取り出し、キュー内からは削除する。
         mainText.text += _charQueue.Dequeue();
@@ -119,6 +126,7 @@ public class TextGameManager : MonoBehaviour
         StopCoroutine(ShowChars(captionSpeed));
         //キューが空になるまで表示
         while (OutputChar()) ;
+        nextpageImage.SetActive(true);
     }
 
 
@@ -174,6 +182,10 @@ public class TextGameManager : MonoBehaviour
     private bool ShowNextPage()
     {
         if (_pageQueue.Count <= 0) return false;
+
+        //オブジェクトの表示/非表示を設定する。
+        nextpageImage.SetActive(false);
+
         ReadLine(_pageQueue.Dequeue());
         return true;
     }
