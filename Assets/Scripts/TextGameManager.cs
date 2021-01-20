@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;  //記述
+using System.Security;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,7 +23,7 @@ public class TextGameManager : MonoBehaviour
 
     //private string _text = "Name + MainText" 
     //private string _text = "みにに『Hello,World』";
-    private string _text = "大倉『こうだい、しばま\n" + "おやすみ\n" + "私も寝ます』";
+    //private string _text = "大倉『こうだい、しばま\n" + "おやすみ\n" + "私も寝ます』";
 
     //パラメーターを追加
     private Queue<char> _charQueue;
@@ -31,6 +32,13 @@ public class TextGameManager : MonoBehaviour
     [SerializeField]
     private float captionSpeed = 0.2f;
 
+    //パラメーターを追加
+    private const char SEPARATE_PAGE = '&';
+    private Queue<string> _pageQueue;
+
+    //パラメーターを追加 ページの区切り文字は＆　これをページの跨ぎたい箇所の間に挟む　a『b』＆c『d』なら　Name a Main b クリックすると Name c 『d』と表示される
+    private string _text = "大倉『こんにちは\nこんばんわ\nおはようございます』&大倉『これはテキストの表示サンプルです』&芝間『こんにちは』";
+
     //MonoBehaviorを継承している場合限定で
     //最初の更新関数（Updateメソッド）が呼ばれるときに最初に呼ばれる。
     private void Start()
@@ -38,8 +46,8 @@ public class TextGameManager : MonoBehaviour
         //Main Textに指定したTextコンポーネントの
         //テキストのパラメーターに代入する。
         //mainText.text = _text;
-        ReadLine(_text);
- 
+        //ReadLine(_text);
+        Init();
     }
 
 
@@ -101,5 +109,72 @@ public class TextGameManager : MonoBehaviour
 
         //コルーチンを呼び出す
         StartCoroutine(ShowChars(captionSpeed));
+    }
+
+    //メソッドを追加
+    //全文を表示する
+    private void OutputAllChar() //2021 01 20
+    {
+        //コルーチンをストップ
+        StopCoroutine(ShowChars(captionSpeed));
+        //キューが空になるまで表示
+        while (OutputChar()) ;
+    }
+
+
+    //クリックしたときの処理
+    private void OnClick()
+    {
+        //OutputAllChar();
+        if (_charQueue.Count > 0)
+        {
+            OutputAllChar();
+        }
+        else
+        {
+            if (!ShowNextPage())
+            {
+                //UnityエディタのPlayモードを終了する
+                UnityEditor.EditorApplication.isPlaying = false;
+            }
+        }
+    }
+
+
+    //MonoBhaviourを継承している場合限定で毎フレーム呼ばれる。
+    private void Update()
+    {
+        //左（＝０）がクリックされたらOnClickメソッドを呼び込む
+        if (Input.GetMouseButtonDown(0)) OnClick();
+    }
+
+    private Queue<string> SeparateString(string str, char sep)
+    {
+        string[] strs = str.Split(sep);
+        Queue<string> queue = new Queue<string>();
+        foreach(string l in strs) queue.Enqueue(l);
+        return queue;
+    }
+
+
+    /// <summary>
+    /// 初期化する
+    /// </summary>
+    private void Init()
+    {
+        _pageQueue = SeparateString(_text, SEPARATE_PAGE);
+        ShowNextPage();
+    }
+
+
+    /// <summary>
+    /// 次のページを表示する
+    /// </summary>
+    /// <returns></returns>
+    private bool ShowNextPage()
+    {
+        if (_pageQueue.Count <= 0) return false;
+        ReadLine(_pageQueue.Dequeue());
+        return true;
     }
 }
