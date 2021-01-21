@@ -56,9 +56,29 @@ public class TextGameManager : MonoBehaviour
     private string spritesDirectory = "Sprites/";
 
     // パラメーターを変更
-    private string _text =
-           "!background_sprite=\"background_sprite1\"&みにに「Hello,World!」&みにに「これはテキスト表示のサンプルです」&!background_sprite=\"background_sprite2\"!background_color=\"255,0,255\"&名無し「こんにちは！」";
+    //private string _text =
+    //"!background_sprite=\"background_sprite1\"&みにに「Hello,World!」&みにに「これはテキスト表示のサンプルです」&!background_sprite=\"background_sprite2\"!background_color=\"255,0,255\"&名無し「こんにちは！」";
 
+
+    // パラメーターを追加
+    private const string COMMAND_CHARACTER_IMAGE = "charaimg";
+    private const string COMMAND_SIZE = "_size";
+    private const string COMMAND_POSITION = "_pos";
+    private const string COMMAND_ROTATION = "_rotate";
+    private const string CHARACTER_IMAGE_PREFAB = "CharacterImage";
+    [SerializeField]
+    private GameObject characterImages;
+    [SerializeField]
+    private string prefabsDirectory = "Prefabs/";
+    private List<Image> _charaImageList = new List<Image>();
+
+    // パラメーターを変更
+    private string _text =
+           "!background_sprite=\"background_sprite1\"!charaimg_sprite=\"polygon\"=\"background_sprite2\"" +
+           "!charaimg_size=\"polygon\"=\"500, 500, 1\"&みにに「Hello,World!」&みにに「これはテキスト表示のサンプルです」" +
+           "&!background_sprite=\"background_sprite2\"!background_color=\"255,0,255\"!charaimg_pos=\"polygon\"=\"-500, 500, 0\"&名無し「こんにちは！」";
+
+    
     //MonoBehaviorを継承している場合限定で
     //最初の更新関数（Updateメソッド）が呼ばれるときに最初に呼ばれる。
     private void Start()
@@ -221,39 +241,16 @@ public class TextGameManager : MonoBehaviour
     /**
       * 背景の設定
       */
+    // メソッドを変更
     private void SetBackgroundImage(string cmd, string parameter)
     {
-        // 空白を削除し、背景コマンドの文字列も削除する
-        cmd = cmd.Replace(" ", "").Replace(COMMAND_BACKGROUND, "");
-        // ダブルクォーテーションで囲われた部分だけを取り出す
-        parameter = parameter.Substring(parameter.IndexOf('"') + 1, parameter.LastIndexOf('"') - parameter.IndexOf('"') - 1);
-        switch (cmd)
-        {
-            case COMMAND_SPRITE:
-                // Resourcesフォルダからスプライトを読み込み、インスタンス化する
-                Sprite sp = Instantiate(Resources.Load<Sprite>(spritesDirectory + parameter));
-                // 背景画像にインスタンス化したスプライトを設定する
-                backgroundImage.sprite = sp;
-                break;
-            case COMMAND_COLOR:
-                // 空白を削除し、カンマで文字を分ける
-                string[] ps = parameter.Replace(" ", "").Split(',');
-                // 分けた文字列(=引数)が4つ以上あるなら
-                if (ps.Length > 3)
-                    // 透明度も設定する
-                    // 文字列をbyte型に直し、色を作成する
-                    backgroundImage.color = new Color32(byte.Parse(ps[0]), byte.Parse(ps[1]),
-                                                    byte.Parse(ps[2]), byte.Parse(ps[3]));
-                else
-                    backgroundImage.color = new Color32(byte.Parse(ps[0]), byte.Parse(ps[1]), byte.Parse(ps[2]), 255);
-                break;
-        }
+        cmd = cmd.Replace(COMMAND_BACKGROUND, "");
+        SetImage(cmd, parameter, backgroundImage);
     }
-
     /**
      * コマンドの読み出し
      */
-    private void ReadCommand(string cmdLine)
+    /*private void ReadCommand(string cmdLine)
     {
         // 最初の「!」を削除する
         cmdLine = cmdLine.Remove(0, 1);
@@ -266,5 +263,97 @@ public class TextGameManager : MonoBehaviour
             if (cmds[0].Contains(COMMAND_BACKGROUND))
                 SetBackgroundImage(cmds[0], cmds[1]);
         }
+    }*/
+
+    // メソッドを変更
+    private void ReadCommand(string cmdLine)
+    {
+        cmdLine = cmdLine.Remove(0, 1);
+        Queue<string> cmdQueue = SeparateString(cmdLine, SEPARATE_COMMAND);
+        foreach (string cmd in cmdQueue)
+        {
+            string[] cmds = cmd.Split(COMMAND_SEPARATE_PARAM);
+            if (cmds[0].Contains(COMMAND_BACKGROUND))
+                SetBackgroundImage(cmds[0], cmds[1]);
+            if (cmds[0].Contains(COMMAND_CHARACTER_IMAGE))
+                SetCharacterImage(cmds[1], cmds[0], cmds[2]);
+        }
+    }
+
+
+    private void SetImage(string cmd, string parameter, Image image)
+    {
+        cmd = cmd.Replace(" ", "");
+        parameter = parameter.Substring(parameter.IndexOf('"') + 1, parameter.LastIndexOf('"') - parameter.IndexOf('"') - 1);
+        switch (cmd)
+        {
+            case COMMAND_SPRITE:
+                image.sprite = LoadSprite(parameter);
+                break;
+            case COMMAND_COLOR:
+                image.color = ParameterToColor(parameter);
+                break;
+            case COMMAND_SIZE:
+                image.GetComponent<RectTransform>().sizeDelta = ParameterToVector3(parameter);
+                break;
+            case COMMAND_POSITION:
+                image.GetComponent<RectTransform>().anchoredPosition = ParameterToVector3(parameter);
+                break;
+            case COMMAND_ROTATION:
+                image.GetComponent<RectTransform>().eulerAngles = ParameterToVector3(parameter);
+                break;
+        }
+    }
+
+    // メソッドを追加
+    /**
+    * スプライトをファイルから読み出し、インスタンス化する
+*/
+    private Sprite LoadSprite(string name)
+    {
+        return Instantiate(Resources.Load<Sprite>(spritesDirectory + name));
+    }
+
+    /**
+* パラメーターから色を作成する
+*/
+    private Color ParameterToColor(string parameter)
+    {
+        string[] ps = parameter.Replace(" ", "").Split(',');
+        if (ps.Length > 3)
+            return new Color32(byte.Parse(ps[0]), byte.Parse(ps[1]),
+                                            byte.Parse(ps[2]), byte.Parse(ps[3]));
+        else
+            return new Color32(byte.Parse(ps[0]), byte.Parse(ps[1]),
+                                            byte.Parse(ps[2]), 255);
+    }
+
+
+
+    // メソッドを追加
+    /**
+    * 立ち絵の設定
+*/
+    private void SetCharacterImage(string name, string cmd, string parameter)
+    {
+        cmd = cmd.Replace(COMMAND_CHARACTER_IMAGE, "");
+        name = name.Substring(name.IndexOf('"') + 1, name.LastIndexOf('"') - name.IndexOf('"') - 1);
+        Image image = _charaImageList.Find(n => n.name == name);
+        if (image == null)
+        {
+            image = Instantiate(Resources.Load<Image>(prefabsDirectory + CHARACTER_IMAGE_PREFAB), characterImages.transform);
+            image.name = name;
+            _charaImageList.Add(image);
+        }
+        SetImage(cmd, parameter, image);
+    }
+
+    /**
+    * パラメーターからベクトルを取得する
+*/
+    private Vector3 ParameterToVector3(string parameter)
+    {
+        string[] ps = parameter.Replace(" ", "").Split(',');
+        return new Vector3(float.Parse(ps[0]), float.Parse(ps[1]), float.Parse(ps[2]));
     }
 }
