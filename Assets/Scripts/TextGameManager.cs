@@ -18,8 +18,8 @@ public class TextGameManager : MonoBehaviour
 
     //private string _text = "Hello,Wolrd";
 
-    private const char SEPARATE_MAIN_STAET = '『';
-    private const char SEPARATE_MAIN_END = '』';
+    private const char SEPARATE_MAIN_START = '「';
+    private const char SEPARATE_MAIN_END = '」';
 
     //private string _text = "Name + MainText" 
     //private string _text = "みにに『Hello,World』";
@@ -37,10 +37,27 @@ public class TextGameManager : MonoBehaviour
     private Queue<string> _pageQueue;
 
     //パラメーターを追加 ページの区切り文字は＆　これをページの跨ぎたい箇所の間に挟む　a『b』＆c『d』なら　Name a Main b クリックすると Name c 『d』と表示される
-    private string _text = "大倉『こんにちは\nこんばんわ\nおはようございます』&大倉『これはテキストの表示サンプルです』&芝間『こんにちは』";
+    //private string _text = "大倉「こんにちは\nこんばんわ\nおはようございます」&大倉「これはテキストの表示サンプルです」&芝間「こんにちは」";
 
     [SerializeField]
     private GameObject nextpageImage;
+
+
+    //2021 01 21
+    // パラメーターを追加
+    private const char SEPARATE_COMMAND = '!';
+    private const char COMMAND_SEPARATE_PARAM = '=';
+    private const string COMMAND_BACKGROUND = "background";
+    private const string COMMAND_SPRITE = "_sprite";
+    private const string COMMAND_COLOR = "_color";
+    [SerializeField]
+    private Image backgroundImage;
+    [SerializeField]
+    private string spritesDirectory = "Sprites/";
+
+    // パラメーターを変更
+    private string _text =
+           "!background_sprite=\"background_sprite1\"&みにに「Hello,World!」&みにに「これはテキスト表示のサンプルです」&!background_sprite=\"background_sprite2\"!background_color=\"255,0,255\"&名無し「こんにちは！」";
 
     //MonoBehaviorを継承している場合限定で
     //最初の更新関数（Updateメソッド）が呼ばれるときに最初に呼ばれる。
@@ -100,8 +117,17 @@ public class TextGameManager : MonoBehaviour
     /// <param name="text"></param>
     private void ReadLine(string text)
     {
+
+        // 最初が「!」だったら
+        if (text[0].Equals(SEPARATE_COMMAND))
+        {
+            ReadCommand(text);
+            ShowNextPage();
+            return;
+        }
+
         //'『'の位置で文字列を分ける
-        string[] ts = text.Split(SEPARATE_MAIN_STAET);
+        string[] ts = text.Split(SEPARATE_MAIN_START);
 
         //分けた時の最初の値、つまり"みにに"が代入される
         string name = ts[0];
@@ -188,5 +214,57 @@ public class TextGameManager : MonoBehaviour
 
         ReadLine(_pageQueue.Dequeue());
         return true;
+    }
+
+
+    //2021 01 21
+    /**
+      * 背景の設定
+      */
+    private void SetBackgroundImage(string cmd, string parameter)
+    {
+        // 空白を削除し、背景コマンドの文字列も削除する
+        cmd = cmd.Replace(" ", "").Replace(COMMAND_BACKGROUND, "");
+        // ダブルクォーテーションで囲われた部分だけを取り出す
+        parameter = parameter.Substring(parameter.IndexOf('"') + 1, parameter.LastIndexOf('"') - parameter.IndexOf('"') - 1);
+        switch (cmd)
+        {
+            case COMMAND_SPRITE:
+                // Resourcesフォルダからスプライトを読み込み、インスタンス化する
+                Sprite sp = Instantiate(Resources.Load<Sprite>(spritesDirectory + parameter));
+                // 背景画像にインスタンス化したスプライトを設定する
+                backgroundImage.sprite = sp;
+                break;
+            case COMMAND_COLOR:
+                // 空白を削除し、カンマで文字を分ける
+                string[] ps = parameter.Replace(" ", "").Split(',');
+                // 分けた文字列(=引数)が4つ以上あるなら
+                if (ps.Length > 3)
+                    // 透明度も設定する
+                    // 文字列をbyte型に直し、色を作成する
+                    backgroundImage.color = new Color32(byte.Parse(ps[0]), byte.Parse(ps[1]),
+                                                    byte.Parse(ps[2]), byte.Parse(ps[3]));
+                else
+                    backgroundImage.color = new Color32(byte.Parse(ps[0]), byte.Parse(ps[1]), byte.Parse(ps[2]), 255);
+                break;
+        }
+    }
+
+    /**
+     * コマンドの読み出し
+     */
+    private void ReadCommand(string cmdLine)
+    {
+        // 最初の「!」を削除する
+        cmdLine = cmdLine.Remove(0, 1);
+        Queue<string> cmdQueue = SeparateString(cmdLine, SEPARATE_COMMAND);
+        foreach (string cmd in cmdQueue)
+        {
+            // 「=」で分ける
+            string[] cmds = cmd.Split(COMMAND_SEPARATE_PARAM);
+            // もし背景コマンドの文字列が含まれていたら
+            if (cmds[0].Contains(COMMAND_BACKGROUND))
+                SetBackgroundImage(cmds[0], cmds[1]);
+        }
     }
 }
