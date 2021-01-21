@@ -179,6 +179,8 @@ MonoBehaviour:
   characterImages: {fileID: 725988475}
   prefabsDirectory: Prefabs/
   textFile: Texts/Scenario
+  animationsDirectory: Animations/
+  overrideAnimationClipName: Clip
 --- !u!1 &331677576
 GameObject:
   m_ObjectHideFlags: 0

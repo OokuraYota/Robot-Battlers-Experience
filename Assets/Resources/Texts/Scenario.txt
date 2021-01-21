@@ -1,3 +1,4 @@
+#START&
 !background_sprite="background_sprite1"
 !charaimg_sprite="polygon"="background_sprite2"
 !charaimg_size="polygon"="500, 500, 1"
@@ -6,7 +7,7 @@
 &みにに「Hello,World!」
 
 &!charaimg_active="polygon"="true"
-!charaimg_anim="polygon"="anim,0,1,EaseInOut%255,255,255,0%1000,1000,1%1000,500,0"
+!charaimg_anim="polygon"="anim,0,1,EaseInOut%255,255,255,0%1000,1000,0%1000,500,0"
 
 &みにに「これはテキスト表示のサンプルです」
 
@@ -17,6 +18,7 @@
 
 &名無し「こんにちは！」
 
-&!charaimg_delete="polygon"=""
+#END&
+!charaimg_delete="polygon"=""
 
 &「ポリゴンを削除しました」

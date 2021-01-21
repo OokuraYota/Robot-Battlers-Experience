@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using System.IO; //20210121
 using UnityEditor;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 // MonoBehaviorを継承することでオブジェクトにコンポーネントとして
 // アタッチすることが出来る
@@ -101,6 +102,14 @@ public class TextGameManager : MonoBehaviour
            "!charaimg_size=\"polygon\"=\"500, 500, 1\"&みにに「Hello,World!」&みにに「これはテキスト表示のサンプルです」" +
            "&!background_sprite=\"background_sprite2\"!background_color=\"255,0,255\"!charaimg_pos=\"polygon\"=\"-500, 500, 0\"&名無し「こんにちは！」";
            */
+
+
+    // パラメーターを追加
+    private const char SEPARATE_SUBSCENE = '#';
+    private Dictionary<string, Queue<string>> _subScenes =
+           new Dictionary<string, Queue<string>>();
+
+
 
     //MonoBehaviorを継承している場合限定で
     //最初の更新関数（Updateメソッド）が呼ばれるときに最初に呼ばれる。
@@ -233,7 +242,14 @@ public class TextGameManager : MonoBehaviour
     private void Init()
     {
         _text = LoadTextFile(textFile);
-        _pageQueue = SeparateString(_text, SEPARATE_PAGE);
+        Queue<string> subScenes = SeparateString(_text, SEPARATE_SUBSCENE);
+        foreach (string subScene in subScenes)
+        {
+            if (subScene.Equals("")) continue;
+            Queue<string> pages = SeparateString(subScene, SEPARATE_PAGE);
+            _subScenes[pages.Dequeue()] = pages;
+        }
+        _pageQueue = _subScenes.First().Value;
         ShowNextPage();
     }
 
