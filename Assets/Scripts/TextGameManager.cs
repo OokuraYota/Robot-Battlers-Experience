@@ -73,8 +73,15 @@ public class TextGameManager : MonoBehaviour
     private List<Image> _charaImageList = new List<Image>();
 
     // パラメーターを追加
+    private const string COMMAND_ACTIVE = "_active";
+    private const string COMMAND_DELETE = "_delete";
+
+
+    // パラメーターを追加
     [SerializeField]
     private string textFile = "Texts/Scenario";
+
+
 
     // パラメーターを変更
     private string _text = "";
@@ -144,30 +151,23 @@ public class TextGameManager : MonoBehaviour
     /// <param name="text"></param>
     private void ReadLine(string text)
     {
-
-        // 最初が「!」だったら
         if (text[0].Equals(SEPARATE_COMMAND))
         {
             ReadCommand(text);
             ShowNextPage();
             return;
         }
-
-        //'『'の位置で文字列を分ける
         string[] ts = text.Split(SEPARATE_MAIN_START);
-
-        //分けた時の最初の値、つまり"みにに"が代入される
         string name = ts[0];
-
-        //分けた時の次の値、つまり"Hello,World!』"が代入されるので
-        //最後の閉じ括弧を削除して代入（="Hello,World!"）
         string main = ts[1].Remove(ts[1].LastIndexOf(SEPARATE_MAIN_END));
-        nameText.text = name;
+        if (name.Equals("")) nameText.transform.parent.gameObject.SetActive(false);
+        else
+        {
+            nameText.text = name;
+            nameText.transform.parent.gameObject.SetActive(true);
+        }
         mainText.text = "";
-
         _charQueue = SeparateString(main);
-
-        //コルーチンを呼び出す
         StartCoroutine(ShowChars(captionSpeed));
     }
 
@@ -310,6 +310,13 @@ public class TextGameManager : MonoBehaviour
             case COMMAND_ROTATION:
                 image.GetComponent<RectTransform>().eulerAngles = ParameterToVector3(parameter);
                 break;
+            case COMMAND_ACTIVE:
+                image.gameObject.SetActive(ParameterToBool(parameter));
+                break;
+            case COMMAND_DELETE:
+                _charaImageList.Remove(image);
+                Destroy(image.gameObject);
+                break;
         }
     }
 
@@ -374,4 +381,13 @@ public class TextGameManager : MonoBehaviour
         return textasset.text.Replace("\n", "").Replace("\r", "");
     }
 
+
+    /**
+     * パラメーターからboolを取得する
+     */
+    private bool ParameterToBool(string parameter)
+    {
+        string p = parameter.Replace(" ", "");
+        return p.Equals("true") || p.Equals("TRUE");
+    }
 }
