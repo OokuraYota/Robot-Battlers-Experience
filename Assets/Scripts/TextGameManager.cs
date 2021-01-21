@@ -72,13 +72,20 @@ public class TextGameManager : MonoBehaviour
     private string prefabsDirectory = "Prefabs/";
     private List<Image> _charaImageList = new List<Image>();
 
+    // パラメーターを追加
+    [SerializeField]
+    private string textFile = "Texts/Scenario";
+
     // パラメーターを変更
-    private string _text =
+    private string _text = "";
+
+    // パラメーターを変更
+    /*private string _text =
            "!background_sprite=\"background_sprite1\"!charaimg_sprite=\"polygon\"=\"background_sprite2\"" +
            "!charaimg_size=\"polygon\"=\"500, 500, 1\"&みにに「Hello,World!」&みにに「これはテキスト表示のサンプルです」" +
            "&!background_sprite=\"background_sprite2\"!background_color=\"255,0,255\"!charaimg_pos=\"polygon\"=\"-500, 500, 0\"&名無し「こんにちは！」";
+           */
 
-    
     //MonoBehaviorを継承している場合限定で
     //最初の更新関数（Updateメソッド）が呼ばれるときに最初に呼ばれる。
     private void Start()
@@ -216,6 +223,7 @@ public class TextGameManager : MonoBehaviour
     /// </summary>
     private void Init()
     {
+        _text = LoadTextFile(textFile);
         _pageQueue = SeparateString(_text, SEPARATE_PAGE);
         ShowNextPage();
     }
@@ -356,4 +364,14 @@ public class TextGameManager : MonoBehaviour
         string[] ps = parameter.Replace(" ", "").Split(',');
         return new Vector3(float.Parse(ps[0]), float.Parse(ps[1]), float.Parse(ps[2]));
     }
+
+    /**
+     * テキストファイルを読み込む
+     */
+    private string LoadTextFile(string fname)
+    {
+        TextAsset textasset = Resources.Load<TextAsset>(fname);
+        return textasset.text.Replace("\n", "").Replace("\r", "");
+    }
+
 }
