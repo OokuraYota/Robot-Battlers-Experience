@@ -33,7 +33,7 @@ public class TextGameManager : MonoBehaviour
 
     //パラメーターを追加
     [SerializeField]
-    private float captionSpeed = 0.2f;
+    private float captionSpeed = 0.095f;
 
     //パラメーターを追加
     private const char SEPARATE_PAGE = '&';
@@ -109,6 +109,37 @@ public class TextGameManager : MonoBehaviour
     private Dictionary<string, Queue<string>> _subScenes =
            new Dictionary<string, Queue<string>>();
 
+    private const string COMMAND_JUMP = "jump_to";
+
+    private const string COMMAND_SELECT = "select";
+    private const string COMMAND_TEXT = "_text";
+    private const string SELECT_BUTTON_PREFAB = "SelectButton";
+    [SerializeField]
+    private GameObject selectButtons;
+    private List<Button> _selectButtonList = new List<Button>();
+
+    private const string COMMAND_WAIT_TIME = "wait";
+    private float _waitTime = 0;
+
+
+    private const string COMMAND_BGM = "bgm";
+    private const string COMMAND_SE = "se";
+    private const string COMMAND_PLAY = "_play";
+    private const string COMMAND_MUTE = "_mute";
+    private const string COMMAND_SOUND = "_sound";
+    private const string COMMAND_VOLUME = "_volume";
+    private const string COMMAND_PRIORITY = "_priority";
+    private const string COMMAND_LOOP = "_loop";
+    private const string SE_AUDIOSOURCE_PREFAB = "SEAudioSource";
+    [SerializeField]
+    private AudioSource bgmAudioSource;
+    [SerializeField]
+    private GameObject seAudioSources;
+    [SerializeField]
+    private string audioClipsDirectory = "AudioClips/";
+    private List<AudioSource> _seList = new List<AudioSource>();
+
+    // メソッドを追加
 
 
     //MonoBehaviorを継承している場合限定で
@@ -172,6 +203,12 @@ public class TextGameManager : MonoBehaviour
         if (text[0].Equals(SEPARATE_COMMAND))
         {
             ReadCommand(text);
+            if (_selectButtonList.Count > 0) return;
+            if (_waitTime > 0)
+            {
+                StartCoroutine(WaitForCommand());
+                return;
+            }
             ShowNextPage();
             return;
         }
@@ -189,6 +226,7 @@ public class TextGameManager : MonoBehaviour
         StartCoroutine(ShowChars(captionSpeed));
     }
 
+
     //メソッドを追加
     //全文を表示する
     private void OutputAllChar() //2021 01 20
@@ -197,6 +235,7 @@ public class TextGameManager : MonoBehaviour
         StopCoroutine(ShowChars(captionSpeed));
         //キューが空になるまで表示
         while (OutputChar()) ;
+        _waitTime = 0;
         nextpageImage.SetActive(true);
     }
 
@@ -298,7 +337,6 @@ public class TextGameManager : MonoBehaviour
         }
     }*/
 
-    // メソッドを変更
     private void ReadCommand(string cmdLine)
     {
         cmdLine = cmdLine.Remove(0, 1);
@@ -310,6 +348,16 @@ public class TextGameManager : MonoBehaviour
                 SetBackgroundImage(cmds[0], cmds[1]);
             if (cmds[0].Contains(COMMAND_CHARACTER_IMAGE))
                 SetCharacterImage(cmds[1], cmds[0], cmds[2]);
+            if (cmds[0].Contains(COMMAND_JUMP))
+                JumpTo(cmds[1]);
+            if (cmds[0].Contains(COMMAND_SELECT))
+                SetSelectButton(cmds[1], cmds[0], cmds[2]);
+            if (cmds[0].Contains(COMMAND_WAIT_TIME))
+                SetWaitTime(cmds[1]);
+            if (cmds[0].Contains(COMMAND_BGM))
+                SetBackgroundMusic(cmds[0], cmds[1]);
+            if (cmds[0].Contains(COMMAND_SE))
+                SetSoundEffect(cmds[1], cmds[0], cmds[2]);
         }
     }
 
@@ -321,6 +369,9 @@ public class TextGameManager : MonoBehaviour
         parameter = parameter.Substring(parameter.IndexOf('"') + 1, parameter.LastIndexOf('"') - parameter.IndexOf('"') - 1);
         switch (cmd)
         {
+            case COMMAND_TEXT:
+                image.GetComponentInChildren<Text>().text = parameter;
+                break;
             case COMMAND_SPRITE:
                 image.sprite = LoadSprite(parameter);
                 break;
@@ -348,7 +399,6 @@ public class TextGameManager : MonoBehaviour
                 break;
         }
     }
-
     // メソッドを追加
     /**
     * スプライトをファイルから読み出し、インスタンス化する
@@ -527,4 +577,139 @@ private void ImageSetAnimation(Image image, string parameter)
         animator.Update(0.0f);
         animator.Play(overrideAnimationClipName, 0);
     }
+
+    // メソッドを追加
+    /**
+     * 対応するラベルまでジャンプする
+     */
+    private void JumpTo(string parameter)
+    {
+        parameter = parameter.Substring(parameter.IndexOf('"') + 1, parameter.LastIndexOf('"') - parameter.IndexOf('"') - 1);
+        _pageQueue = _subScenes[parameter];
+    }
+
+
+    /**
+     * 選択肢の設定
+     */
+    private void SetSelectButton(string name, string cmd, string parameter)
+    {
+        cmd = cmd.Replace(COMMAND_SELECT, "");
+        name = name.Substring(name.IndexOf('"') + 1, name.LastIndexOf('"') - name.IndexOf('"') - 1);
+        Button button = _selectButtonList.Find(n => n.name == name);
+        if (button == null)
+        {
+            button = Instantiate(Resources.Load<Button>(prefabsDirectory + SELECT_BUTTON_PREFAB), selectButtons.transform);
+            button.name = name;
+            button.onClick.AddListener(() => SelectButtonOnClick(name));
+            _selectButtonList.Add(button);
+        }
+        SetImage(cmd, parameter, button.image);
+    }
+
+
+    private void SelectButtonOnClick(string label)
+    {
+        foreach (Button button in _selectButtonList) Destroy(button.gameObject);
+        _selectButtonList.Clear();
+        JumpTo('"' + label + '"');
+        ShowNextPage();
+    }
+
+
+
+    /**
+     * 待機時間を設定する
+     */
+    private void SetWaitTime(string parameter)
+    {
+        parameter = parameter.Substring(parameter.IndexOf('"') + 1, parameter.LastIndexOf('"') - parameter.IndexOf('"') - 1);
+        _waitTime = float.Parse(parameter);
+    }
+
+    /**
+    * 次の読み込みを待機するコルーチン
+    */
+    private IEnumerator WaitForCommand()
+    {
+        yield return new WaitForSeconds(_waitTime);
+        _waitTime = 0;
+        ShowNextPage();
+        yield break;
+    }
+
+
+
+
+    /**
+* BGMの設定
+*/
+    private void SetBackgroundMusic(string cmd, string parameter)
+    {
+        cmd = cmd.Replace(COMMAND_BGM, "");
+        SetAudioSource(cmd, parameter, bgmAudioSource);
+    }
+
+    /**
+    * 効果音の設定
+*/
+    private void SetSoundEffect(string name, string cmd, string parameter)
+    {
+        cmd = cmd.Replace(COMMAND_SE, "");
+        name = name.Substring(name.IndexOf('"') + 1, name.LastIndexOf('"') - name.IndexOf('"') - 1);
+        AudioSource audio = _seList.Find(n => n.name == name);
+        if (audio == null)
+        {
+            audio = Instantiate(Resources.Load<AudioSource>(prefabsDirectory + SE_AUDIOSOURCE_PREFAB), seAudioSources.transform);
+            audio.name = name;
+            _seList.Add(audio);
+        }
+        SetAudioSource(cmd, parameter, audio);
+    }
+
+    /**
+    * 音声の設定
+*/
+    private void SetAudioSource(string cmd, string parameter, AudioSource audio)
+    {
+        cmd = cmd.Replace(" ", "");
+        parameter = parameter.Substring(parameter.IndexOf('"') + 1, parameter.LastIndexOf('"') - parameter.IndexOf('"') - 1);
+        switch (cmd)
+        {
+            case COMMAND_PLAY:
+                audio.Play();
+                break;
+            case COMMAND_MUTE:
+                audio.mute = ParameterToBool(parameter);
+                break;
+            case COMMAND_SOUND:
+                audio.clip = LoadAudioClip(parameter);
+                break;
+            case COMMAND_VOLUME:
+                audio.volume = float.Parse(parameter);
+                break;
+            case COMMAND_PRIORITY:
+                audio.priority = int.Parse(parameter);
+                break;
+            case COMMAND_LOOP:
+                audio.loop = ParameterToBool(parameter);
+                break;
+            case COMMAND_ACTIVE:
+                audio.gameObject.SetActive(ParameterToBool(parameter));
+                break;
+            case COMMAND_DELETE:
+                _seList.Remove(audio);
+                Destroy(audio.gameObject);
+                break;
+        }
+    }
+
+    /**
+    * 音声ファイルを読み出し、インスタンス化する
+*/
+    private AudioClip LoadAudioClip(string name)
+    {
+        return Instantiate(Resources.Load<AudioClip>(audioClipsDirectory + name));
+    }
+
 }
