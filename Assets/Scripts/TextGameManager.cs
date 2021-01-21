@@ -2,6 +2,9 @@
 using System.Collections.Generic;  //記述
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO; //20210121
+using UnityEditor;
+using UnityEngine.SceneManagement;
 
 // MonoBehaviorを継承することでオブジェクトにコンポーネントとして
 // アタッチすることが出来る
@@ -84,6 +87,13 @@ public class TextGameManager : MonoBehaviour
 
     // パラメーターを変更
     private string _text = "";
+
+    private const char COMMAND_SEPARATE_ANIM = '%';
+    private const string COMMAND_ANIM = "_anim";
+    [SerializeField]
+    private string animationsDirectory = "Animations/";
+    [SerializeField]
+    private string overrideAnimationClipName = "Clip";
 
     // パラメーターを変更
     /*private string _text =
@@ -288,6 +298,7 @@ public class TextGameManager : MonoBehaviour
     }
 
 
+    // メソッドを変更
     private void SetImage(string cmd, string parameter, Image image)
     {
         cmd = cmd.Replace(" ", "");
@@ -315,6 +326,9 @@ public class TextGameManager : MonoBehaviour
             case COMMAND_DELETE:
                 _charaImageList.Remove(image);
                 Destroy(image.gameObject);
+                break;
+            case COMMAND_ANIM:
+                ImageSetAnimation(image, parameter);
                 break;
         }
     }
@@ -388,5 +402,113 @@ public class TextGameManager : MonoBehaviour
     {
         string p = parameter.Replace(" ", "");
         return p.Equals("true") || p.Equals("TRUE");
+    }
+
+
+
+    /**
+* パラメーターからアニメーションクリップを生成する
+*/
+    private AnimationClip ParameterToAnimationClip(Image image, string[] parameters)
+    {
+        string[] ps = parameters[0].Replace(" ", "").Split(',');
+        string path = animationsDirectory + SceneManager.GetActiveScene().name + "/" + image.name;
+        AnimationClip prevAnimation = Resources.Load<AnimationClip>(path + "/" + ps[0]);
+        AnimationClip animation;
+#if UNITY_EDITOR
+        if (ps[3].Equals("Replay") && prevAnimation != null)
+            return Instantiate(prevAnimation);
+        animation = new AnimationClip();
+        Color startcolor = image.color;
+        Vector3[] start = new Vector3[3];
+        start[0] = image.GetComponent<RectTransform>().sizeDelta;
+        start[1] = image.GetComponent<RectTransform>().anchoredPosition;
+        Color endcolor = startcolor;
+        if (parameters[1] != "") endcolor = ParameterToColor(parameters[1]);
+        Vector3[] end = new Vector3[3];
+        for (int i = 0; i < 2; i++)
+        {
+            if (parameters[i + 2] != "")
+                end[i] = ParameterToVector3(parameters[i + 2]);
+            else end[i] = start[i];
+        }
+        AnimationCurve[,] curves = new AnimationCurve[4, 4];
+        if (ps[3].Equals("EaseInOut"))
+        {
+            curves[0, 0] = AnimationCurve.EaseInOut(float.Parse(ps[1]), startcolor.r, float.Parse(ps[2]), endcolor.r);
+            curves[0, 1] = AnimationCurve.EaseInOut(float.Parse(ps[1]), startcolor.g, float.Parse(ps[2]), endcolor.g);
+            curves[0, 2] = AnimationCurve.EaseInOut(float.Parse(ps[1]), startcolor.b, float.Parse(ps[2]), endcolor.b);
+            curves[0, 3] = AnimationCurve.EaseInOut(float.Parse(ps[1]), startcolor.a, float.Parse(ps[2]), endcolor.a);
+            for (int i = 0; i < 2; i++)
+            {
+                curves[i + 1, 0] = AnimationCurve.EaseInOut(float.Parse(ps[1]), start[i].x, float.Parse(ps[2]), end[i].x);
+                curves[i + 1, 1] = AnimationCurve.EaseInOut(float.Parse(ps[1]), start[i].y, float.Parse(ps[2]), end[i].y);
+                curves[i + 1, 2] = AnimationCurve.EaseInOut(float.Parse(ps[1]), start[i].z, float.Parse(ps[2]), end[i].z);
+            }
+        }
+        else
+        {
+            curves[0, 0] = AnimationCurve.Linear(float.Parse(ps[1]), startcolor.r, float.Parse(ps[2]), endcolor.r);
+            curves[0, 1] = AnimationCurve.Linear(float.Parse(ps[1]), startcolor.g, float.Parse(ps[2]), endcolor.g);
+            curves[0, 2] = AnimationCurve.Linear(float.Parse(ps[1]), startcolor.b, float.Parse(ps[2]), endcolor.b);
+            curves[0, 3] = AnimationCurve.Linear(float.Parse(ps[1]), startcolor.a, float.Parse(ps[2]), endcolor.a);
+            for (int i = 0; i < 2; i++)
+            {
+                curves[i + 1, 0] = AnimationCurve.Linear(float.Parse(ps[1]), start[i].x, float.Parse(ps[2]), end[i].x);
+                curves[i + 1, 1] = AnimationCurve.Linear(float.Parse(ps[1]), start[i].y, float.Parse(ps[2]), end[i].y);
+                curves[i + 1, 2] = AnimationCurve.Linear(float.Parse(ps[1]), start[i].z, float.Parse(ps[2]), end[i].z);
+            }
+        }
+        string[] b1 = { "r", "g", "b", "a" };
+        for (int i = 0; i < 4; i++)
+        {
+            AnimationUtility.SetEditorCurve(
+                animation,
+                EditorCurveBinding.FloatCurve("", typeof(Image), "m_Color." + b1[i]),
+                curves[0, i]
+            );
+        }
+        string[] a = { "m_SizeDelta", "m_AnchoredPosition" };
+        string[] b2 = { "x", "y", "z" };
+        for (int i = 0; i < 2; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                AnimationUtility.SetEditorCurve(
+                    animation,
+                    EditorCurveBinding.FloatCurve("", typeof(RectTransform), a[i] + "." + b2[j]),
+                    curves[i + 1, j]
+                );
+            }
+        }
+        if (!Directory.Exists("Assets/Resources/" + path))
+            Directory.CreateDirectory("Assets/Resources/" + path);
+        AssetDatabase.CreateAsset(animation, "Assets/Resources/" + path + "/" + ps[0] + ".anim");
+        AssetDatabase.ImportAsset("Assets/Resources/" + path + "/" + ps[0] + ".anim");
+#elif UNITY_STANDALONE
+       animation = prevAnimation;
+#endif
+        return Instantiate(animation);
+    }
+
+/**
+* アニメーションを画像に設定する
+*/
+private void ImageSetAnimation(Image image, string parameter)
+    {
+        Animator animator = image.GetComponent<Animator>();
+        AnimationClip clip = ParameterToAnimationClip(image, parameter.Split(COMMAND_SEPARATE_ANIM));
+        AnimatorOverrideController overrideController;
+        if (animator.runtimeAnimatorController is AnimatorOverrideController)
+            overrideController = (AnimatorOverrideController)animator.runtimeAnimatorController;
+        else
+        {
+            overrideController = new AnimatorOverrideController();
+            overrideController.runtimeAnimatorController = animator.runtimeAnimatorController;
+            animator.runtimeAnimatorController = overrideController;
+        }
+        overrideController[overrideAnimationClipName] = clip;
+        animator.Update(0.0f);
+        animator.Play(overrideAnimationClipName, 0);
     }
 }
