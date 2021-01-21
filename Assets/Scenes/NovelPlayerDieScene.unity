@@ -173,6 +173,7 @@ MonoBehaviour:
   mainText: {fileID: 1394865512}
   nameText: {fileID: 835711334}
   captionSpeed: 0.2
+  nextpageImage: {fileID: 390965399}
 --- !u!1 &331677576
 GameObject:
   m_ObjectHideFlags: 0
