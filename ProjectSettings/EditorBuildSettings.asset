@@ -14,7 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PlayerDieScene.unity
     guid: 6a3a2d6d416786d4d93ae4671c27d575
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/NovelPlayerDieScene.unity
     guid: 2d6d3e1586765c24583b13e90364615d
   m_configObjects: {}
