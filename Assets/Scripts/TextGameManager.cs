@@ -25,6 +25,8 @@ public class TextGameManager : MonoBehaviour
     /// </summary>
     private const char SEPARATE_MAIN_TEXT_END = '」';
 
+    private Queue<char> _charQueue;
+
 
     //MonoBehaviourを継承している場合限定で最初の更新関数(Updateメソッド)が呼ばれるときに呼ばれる
     private void Start()
@@ -33,21 +35,52 @@ public class TextGameManager : MonoBehaviour
         //mainText.text = _text;
 
         ReadLine(_text);
+        OutputChar();
     }
 
     private void ReadLine(string text)
     {
         //'「'の位置で文字列を分ける
-        string[] ts = text.Split(SEPARATE_MAIN_TEXT_START);
+        string[] ts = text.Split('「');
         //'「'で分けた時の最初の値、つまりName(大倉)が代入される。
         string name = ts[0];
         //'「'で分けた時の次の値、つまりMainTextに表示したい１文が代入される。
         //'」'で最後の閉じ括弧を削除して代入(="とても眠い")
-        string main = ts[1].Remove(ts[1].LastIndexOf(SEPARATE_MAIN_TEXT_END));
+        string main = ts[1].Remove(ts[1].LastIndexOf('」'));
 
         //配列の一番最初はNameTextに代入する
         nameText.text = name;
 
-        mainText.text = main;
+        mainText.text = "";
+
+        _charQueue = SeparateString(main);
     }
+
+    /// <summary>
+    /// 文を１文字ごとに区切り、キューに格納したものを返す。
+    /// </summary>
+    /// <param name="str">文字列【１文】</param>
+    /// <returns></returns>
+    private Queue<char> SeparateString(string str)
+    {
+        //文字列をchar型の配列にする = １文字ごとに区切る。
+        char[] chars = str.ToCharArray();
+        Queue<char> charQueue = new Queue<char>();
+
+        //forech文で配列charsに格納された文字を全て取り出し、Queueに加える。
+        foreach (char c in chars) charQueue.Enqueue(c);
+        return charQueue;
+        
+    }
+
+    /// <summary>
+    /// １文字を出力する。
+    /// </summary>
+    private void OutputChar()
+    {
+        //キューから値を取り出し、キュー内からは削除する
+        mainText.text += _charQueue.Dequeue();
+    }
+
+
 }
