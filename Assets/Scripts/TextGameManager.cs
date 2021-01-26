@@ -13,7 +13,7 @@ public class TextGameManager : MonoBehaviour
     [SerializeField]
     private Text nameText;
 
-    private string _text = "大倉「とても眠い。」";
+    private string _text = "大倉「とても眠い。\nだけど、プログラミングやらなくちゃ...」";
 
     /// <summary>
     /// '「'この後ろからMainTextが始まる。
@@ -27,6 +27,12 @@ public class TextGameManager : MonoBehaviour
 
     private Queue<char> _charQueue;
 
+    /// <summary>
+    /// 文字表示までの待ち時間
+    /// </summary>
+    [SerializeField]
+    private　float captionSpeed = 0.09f;
+
 
     //MonoBehaviourを継承している場合限定で最初の更新関数(Updateメソッド)が呼ばれるときに呼ばれる
     private void Start()
@@ -35,7 +41,7 @@ public class TextGameManager : MonoBehaviour
         //mainText.text = _text;
 
         ReadLine(_text);
-        OutputChar();
+        //OutputChar();
     }
 
     private void ReadLine(string text)
@@ -54,6 +60,9 @@ public class TextGameManager : MonoBehaviour
         mainText.text = "";
 
         _charQueue = SeparateString(main);
+
+        //コルーチンを呼び出す
+        StartCoroutine(ShowChars(captionSpeed));
     }
 
     /// <summary>
@@ -76,11 +85,24 @@ public class TextGameManager : MonoBehaviour
     /// <summary>
     /// １文字を出力する。
     /// </summary>
-    private void OutputChar()
+    private bool OutputChar()
     {
+        //キューに何も格納されていなければfalseを返す
+        if (_charQueue.Count <= 0) return false;
+
         //キューから値を取り出し、キュー内からは削除する
         mainText.text += _charQueue.Dequeue();
+
+        return true;
     }
 
-
+    private IEnumerator ShowChars(float wait)
+    {
+        //OutputCharメソッドがfalseを返す(=キューが空になる)までループする
+        while (OutputChar())
+            //wait秒だけ待機
+            yield return new WaitForSeconds(wait);
+        //コルーチンを抜け出す
+        yield break;
+    }
 }
