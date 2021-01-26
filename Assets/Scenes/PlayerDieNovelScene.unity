@@ -914,6 +914,7 @@ MonoBehaviour:
   mainText: {fileID: 87697335}
   nameText: {fileID: 942573254}
   captionSpeed: 0.09
+  nextPageIcon: {fileID: 2008426475}
 --- !u!1 &2008426475
 GameObject:
   m_ObjectHideFlags: 0

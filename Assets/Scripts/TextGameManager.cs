@@ -42,6 +42,12 @@ public class TextGameManager : MonoBehaviour
     private const char SEPARATE_PAGE = '&';
     private Queue<string> _pageQueue;
 
+    /// <summary>
+    /// 右下の▼
+    /// </summary>
+    [SerializeField]
+    private GameObject nextPageIcon;
+
 
     //MonoBehaviourを継承している場合限定で最初の更新関数(Updateメソッド)が呼ばれるときに呼ばれる
     private void Start()
@@ -105,7 +111,13 @@ public class TextGameManager : MonoBehaviour
     private bool OutputChar()
     {
         //キューに何も格納されていなければfalseを返す
-        if (_charQueue.Count <= 0) return false;
+        if (_charQueue.Count <= 0)
+        {
+            //キューに何も格納されてないってことは、表示する文字がないから
+            //次押してねってことの▼を表示する
+            nextPageIcon.SetActive(true);
+            return false;
+        }
 
         //キューから値を取り出し、キュー内からは削除する
         mainText.text += _charQueue.Dequeue();
@@ -132,6 +144,8 @@ public class TextGameManager : MonoBehaviour
         StopCoroutine(ShowChars(captionSpeed));
         //キューが空になるまで待機
         while (OutputChar()) ;
+        //これが呼ばれてるってことは、全部表示したから▼のオブジェクトを表示する
+        nextPageIcon.SetActive(true);
     }
 
     /// <summary>
@@ -144,6 +158,7 @@ public class TextGameManager : MonoBehaviour
 
         if (_charQueue.Count > 0)
         {
+            //まだキューに残っていたら、残り全部表示する
             OutputAllChar();
         }
         else
@@ -187,6 +202,10 @@ public class TextGameManager : MonoBehaviour
     private bool ShowNextPage()
     {
         if (_pageQueue.Count <= 0) return false;
+
+        //オブジェクトの表示/非表示を設定する
+        nextPageIcon.SetActive(false);
+        
         ReadLine(_pageQueue.Dequeue());
         return true;
     }
