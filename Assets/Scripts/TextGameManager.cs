@@ -16,7 +16,7 @@ public class TextGameManager : MonoBehaviour
     private Text nameText;
 
     //private string _text = "大倉「とても眠い。\nだけど、プログラミングやらなくちゃ...」";
-    private string _text = "大倉「とても眠い」&大倉２「だけど、プログラミングやらなくちゃ」";
+    //private string _text = "大倉「とても眠い」&大倉２「だけど、プログラミングやらなくちゃ」";
 
     /// <summary>
     /// '「'この後ろからMainTextが始まる。
@@ -47,6 +47,14 @@ public class TextGameManager : MonoBehaviour
     /// </summary>
     [SerializeField]
     private GameObject nextPageIcon;
+
+    /// <summary>
+    /// Assets/Resources/Textsフォルダの『Scenario.txt』
+    /// </summary>
+    [SerializeField]
+    private string textFile = "Texts/Scenario";
+
+    private string _text = "";
 
 
     //MonoBehaviourを継承している場合限定で最初の更新関数(Updateメソッド)が呼ばれるときに呼ばれる
@@ -168,6 +176,9 @@ public class TextGameManager : MonoBehaviour
                 //UnityエディタのPlayモードを終了する
                 //だから、現時点では２ページ進んでクリックしたらPlayモードが終了する
                 UnityEditor.EditorApplication.isPlaying = false;
+
+                //ここがクリックしたら終わりのところだから、最後の文をクリックしたらSceneをタイトルにする敵な感じ
+                //にすればよいかな
             }
         }
     }
@@ -191,6 +202,7 @@ public class TextGameManager : MonoBehaviour
     /// </summary>
     private void Init()
     {
+        _text = LoadTextFile(textFile);
         _pageQueue = SeparateString(_text, SEPARATE_PAGE);
         ShowNextPage();
     }
@@ -209,4 +221,18 @@ public class TextGameManager : MonoBehaviour
         ReadLine(_pageQueue.Dequeue());
         return true;
     }
+
+    /// <summary>
+    /// テキストファイルを読み込む
+    /// </summary>
+    /// <param name="fname"></param>
+    /// <returns></returns>
+    private string LoadTextFile(string fname)
+    {
+        //改行コードは読み込む際に削除しているのでいくら改行しても構わないが、空白はNG
+        //↑理由　Windows意外の環境では動かない可能性があるから？なのかな
+        TextAsset textasset = Resources.Load<TextAsset>(fname);
+        return textasset.text.Replace("\n", "").Replace("\r", "");
+    }
+
 }
