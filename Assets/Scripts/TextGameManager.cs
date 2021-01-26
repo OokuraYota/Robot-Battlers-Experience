@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,7 +15,8 @@ public class TextGameManager : MonoBehaviour
     [SerializeField]
     private Text nameText;
 
-    private string _text = "大倉「とても眠い。\nだけど、プログラミングやらなくちゃ...」";
+    //private string _text = "大倉「とても眠い。\nだけど、プログラミングやらなくちゃ...」";
+    private string _text = "大倉「とても眠い」&大倉２「だけど、プログラミングやらなくちゃ」";
 
     /// <summary>
     /// '「'この後ろからMainTextが始まる。
@@ -34,6 +36,12 @@ public class TextGameManager : MonoBehaviour
     [SerializeField]
     private　float captionSpeed = 0.09f;
 
+    /// <summary>
+    /// ページの区切り文字
+    /// </summary>
+    private const char SEPARATE_PAGE = '&';
+    private Queue<string> _pageQueue;
+
 
     //MonoBehaviourを継承している場合限定で最初の更新関数(Updateメソッド)が呼ばれるときに呼ばれる
     private void Start()
@@ -41,8 +49,10 @@ public class TextGameManager : MonoBehaviour
         //Main Textに指定したTextコンポーネントのテキストパラメーターに代入する。
         //mainText.text = _text;
 
-        ReadLine(_text);
+        //ReadLine(_text);
         //OutputChar();
+
+        Init();
     }
 
     private void Update()
@@ -130,7 +140,54 @@ public class TextGameManager : MonoBehaviour
     private void OnClick()
     {
         //クリックしたら、コルーチンを止め、全文を表示するメソッドを呼ぶ
-        OutputAllChar();
+        //OutputAllChar();
+
+        if (_charQueue.Count > 0)
+        {
+            OutputAllChar();
+        }
+        else
+        {
+            if (!ShowNextPage())
+            {
+                //UnityエディタのPlayモードを終了する
+                //だから、現時点では２ページ進んでクリックしたらPlayモードが終了する
+                UnityEditor.EditorApplication.isPlaying = false;
+            }
+        }
     }
 
+    /// <summary>
+    /// 文字列を指定した区切りごとに区切り、キューに格納したものを返す
+    /// </summary>
+    /// <param name="str">文字列</param>
+    /// <param name="sep"></param>
+    /// <returns></returns>
+    private Queue<string> SeparateString(string str, char sep)
+    {
+        string[] strs = str.Split(sep);
+        Queue<string> queue = new Queue<string>();
+        foreach (string l in strs) queue.Enqueue(l);
+        return queue;
+    }
+
+    /// <summary>
+    /// 初期化する
+    /// </summary>
+    private void Init()
+    {
+        _pageQueue = SeparateString(_text, SEPARATE_PAGE);
+        ShowNextPage();
+    }
+
+    /// <summary>
+    /// 次のページを表示する
+    /// </summary>
+    /// <returns></returns>
+    private bool ShowNextPage()
+    {
+        if (_pageQueue.Count <= 0) return false;
+        ReadLine(_pageQueue.Dequeue());
+        return true;
+    }
 }
