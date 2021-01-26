@@ -913,6 +913,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainText: {fileID: 87697335}
   nameText: {fileID: 942573254}
+  captionSpeed: 0.09
 --- !u!1 &2008426475
 GameObject:
   m_ObjectHideFlags: 0

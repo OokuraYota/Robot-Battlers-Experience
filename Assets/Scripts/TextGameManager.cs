@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -42,6 +43,12 @@ public class TextGameManager : MonoBehaviour
 
         ReadLine(_text);
         //OutputChar();
+    }
+
+    private void Update()
+    {
+        //左(= 0)クリックされたらOnClickメソッドを呼び出す
+        if (Input.GetMouseButtonDown(0)) OnClick();
     }
 
     private void ReadLine(string text)
@@ -105,4 +112,25 @@ public class TextGameManager : MonoBehaviour
         //コルーチンを抜け出す
         yield break;
     }
+
+    /// <summary>
+    /// 全文を表示する
+    /// </summary>
+    private void OutputAllChar()
+    {
+        //コルーチンをストップ
+        StopCoroutine(ShowChars(captionSpeed));
+        //キューが空になるまで待機
+        while (OutputChar()) ;
+    }
+
+    /// <summary>
+    /// クリックしたときの処理
+    /// </summary>
+    private void OnClick()
+    {
+        //クリックしたら、コルーチンを止め、全文を表示するメソッドを呼ぶ
+        OutputAllChar();
+    }
+
 }
