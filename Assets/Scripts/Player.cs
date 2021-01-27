@@ -73,8 +73,12 @@ public class Player : MonoBehaviour
 
     //public AudioSource audioSource;
     public AudioClip audioClip;
-    
 
+    /// <summary>
+    /// ロボットの足音
+    /// </summary>
+    //[SerializeField]
+    //private AudioClip robotRunSound;
 
     /// <summary>
     /// プレイヤーのポジション
@@ -176,6 +180,9 @@ public class Player : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal") * Time.deltaTime * moveSpeed;
         //horizontalInput = Input.GetAxis("Horizontal");
 
+        //AWSDの入力を受け付けている間ってことは、PlayerRobotが走っている時なので
+        //足音を鳴らします
+        //AudioSource.PlayClipAtPoint(robotRunSound, this.gameObject.transform.position);
     }
 
     /// <summary>
