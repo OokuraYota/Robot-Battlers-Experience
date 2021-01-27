@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 //MonoBehaviourを継承することでオブジェクトコンポーネントとしてアタッチすることが出来る
 //最終的にテキストファイルから読み出すことを考えて１つのパラメーターから名前も取得することにしてみる
@@ -175,10 +176,11 @@ public class TextGameManager : MonoBehaviour
             {
                 //UnityエディタのPlayモードを終了する
                 //だから、現時点では２ページ進んでクリックしたらPlayモードが終了する
-                UnityEditor.EditorApplication.isPlaying = false;
+                ////UnityEditor.EditorApplication.isPlaying = false; ←Playモード終了のやつ
 
                 //ここがクリックしたら終わりのところだから、最後の文をクリックしたらSceneをタイトルにする敵な感じ
                 //にすればよいかな
+                SceneManager.LoadScene("1.TitleScene");
             }
         }
     }
