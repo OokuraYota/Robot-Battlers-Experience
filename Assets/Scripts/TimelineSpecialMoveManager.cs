@@ -22,6 +22,18 @@ public class TimelineSpecialMoveManager : MonoBehaviour
 
     Vector3 CameraRotation;
 
+    /// <summary>
+    /// Play画面のカメラのちゃんとした位置 2020/01/28
+    /// </summary>
+    [SerializeField]
+    public Vector3 CameraPlayPosition;
+
+    /// <summary>
+    /// Play画面のカメラのちゃんとした角度 2020/01/28
+    /// </summary>
+    [SerializeField]
+    public Vector3 CameraPlayRotation;
+
     //transformは、スクリプトがついているオブジェクトの位置
     //だからシリアライズフィールドとかしてカメラの角度を
 
@@ -91,10 +103,17 @@ public class TimelineSpecialMoveManager : MonoBehaviour
             Debug.Log("Cameraの現在の位置は" + CameraPosition);
             transform.eulerAngles = CameraRotation;
             Debug.Log("Cameraの現在の角度は" + CameraRotation);*/
-            camera.transform.position = CameraPosition;
+
+            ///
+            /*camera.transform.position = CameraPosition;
             Debug.Log("Cameraの現在位置は" + CameraPosition);
             camera.transform.eulerAngles = CameraRotation;
-            Debug.Log("Cameraの現在の角度は" + CameraRotation);
+            Debug.Log("Cameraの現在の角度は" + CameraRotation);*/
+
+            camera.transform.position = CameraPlayPosition;
+            Debug.Log("Cameraの現在の位置は" + CameraPlayPosition);
+            camera.transform.eulerAngles = CameraPlayRotation;
+            Debug.Log("Cameraの現在の角度は" + CameraPlayRotation);
         }
     }
 
