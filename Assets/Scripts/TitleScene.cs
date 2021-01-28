@@ -9,7 +9,7 @@ public class TitleScene : MonoBehaviour
     public void StartButton()
     {
         //スタートボタンを押したら、次のSceneに遷移する。
-        SceneManager.LoadScene("BattleScene");
+        SceneManager.LoadScene("ViewoftheworldScene");
     }
 }
 
