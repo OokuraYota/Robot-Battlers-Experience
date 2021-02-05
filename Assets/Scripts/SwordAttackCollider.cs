@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using DG.Tweening.Core;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,9 +10,13 @@ public class SwordAttackCollider : MonoBehaviour
 {
     public EnemyMove enemy;
 
+    public EnemyBos enemyBos;
+
     void Start()
     {
         enemy = GetComponent<EnemyMove>();
+
+        enemyBos = GetComponent<EnemyBos>();
     }
 
     /// <summary>
@@ -56,6 +61,21 @@ public class SwordAttackCollider : MonoBehaviour
 
         Debug.Log("Swordが" + other.name + "Colliderから、今離れました！");
 
-        other.gameObject.GetComponent<EnemyMove>().Damage(1.0f);
+        if (other.gameObject.GetComponent<EnemyMove>() == true)
+        {
+            Debug.Log("Enemy");
+            other.gameObject.GetComponent<EnemyMove>().Damage(1.0f);
+            
+        }
+        else if (other.gameObject.GetComponent<EnemyBos>() == true)
+        {
+            Debug.Log("EnmeyBos");
+            other.gameObject.GetComponent<EnemyBos>().Damage(1.0f);
+        }
+
+        //other.gameObject.GetComponent<EnemyMove>().Damage(1.0f);
+
+        //2021 02 04
+        //other.gameObject.GetComponent<EnemyBos>().Damage(1.0f);
     }
 }

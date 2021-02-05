@@ -136,6 +136,7 @@ public class EnemyMove : MonoBehaviour
     public void Damage(float power)
     {
         EnemyGauge.GaugeReduction(power);
+        Debug.Log(power);
         life -= power;
 
         //もし、現在のライフが０になったら死亡　20200111
