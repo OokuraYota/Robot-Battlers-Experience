@@ -9,6 +9,7 @@ TagManager:
   - CollisionDetector
   - Malfunction
   - Enemy1
+  - EnemyBos
   layers:
   - Default
   - TransparentFX

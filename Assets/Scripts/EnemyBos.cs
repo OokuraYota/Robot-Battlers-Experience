@@ -48,6 +48,9 @@ public class EnemyBos : MonoBehaviour
         EnemyBosGauge = GameObject.FindObjectOfType<EnemyBosGauge>();
         EnemyBosGauge.SetEnemy(this);
 
+        //最初は非アクティブにしておく
+        this.gameObject.SetActive(false);
+
         //InvokeRepeating("Shot", 1, 1f);//1秒後に1秒ごとにShotを繰り出す
     }
 
