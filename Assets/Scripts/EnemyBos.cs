@@ -1,5 +1,4 @@
 ﻿using DG.Tweening;
-using System.Runtime.CompilerServices;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
@@ -10,6 +9,9 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyBos : MonoBehaviour
 {
+    [SerializeField]
+    public GameObject EnemyBosObject;
+
     /*[SerializeField]
     private Player Player;*/
 
@@ -33,11 +35,21 @@ public class EnemyBos : MonoBehaviour
 
     // 死亡時に再生するエフェクト 2020/01/11
     [SerializeField]
-    GameObject effectDeadPrefab = null;
+    GameObject BosEffectDeadPrefab = null;
 
     //死亡爆破音
     public AudioClip audioClip;
 
+    public PlayerWinNovelSceneScript playerWinNovelSceneScript;
+
+    public EnemyBossAppears enemyBossAppears = null;
+
+    public EnemyMove enemy;
+
+    /// <summary>
+    /// 1回だけ呼び出い処理
+    /// </summary>
+    bool isCalledOne = false;
     //private RaycastHit[] _raycastHits = new RaycastHit[10];　今回はレイキャストを使っていないからここはコメントアウトした
 
     public void Start()
@@ -51,12 +63,31 @@ public class EnemyBos : MonoBehaviour
         //最初は非アクティブにしておく
         this.gameObject.SetActive(false);
 
+
+        //enemyBossAppears.TheBossAppears();
+
+        //EnemyBossAppears.TheBossAppears();
         //InvokeRepeating("Shot", 1, 1f);//1秒後に1秒ごとにShotを繰り出す
     }
 
-    private void Update()
+    public void Update()
     {
-        //ここにEnemy全部倒したら、SetActive（false）からtrueの処理を書く
+        //enemyBossAppears.TheBossAppears();
+        //EnemyBossAppears.TheBossAppears();
+        //20210206
+        //EnemyBossAppears.TheBossAppears();
+        //EnemyBosActive();
+        /*if (!isCalledOne)
+        {
+            isCalledOne = true;
+            //Bosを表示させる
+            EnemyBossAppears.TheBossAppears();
+        }*/
+
+        /*if (enemy.life <= 0)
+        {
+            this.gameObject.SetActive(true);
+        }*/
     }
 
     public void OnDetectObjectExit(Collider collider)
@@ -145,21 +176,60 @@ public class EnemyBos : MonoBehaviour
         //もし、現在のライフが０になったら死亡　20200111
         if (life <= 0)
         {
+            
             //マイナス値になったら0にする
             life = 0;
 
             AudioSource.PlayClipAtPoint(audioClip, this.gameObject.transform.position);
 
             //死亡エフェクト再生
-            GameObject instance = Instantiate(effectDeadPrefab);
+            GameObject instance = Instantiate(BosEffectDeadPrefab);
             instance.transform.position = transform.position;
 
-            Debug.Log("Playerが死亡判定されたため" + effectDeadPrefab + "を再生");
+            Debug.Log("Playerが死亡判定されたため" + BosEffectDeadPrefab + "を再生");
+
+            //WinNovelSceneに遷移する処理を呼び出す
+            playerWinNovelSceneScript.PlayerWinCoroutine();
+
+            this.gameObject.SetActive(false);
 
             //ゲームオブジェクトを非アクティブにして、非表示にする
-            gameObject.SetActive(false);
+            //this.gameObject.SetActive(false);
+            /*if (life == 0)
+            {
+                this.gameObject.SetActive(false);
+                //Destroy(this.gameObject);
+            }*/
+
+            //BosDestroy();
         }
     }
+
+    /*public void BosDestroy()
+    {
+       
+        Destroy(this.gameObject);
+    }*/
+
+    /// <summary>
+    /// EnemyBosの表示
+    /// </summary>
+    /*public void EnemyBosActive()
+    {
+        //もし、普通の敵のlifeが0以下になったら
+        if (enemy.life <= 0)
+        {
+            //Bosをアクティブにして登場
+            this.gameObject.SetActive(true);
+            //もしBosのlifeが0になったら
+            if (life <= 0)
+            {
+                //Bosを非アクティブにする
+                this.gameObject.SetActive(false);
+            }
+        }
+    }*/
+
 }
 
 
