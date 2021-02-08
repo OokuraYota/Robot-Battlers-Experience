@@ -29,7 +29,7 @@ public class EnemyBos : MonoBehaviour
     /// </summary>
     public float maxLife;
 
-    protected EnemyBosGauge EnemyBosGauge;
+    protected EnemyBosGauge EnemyBosGauge;  //
 
     protected BosShottingScript shotting;
 
@@ -45,6 +45,7 @@ public class EnemyBos : MonoBehaviour
     public EnemyBossAppears enemyBossAppears = null;
 
     public EnemyMove enemy;
+
 
     /// <summary>
     /// 1回だけ呼び出い処理

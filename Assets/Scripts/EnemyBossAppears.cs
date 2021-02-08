@@ -1,11 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using UnityEngine;
 
 public class EnemyBossAppears : MonoBehaviour
 {
     public EnemyBos enemyBos;
     public EnemyMove enemy;
+
+    /// <summary>
+    /// ２体目の敵
+    /// </summary>
+    //public EnemyMove enemy2;  //20210208 追加
+    //public EnemyMove enemy3;
+    //public EnemyMove enemy4;
 
     /// <summary>
     /// 1回だけ呼び出い処理
@@ -41,6 +49,14 @@ public class EnemyBossAppears : MonoBehaviour
                 Debug.Log("お茶");
                 enemyBos.gameObject.SetActive(true);
             }
+        }*/
+
+        //もし、isCalledOneがfalseではなく、enmeyの１～４体すべてのlifeが0になったら
+        //if (!isCalledOne && enemy.life <= 0 && enemy2.life <= 0 && enemy3.life <= 0 && enemy4.life <= 0)
+        /*{
+            isCalledOne = true;
+            Debug.Log("お茶");
+            enemyBos.gameObject.SetActive(true);
         }*/
 
         if (!isCalledOne && enemy.life <= 0)
