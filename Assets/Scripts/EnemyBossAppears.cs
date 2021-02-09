@@ -10,6 +10,7 @@ public class EnemyBossAppears : MonoBehaviour
 
     public Enemy2 enemy2; //2021 02 09
 
+    public Enemy3 enemy3;
     /// <summary>
     /// ２体目の敵
     /// </summary>
@@ -61,7 +62,7 @@ public class EnemyBossAppears : MonoBehaviour
             enemyBos.gameObject.SetActive(true);
         }*/
 
-        if (!isCalledOne && enemy.life <= 0 && enemy2.life <= 0)
+        if (!isCalledOne && enemy.life <= 0 && enemy2.life <= 0 && enemy3.life <= 0)
         {
             isCalledOne = true;
             Debug.Log("お茶");

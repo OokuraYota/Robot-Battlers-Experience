@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 /// <summary>
 /// SwordのBoxColliderとEnemyのBoxColliderの重なり判定
@@ -14,6 +15,8 @@ public class SwordAttackCollider : MonoBehaviour
 
     public Enemy2 enemy2; //2021 02 09
 
+    public Enemy3 enemy3;
+
     void Start()
     {
         enemy = GetComponent<EnemyMove>();
@@ -21,6 +24,8 @@ public class SwordAttackCollider : MonoBehaviour
         enemyBos = GetComponent<EnemyBos>();
 
         enemy2 = GetComponent<Enemy2>();
+
+        enemy3 = GetComponent<Enemy3>();
     }
 
     /// <summary>
@@ -80,6 +85,11 @@ public class SwordAttackCollider : MonoBehaviour
         {
             Debug.Log("Enemy2");
             other.gameObject.GetComponent<Enemy2>().Damage(1.0f);
+        }
+        else if (other.gameObject.GetComponent<Enemy3>() == true)
+        {
+            Debug.Log("Enemy3");
+            other.gameObject.GetComponent<Enemy3>().Damage(1.0f);
         }
 
         //other.gameObject.GetComponent<EnemyMove>().Damage(1.0f);
