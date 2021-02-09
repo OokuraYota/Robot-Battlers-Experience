@@ -53,6 +53,8 @@ public class ShottingScript : MonoBehaviour
 
         //弾を完全に削除します。（Immediate = 即座）
         Destroy(BulletsObject.gameObject, 2);
+
+        //ゲームオブジェクトの方が良いかも
     }
 
 

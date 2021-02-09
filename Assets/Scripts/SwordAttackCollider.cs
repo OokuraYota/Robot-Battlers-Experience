@@ -12,11 +12,15 @@ public class SwordAttackCollider : MonoBehaviour
 
     public EnemyBos enemyBos;
 
+    public Enemy2 enemy2; //2021 02 09
+
     void Start()
     {
         enemy = GetComponent<EnemyMove>();
 
         enemyBos = GetComponent<EnemyBos>();
+
+        enemy2 = GetComponent<Enemy2>();
     }
 
     /// <summary>
@@ -65,12 +69,17 @@ public class SwordAttackCollider : MonoBehaviour
         {
             Debug.Log("Enemy");
             other.gameObject.GetComponent<EnemyMove>().Damage(1.0f);
-            
+
         }
         else if (other.gameObject.GetComponent<EnemyBos>() == true)
         {
             Debug.Log("EnmeyBos");
             other.gameObject.GetComponent<EnemyBos>().Damage(1.0f);
+        }
+        else if (other.gameObject.GetComponent<Enemy2>() == true)//2021 02 09
+        {
+            Debug.Log("Enemy2");
+            other.gameObject.GetComponent<Enemy2>().Damage(1.0f);
         }
 
         //other.gameObject.GetComponent<EnemyMove>().Damage(1.0f);
