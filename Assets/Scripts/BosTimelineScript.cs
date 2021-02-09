@@ -56,6 +56,9 @@ public class BosTimelineScript : MonoBehaviour
 
         //Bos登場用のカメラを非アクティブにする
         BosTimelineCamera.SetActive(false);
+
+        //Timeline用のBosObjectは最初非アクティブにする
+        BosTimelineObject.SetActive(false);
     }
 
     public void Update()
@@ -73,6 +76,8 @@ public class BosTimelineScript : MonoBehaviour
         Debug.Log("BosTimelineが再生されます");
         //タイムラインを再生
         BosTimeline.Play();
+
+        BosTimelineObject.SetActive(true);
 
         //Play用のカメラからTimeline用のカメラに切り替えます
         PlayCamera.SetActive(false);
