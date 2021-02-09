@@ -13,6 +13,10 @@ public class EnemyBossAppears : MonoBehaviour
     public Enemy3 enemy3;
 
     public Enemy4 enemy4;
+
+    //2020 02 10
+    public BosTimelineScript bosTimelineScript;
+
     /// <summary>
     /// ２体目の敵
     /// </summary>
@@ -66,6 +70,10 @@ public class EnemyBossAppears : MonoBehaviour
 
         if (!isCalledOne && enemy.life <= 0 && enemy2.life <= 0 && enemy3.life <= 0 && enemy4.life <= 0)
         {
+            //2021 02 10 タイムラインを再生する
+            bosTimelineScript.BosTimelineStart();
+
+
             isCalledOne = true;
             Debug.Log("お茶");
             enemyBos.gameObject.SetActive(true);
