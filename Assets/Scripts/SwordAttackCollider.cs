@@ -17,6 +17,8 @@ public class SwordAttackCollider : MonoBehaviour
 
     public Enemy3 enemy3;
 
+    public Enemy4 enemy4;
+
     void Start()
     {
         enemy = GetComponent<EnemyMove>();
@@ -26,6 +28,8 @@ public class SwordAttackCollider : MonoBehaviour
         enemy2 = GetComponent<Enemy2>();
 
         enemy3 = GetComponent<Enemy3>();
+
+        enemy4 = GetComponent<Enemy4>();
     }
 
     /// <summary>
@@ -90,6 +94,11 @@ public class SwordAttackCollider : MonoBehaviour
         {
             Debug.Log("Enemy3");
             other.gameObject.GetComponent<Enemy3>().Damage(1.0f);
+        }
+        else if (other.gameObject.GetComponent<Enemy4>() == true)
+        {
+            Debug.Log("Enemy4");
+            other.gameObject.GetComponent<Enemy4>().Damage(1.0f);
         }
 
         //other.gameObject.GetComponent<EnemyMove>().Damage(1.0f);
