@@ -71,12 +71,46 @@ public class EnemyBossAppears : MonoBehaviour
         if (!isCalledOne && enemy.life <= 0 && enemy2.life <= 0 && enemy3.life <= 0 && enemy4.life <= 0)
         {
             //2021 02 10 タイムラインを再生する
-            bosTimelineScript.BosTimelineStart();
-
+            //bosTimelineScript.BosTimelineStart();
+            BosTimelineStartCoroutine();
 
             isCalledOne = true;
             Debug.Log("お茶");
-            enemyBos.gameObject.SetActive(true);
+            //enemyBos.gameObject.SetActive(true);
+            //EnemyBosSetActiveTime();
+            BosTimelineWaitForSeconds();
         }
+    }
+
+    public void BosTimelineStartCoroutine()
+    {
+        Debug.Log("最後の敵が爆発してからTimelineを再生したいので、少し待ちます");
+        StartCoroutine("BosTimelineStart");
+    }
+
+    public IEnumerator BosTimelineStart()
+    {
+        Debug.Log("0.4秒経過してから");
+        //3秒経過してから
+        yield return new WaitForSeconds(0.4f);
+        //2021 02 10 タイムラインを再生する
+        bosTimelineScript.BosTimelineStart();
+    }
+
+
+    public void BosTimelineWaitForSeconds()
+    {
+        //コルーチンを呼び出す
+        Debug.Log("EnemyBosSetActiveTimeを呼び出しています");
+        StartCoroutine("EnemyBosSetActiveTime");
+    }
+
+    private IEnumerator EnemyBosSetActiveTime()
+    {
+        Debug.Log("3.3秒経過してから実際のBosをアクティブにする");
+        //3秒経過してから
+        yield return new WaitForSeconds(3.3f);
+
+        enemyBos.gameObject.SetActive(true);
     }
 }
