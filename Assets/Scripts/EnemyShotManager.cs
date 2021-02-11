@@ -22,6 +22,10 @@ public class EnemyShotManager : MonoBehaviour
     [SerializeField]
     Transform muzzle = null;
 
+    public Enemy2Shot enemy2Shot;
+    public Enemy3Shot enemy3Shot;
+    public Enemy4Shot enemy4Shot;
+
     //継承先でEnemyの事をここに書く
     void Start()
     {
@@ -41,7 +45,12 @@ public class EnemyShotManager : MonoBehaviour
 
 
         //弾を完全に削除します。（Immediate = 即座）
-        Destroy(BulletsObject.gameObject, 2);
+        //Destroy(BulletsObject.gameObject, 2);
+
+        //Enemy2ShotスクリプトのEnemy2ShotDestroy()を呼び出す
+        enemy2Shot.Enemy2ShotDestroy();
+        enemy3Shot.Enemy3ShotDestroy();
+        enemy4Shot.Enemy4ShotDestroy();
 
         //ゲームオブジェクトの方が良いかも
     }

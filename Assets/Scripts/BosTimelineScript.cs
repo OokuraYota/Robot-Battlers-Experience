@@ -43,9 +43,9 @@ public class BosTimelineScript : MonoBehaviour
     //[SerializeField]
     //public Vector3 BosTimelineCameraRotation;
 
-    [SerializeField] GameObject PlayCamera;
+    [SerializeField] public GameObject PlayCamera;
 
-    [SerializeField] GameObject BosTimelineCamera;
+    [SerializeField] public GameObject BosTimelineCamera;
 
     public void Start()
     {
@@ -100,8 +100,8 @@ public class BosTimelineScript : MonoBehaviour
             BosTimelineCamera.SetActive(false);
             Debug.Log(BosTimelineCamera + "activeSelf :" + BosTimelineCamera.activeSelf);
 
-            PlayCamera.SetActive(true);
-            Debug.Log(PlayCamera + "activeSelf :" + PlayCamera.activeSelf);
+            //PlayCamera.SetActive(true);
+            //Debug.Log(PlayCamera + "activeSelf :" + PlayCamera.activeSelf);
 
             //このままだと、真っ黒なままなのでBosTimelineCanvasを消す
             Destroy(BosTimelineCanvas);
@@ -112,12 +112,18 @@ public class BosTimelineScript : MonoBehaviour
 
     void OnEnable()
     {
+        Debug.Log("OnEnable");
         //OnEnable　この関数はオブジェクトが有効/アクティブになったときに呼び出されます。
         BosTimeline.stopped += BosTimelineStopped;
+
+        //GameObject(MainCamera)を非アクティブにして、
+        //アクティブに戻すとき、OnEnableとUpdateが呼ばれるのでここに書いた。
+        PlayCamera.SetActive(true);
     }
 
     void OnDisable()
     {
+        Debug.Log("OnDisable");
         //コンポーネントが非アクティブになったときに呼ばれる
         BosTimeline.stopped -= BosTimelineStopped;
     }

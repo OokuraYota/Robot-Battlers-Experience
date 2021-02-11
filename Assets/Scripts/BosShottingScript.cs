@@ -52,13 +52,22 @@ public class BosShottingScript : MonoBehaviour
 
 
         //弾を完全に削除します。（Immediate = 即座）
-        Destroy(BulletsObject.gameObject, 2);
+        //Destroy(BulletsObject.gameObject, 2);
+
+        BosShotDestory();
 
         //これ結局Enemy爆発して消えるから、this.gameobjectをデストロイした方が良いかも
         //shotの外に処理を書いてそれを●●（）;にした方が良いかも
     }
 
-
+    public void BosShotDestory()
+    {
+        if (enemyBos.life <= 0)
+        {
+            Debug.Log("EnemyBosのlifeが0以下になったので銃自体を削除します");
+            Destroy(this.gameObject);
+        }
+    }
 
     /*void colliderJudgment(Collider collider)
     {
