@@ -24,6 +24,10 @@ public class ShottingScript : MonoBehaviour
 
     public EnemyMove enemyMove;
 
+    //public Enemy2 enemy2;
+    //public Enemy3 enemy3;
+    //public Enemy4 enemy4;
+
 
 
     void Start()
@@ -52,12 +56,21 @@ public class ShottingScript : MonoBehaviour
 
 
         //弾を完全に削除します。（Immediate = 即座）
-        Destroy(BulletsObject.gameObject, 2);
+        //Destroy(BulletsObject.gameObject, 2); 2021 02 11
+
+        ShotDestroy(); //2021 02 11
 
         //ゲームオブジェクトの方が良いかも
     }
 
-
+    public void ShotDestroy()
+    {
+        if (enemyMove.life <= 0)
+        {
+            Destroy(this.gameObject);
+            Debug.Log("Enemyの弾を削除しました。");
+        }
+    }
 
     /*void colliderJudgment(Collider collider)
     {
