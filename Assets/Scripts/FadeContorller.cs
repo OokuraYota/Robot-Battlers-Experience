@@ -6,7 +6,10 @@ using UnityEngine.UI; //パネルのイメージを操作するのに必要
 
 public class FadeContorller : MonoBehaviour
 {
-    float fadeSpeed = 0.0014f;   //透明度が変わるスピードを管理(0.0023f;良い感じ)
+    //float fadeSpeed = 0.0014f;   //透明度が変わるスピードを管理(0.0023f;良い感じ)
+    [SerializeField]
+    public float fadeSpeed = 0.0014f;
+    
     float red, green, blue, alfa;   //パネルの色、不透明度を管理
 
     public bool isFadeOut = false;
