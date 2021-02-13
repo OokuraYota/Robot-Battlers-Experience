@@ -59,7 +59,9 @@ public class Player : MonoBehaviour
 
     //ライフが半分になったら煙が出るエフェクト 2021/01/11
     [SerializeField]
-    GameObject XXX = null;
+    GameObject lifeHalf = null;
+
+    float lifeHalfSetActive;
 
     // 死亡時に再生するエフェクト 2021/01/11
     [SerializeField]
@@ -98,8 +100,12 @@ public class Player : MonoBehaviour
 
         //スクリプト側で参照をとってからアクティブの管理を行う
         //最初はアクティブになっているが、スクリプトで非アクティブにしている。
-        XXX = GameObject.Find("Malfunction");  //←オブジェクトの名前
-        XXX.SetActive(false);
+        lifeHalf = GameObject.Find("Malfunction");  //←オブジェクトの名前
+        lifeHalf.SetActive(false);
+
+        //lifeHalfSetActiveはmaxLifeの半分の値が入る
+        lifeHalfSetActive = maxLife / 2;
+        Debug.Log("lifeHalfSetActiveの値は :" + lifeHalfSetActive);
     }
 
     void Update()
@@ -213,11 +219,12 @@ public class Player : MonoBehaviour
         Debug.Log("残りライフは" + life);
 
         //もし、ライフが半分(今は２)になったら
-        if (life == 2)
+        if (life == lifeHalfSetActive)
         {
+
             //機体から故障の煙が出る Start()で非アクティブからアクティブにする
             Debug.Log("HPが半分になったので、点灯します");
-            XXX.SetActive(true);
+            lifeHalf.SetActive(true);
             //音も出来れば出したい　きしむ音とか
         }
 
