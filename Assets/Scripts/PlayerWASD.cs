@@ -19,17 +19,17 @@ public class PlayerWASD : MonoBehaviour
     /// 回転速度
     /// </summary>
     [SerializeField]
-    float rotateSpeed = 1.0f;
+    public float rotateSpeed = 1.0f;
 
     /// <summary>
     /// 垂直方向の入力
     /// </summary>
-    float verticalInput = 0.0f;
+    public float verticalInput = 0.0f;
 
     /// <summary>
     /// 水平方向の入力
     /// </summary>
-    float horizontalInput = 0.0f;
+    public float horizontalInput = 0.0f;
 
     /// <summary>
     /// Rigidbodyコンポーネント
@@ -44,11 +44,11 @@ public class PlayerWASD : MonoBehaviour
 
     public void Update()
     {
-        GetInputs();
+        GetInputsWASD();
 
         //AnimationControllerのParametersに数値を送ってアニメーションを出す
         animator.SetFloat("X", horizontalInput * 55);
-        animator.SetFloat("Y", verticalInput * 85);　　//Z
+        animator.SetFloat("Y", verticalInput * 85);
 
         //horizontalInputとverticalInputの数値に基づいて移動
         transform.position += transform.forward * verticalInput + transform.right * horizontalInput;
@@ -58,7 +58,7 @@ public class PlayerWASD : MonoBehaviour
     /// <summary>
     /// 入力を受け付ける
     /// </summary>
-    public void GetInputs()
+    public void GetInputsWASD()
     {
         //W・Sキー ↕ 入力
         verticalInput = Input.GetAxis("Vertical") * Time.deltaTime * moveSpeed;

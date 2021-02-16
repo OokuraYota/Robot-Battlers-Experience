@@ -89,10 +89,11 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        
-        
+        //Animatorコンポーネントを取得
+        animator = GetComponent<Animator>();
+
         //AudioSourceコンポーネントを取得
-       // audioSource = GetComponent<AudioSource>();
+        // audioSource = GetComponent<AudioSource>();
 
         playerGauge = GameObject.FindObjectOfType<PlayerGauge>();
         playerGauge.SetPlayer(this);

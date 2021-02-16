@@ -180,7 +180,9 @@ public class Viewoftheworld : MonoBehaviour
 
                 //ここがクリックしたら終わりのところだから、最後の文をクリックしたらSceneをタイトルにする敵な感じ
                 //にすればよいかな
-                SceneManager.LoadScene("BattleScene");
+                
+                //SceneManager.LoadScene("BattleScene");
+                SceneManager.LoadScene("ConversationWithTheEnemy");
             }
         }
     }
