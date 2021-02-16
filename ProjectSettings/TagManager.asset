@@ -10,6 +10,7 @@ TagManager:
   - Malfunction
   - Enemy1
   - EnemyBos
+  - OpponentFemale
   layers:
   - Default
   - TransparentFX

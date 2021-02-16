@@ -89,8 +89,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        //Animatorコンポーネントを取得
-        animator = GetComponent<Animator>();
+        
         
         //AudioSourceコンポーネントを取得
        // audioSource = GetComponent<AudioSource>();
