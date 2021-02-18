@@ -12,7 +12,7 @@ public class Enemy2Shot : EnemyShotManager
         if (enemy2.life <= 0)
         {
             Debug.Log("Enemy2のlifeが0以下になったので、銃自体を非表示にします");
-            enemy2Gun.SetActive(false);
+            //enemy2Gun.SetActive(false);
         }
     }
 }

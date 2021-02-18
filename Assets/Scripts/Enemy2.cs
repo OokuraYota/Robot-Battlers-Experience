@@ -31,6 +31,8 @@ public class Enemy2 : MonoBehaviour //2021 02 09
 
     protected ShottingScript shotting;
 
+    public GameObject Bullet;
+
     /// <summary>
     /// 死亡時に再生するエフェクト
     /// </summary>
@@ -105,6 +107,8 @@ public class Enemy2 : MonoBehaviour //2021 02 09
 
             //ゲームオブジェクトを非アクティブにして、非表示にする
             gameObject.SetActive(false);
+
+            Destroy(Bullet);
         }
     }
 }

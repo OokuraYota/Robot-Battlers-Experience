@@ -42,6 +42,9 @@ public class Enemy3 : MonoBehaviour //2021 02 09
     //死亡爆破音
     public AudioClip audioClip;
 
+
+    public GameObject BulletGun3;
+
     public void Start()
     {
         _agent = GetComponent<NavMeshAgent>();//NavMeshAgentを保持しておく
@@ -107,6 +110,8 @@ public class Enemy3 : MonoBehaviour //2021 02 09
 
             //ゲームオブジェクトを非アクティブにして、非表示にする
             gameObject.SetActive(false);
+
+            Destroy(BulletGun3);
         }
     }
 }

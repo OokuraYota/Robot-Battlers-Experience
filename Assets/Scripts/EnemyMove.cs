@@ -39,6 +39,8 @@ public class EnemyMove : MonoBehaviour
 
     //private RaycastHit[] _raycastHits = new RaycastHit[10];　今回はレイキャストを使っていないからここはコメントアウトした
 
+    public GameObject BulletGun;
+
     public void Start()
     {
         _agent = GetComponent<NavMeshAgent>();//NavMeshAgentを保持しておく
@@ -155,6 +157,8 @@ public class EnemyMove : MonoBehaviour
 
             //ゲームオブジェクトを非アクティブにして、非表示にする
             gameObject.SetActive(false);
+
+            Destroy(BulletGun);
         }
     }
 }

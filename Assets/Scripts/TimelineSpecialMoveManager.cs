@@ -39,6 +39,15 @@ public class TimelineSpecialMoveManager : MonoBehaviour
 
     [SerializeField] Camera camera;
 
+    public bool TimelineStart = false;
+
+    //Timelineが終わった判定
+    public bool TimelineEnd = false;
+
+    public TimelineHurricane timelineHurricane;
+
+    public SpecialHurricaneManager specialHurricaneManager;
+
     void Update()
     {
         //もし、キーボードのGを押したら
@@ -68,6 +77,10 @@ public class TimelineSpecialMoveManager : MonoBehaviour
 
             Debug.Log("必殺技Buttonが押されました");
             playableDirector.Play();
+
+            //2021 02 19
+            Debug.Log("<color=blue>Timelineが始まりました</color>");
+            TimelineStart = true;
 
             /* Playerの角度も取得して、（カメラも位置と角度）
              * Timelineの再生が終わったら
@@ -114,6 +127,17 @@ public class TimelineSpecialMoveManager : MonoBehaviour
             Debug.Log("Cameraの現在の位置は" + CameraPlayPosition);
             camera.transform.eulerAngles = CameraPlayRotation;
             Debug.Log("Cameraの現在の角度は" + CameraPlayRotation);
+
+
+            TimelineEnd = true;
+            //2021 02 19
+            Debug.Log("<color=yellow>Timelineが終わりました</color>");
+
+            timelineHurricane.timelineHurricaneBool = true;
+            //2021 02 19
+            Debug.Log("<color=yellow>TimelineHurricaneをtureにしました。</color>");
+
+            specialHurricaneManager.HurricaneMove();
         }
     }
 

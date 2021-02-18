@@ -12,7 +12,7 @@ public class Enemy3Shot : EnemyShotManager
         if (enemy3.life <= 0)
         {
             Debug.Log("Enemy3のlifeが0になったので、銃自体を削除します");
-            enemy3Gun.SetActive(false);
+            //enemy3Gun.SetActive(false);
         }
     }
 }
