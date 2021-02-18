@@ -18,7 +18,7 @@ public class TheMomentYouTouchActive : MonoBehaviour
     [SerializeField]
     public GameObject explanationPanel;
 
-    public PlayerWASD playerWASD;
+    
 
     public void Start()
     {
@@ -45,8 +45,7 @@ public class TheMomentYouTouchActive : MonoBehaviour
             //上記の状態で、Spaceボタンを押したらSceneの遷移を行う。
             if (Input.GetKey(KeyCode.Space))
             {
-                playerWASD.moveSpeed = 0;
-                playerWASD.rotateSpeed = 0;
+
 
                 //verticalInput
 
