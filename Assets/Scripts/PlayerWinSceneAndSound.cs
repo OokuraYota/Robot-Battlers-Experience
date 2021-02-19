@@ -34,8 +34,8 @@ public class PlayerWinSceneAndSound : MonoBehaviour
     public IEnumerator NovelScene()
     {
         //５秒後に
-        Debug.Log("５秒後に");
-        yield return new WaitForSeconds(3.5f);
+        Debug.Log("3.2秒後に");
+        yield return new WaitForSeconds(3.2f);
         SceneManager.LoadScene("PlayerWinNovelScene");
     }
 }

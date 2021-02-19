@@ -10315,6 +10315,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 837408815}
+  - component: {fileID: 837408816}
   m_Layer: 0
   m_Name: GameTextManager
   m_TagString: Untagged
@@ -10342,6 +10343,24 @@ Transform:
   m_Father: {fileID: 999816719}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &837408816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 837408814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8da9ae3f370721c438e36a10a2d4d52d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TextY: {fileID: 138048664}
+  TextO: {fileID: 1403198055}
+  TextU: {fileID: 772637197}
+  TextW: {fileID: 763160137}
+  TextI: {fileID: 549883259}
+  TextN: {fileID: 1527317758}
 --- !u!1 &839573621
 GameObject:
   m_ObjectHideFlags: 0
