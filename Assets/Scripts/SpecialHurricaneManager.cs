@@ -19,6 +19,8 @@ public class SpecialHurricaneManager : MonoBehaviour
 
     public EnemyBos enemyBos;
 
+    public Vector3 HurricanePosition;
+
     public void Start()
     {
         //最初は非アクティブ
@@ -69,5 +71,15 @@ public class SpecialHurricaneManager : MonoBehaviour
     {
         Debug.Log("<color=yellow>5ダメージ</color>");
         enemyBos.Damage(5.0f);
+
+        if (this.gameObject.transform.position.z >= 70)
+        {
+            //最初から決めて置いたpositionに置き換える
+            this.gameObject.transform.position = HurricanePosition;
+            Debug.Log("<color=green>" + this.gameObject.transform.position +"</color>");
+
+            this.gameObject.SetActive(false);
+
+        }
     }
 }
