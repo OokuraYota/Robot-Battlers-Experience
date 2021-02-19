@@ -22269,7 +22269,6 @@ GameObject:
   - component: {fileID: 1763001345}
   - component: {fileID: 1763001344}
   - component: {fileID: 1763001343}
-  - component: {fileID: 1763001342}
   - component: {fileID: 1763001349}
   m_Layer: 11
   m_Name: "EnemyBos\u3010WinScene\u3011"
@@ -22278,19 +22277,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1763001342
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1763001341}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f61be72081b52043b136b2fe1359c7a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AudioClip: {fileID: 8300000, guid: 3ccc09ea2cb66c444be42e7eb37faf7b, type: 3}
 --- !u!65 &1763001343
 BoxCollider:
   m_ObjectHideFlags: 0

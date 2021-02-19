@@ -21,11 +21,11 @@ public class PlayerWinNovelSceneScript : MonoBehaviour
 
     private IEnumerator WinSceneTransition()
     {
-        Debug.Log("〇秒後に、遷移します。");
+        Debug.Log("1.5秒後に、PlayerWinSceneに遷移します。");
         //1.5秒後にシーン遷移をする
         yield return new WaitForSeconds(1.5f);
 
-        SceneManager.LoadScene("PlayerWinNovelScene");
+        SceneManager.LoadScene("PlayerWinScene");
 
     }
 }
