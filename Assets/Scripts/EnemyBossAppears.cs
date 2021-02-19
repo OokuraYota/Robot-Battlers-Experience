@@ -20,6 +20,9 @@ public class EnemyBossAppears : MonoBehaviour
     [SerializeField]
     public GameObject BosGauge;
 
+    [SerializeField]
+    public GameObject TimelineButton;
+
     /// <summary>
     /// ２体目の敵
     /// </summary>
@@ -35,6 +38,7 @@ public class EnemyBossAppears : MonoBehaviour
     public void Start()
     {
         BosGauge.SetActive(false);
+        TimelineButton.SetActive(false);
     }
 
     public void Update()
@@ -118,5 +122,7 @@ public class EnemyBossAppears : MonoBehaviour
 
         BosGauge.SetActive(true);
         Debug.Log("ボスのゲージ表示");
+
+        TimelineButton.SetActive(true);
     }
 }

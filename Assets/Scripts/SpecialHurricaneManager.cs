@@ -61,8 +61,8 @@ public class SpecialHurricaneManager : MonoBehaviour
 
     public IEnumerator WaitingTimeDamage()
     {
-        yield return new WaitForSeconds(2.0f);
-        Debug.Log("2.0秒待ったら");
+        yield return new WaitForSeconds(3.5f);
+        Debug.Log("3.5秒待ったら");
 
         HurricaneDamage();
     }
@@ -72,7 +72,7 @@ public class SpecialHurricaneManager : MonoBehaviour
         Debug.Log("<color=yellow>5ダメージ</color>");
         enemyBos.Damage(5.0f);
 
-        if (this.gameObject.transform.position.z >= 70)
+        if (this.gameObject.transform.position.z >= 55)
         {
             //最初から決めて置いたpositionに置き換える
             this.gameObject.transform.position = HurricanePosition;
