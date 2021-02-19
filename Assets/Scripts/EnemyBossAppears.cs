@@ -17,6 +17,9 @@ public class EnemyBossAppears : MonoBehaviour
     //2020 02 10
     public BosTimelineScript bosTimelineScript;
 
+    [SerializeField]
+    public GameObject BosGauge;
+
     /// <summary>
     /// ２体目の敵
     /// </summary>
@@ -31,7 +34,7 @@ public class EnemyBossAppears : MonoBehaviour
 
     public void Start()
     {
-
+        BosGauge.SetActive(false);
     }
 
     public void Update()
@@ -112,5 +115,8 @@ public class EnemyBossAppears : MonoBehaviour
         yield return new WaitForSeconds(3.3f);
 
         enemyBos.gameObject.SetActive(true);
+
+        BosGauge.SetActive(true);
+        Debug.Log("ボスのゲージ表示");
     }
 }

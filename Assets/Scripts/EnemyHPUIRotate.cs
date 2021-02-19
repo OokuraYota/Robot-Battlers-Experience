@@ -7,8 +7,6 @@ public class EnemyHPUIRotate : MonoBehaviour
     [SerializeField]
     public GameObject PlayCamera;
 
-    public BosTimelineScript bosTimelineScript;
-
     void Start()
     {
         PlayCamera = GameObject.Find("Main Camera");
