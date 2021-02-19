@@ -17741,6 +17741,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 0}
+  enemyBos: {fileID: 0}
+  enemy2: {fileID: 0}
+  enemy3: {fileID: 0}
+  enemy4: {fileID: 0}
 --- !u!65 &1765452210
 BoxCollider:
   m_ObjectHideFlags: 0
