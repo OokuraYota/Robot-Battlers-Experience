@@ -23,6 +23,8 @@ public class EnemyBossAppears : MonoBehaviour
     [SerializeField]
     public GameObject TimelineButton;
 
+    public bool TimelineButtonPermit = false;
+
     /// <summary>
     /// ２体目の敵
     /// </summary>
@@ -124,5 +126,8 @@ public class EnemyBossAppears : MonoBehaviour
         Debug.Log("ボスのゲージ表示");
 
         TimelineButton.SetActive(true);
+
+        //EnemyBosが表示されたら、許可が降りる
+        TimelineButtonPermit = true;
     }
 }

@@ -48,30 +48,75 @@ public class TimelineSpecialMoveManager : MonoBehaviour
 
     public SpecialHurricaneManager specialHurricaneManager;
 
+    public EnemyBossAppears enemyBossAppears;
+
     void Update()
     {
-        //もし、キーボードのGを押したら
-        if (Input.GetKeyDown(KeyCode.G))
+        if (enemyBossAppears.TimelineButtonPermit == true)
         {
+            Debug.Log("<color=blue>TimelineButtonを押していい許可が降りました。</color>");
+            //もし、キーボードのGを押したら
+            if (Input.GetKeyDown(KeyCode.G))
+            {
+                /* 指定した名前のオブジェクトを存在するすべてのアクティブな
+                 * オブジェクトの中から探し出して取得する。
+                 */
+                Vector3 PlayerPositon = GameObject.Find("PlayerRobot").transform.position;
+                Debug.Log("プレイヤーの位置を取得 : " + PlayerPositon);
+
+                //角度も取得
+                Vector3 PlayerRotation = GameObject.Find("PlayerRobot").transform.eulerAngles;
+                Debug.Log("プレイヤーの角度を取得" + PlayerRotation);
+
+                //Cameraの位置と角度も取得
+                /*Vector3 CameraPosition = GameObject.Find("Main Camera").transform.position;
+                Debug.Log("カメラの位置を取得" + CameraPosition);*/
+                Vector3 CameraPosition = camera.transform.position;
+                Debug.Log("プレイヤーの位置を取得" + CameraPosition);
+
+                /*Vector3 CameraRotation = GameObject.Find("Main Camera").transform.eulerAngles;
+                Debug.Log("カメラの角度を取得" + CameraRotation);*/
+                Vector3 CameraRotation = camera.transform.eulerAngles;
+                Debug.Log("カメラの角度を取得" + CameraRotation);
+
+
+                Debug.Log("必殺技Buttonが押されました");
+                playableDirector.Play();
+
+                //2021 02 19
+                Debug.Log("<color=blue>Timelineが始まりました</color>");
+                TimelineStart = true;
+
+                /* Playerの角度も取得して、（カメラも位置と角度）
+                 * Timelineの再生が終わったら
+                 * 黄色の遷移的なのが始まって明るくなるころには戻っている
+                 */
+                //transform.position = PlayerPosition;
+                //transform.eulerAngles = PlayerRotation;
+            }
+        }
+        //もし、キーボードのGを押したら
+        //if (Input.GetKeyDown(KeyCode.G))
+        //{
             /* 指定した名前のオブジェクトを存在するすべてのアクティブな
              * オブジェクトの中から探し出して取得する。
              */
-            Vector3 PlayerPositon = GameObject.Find("PlayerRobot").transform.position;
+            /*Vector3 PlayerPositon = GameObject.Find("PlayerRobot").transform.position;
             Debug.Log("プレイヤーの位置を取得 : " + PlayerPositon);
 
             //角度も取得
             Vector3 PlayerRotation = GameObject.Find("PlayerRobot").transform.eulerAngles;
             Debug.Log("プレイヤーの角度を取得" + PlayerRotation);
 
-            //Cameraの位置と角度も取得
+            //Cameraの位置と角度も取得/*
             /*Vector3 CameraPosition = GameObject.Find("Main Camera").transform.position;
             Debug.Log("カメラの位置を取得" + CameraPosition);*/
-            Vector3 CameraPosition = camera.transform.position;
+            /*Vector3 CameraPosition = camera.transform.position;
             Debug.Log("プレイヤーの位置を取得" + CameraPosition);
 
             /*Vector3 CameraRotation = GameObject.Find("Main Camera").transform.eulerAngles;
             Debug.Log("カメラの角度を取得" + CameraRotation);*/
-            Vector3 CameraRotation = camera.transform.eulerAngles;
+            /*Vector3 CameraRotation = camera.transform.eulerAngles;
             Debug.Log("カメラの角度を取得" + CameraRotation);
             
 
@@ -87,8 +132,8 @@ public class TimelineSpecialMoveManager : MonoBehaviour
              * 黄色の遷移的なのが始まって明るくなるころには戻っている
              */
             //transform.position = PlayerPosition;
-            //transform.eulerAngles = PlayerRotation;
-        }   
+            //transform.eulerAngles = PlayerRotation;*/
+        //}   
     }
 
     void OnEnable()
