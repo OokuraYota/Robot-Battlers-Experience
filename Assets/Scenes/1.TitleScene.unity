@@ -449,7 +449,6 @@ GameObject:
   - component: {fileID: 1360769170}
   - component: {fileID: 1360769169}
   - component: {fileID: 1360769168}
-  - component: {fileID: 1360769171}
   - component: {fileID: 1360769173}
   - component: {fileID: 1360769172}
   m_Layer: 5
@@ -521,17 +520,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1360769171}
-        m_MethodName: StartButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1360769172}
         m_MethodName: OnClick
         m_Mode: 1
@@ -580,18 +568,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1360769166}
   m_CullTransparentMesh: 0
---- !u!114 &1360769171
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1360769166}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 172fcc249c566da479cd5d8d53a65a5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1360769172
 MonoBehaviour:
   m_ObjectHideFlags: 0
