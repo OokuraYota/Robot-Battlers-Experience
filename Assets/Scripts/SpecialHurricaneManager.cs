@@ -17,6 +17,8 @@ public class SpecialHurricaneManager : MonoBehaviour
 
     //public ParticleSystem particleSystem;
 
+    public EnemyBos enemyBos;
+
     public void Start()
     {
         //最初は非アクティブ
@@ -33,22 +35,15 @@ public class SpecialHurricaneManager : MonoBehaviour
     /// </summary>
     public void HurricaneMove()
     {
-        //if (timelineHurricane.timelineHurricaneBool == true)
-        //{
-            this.gameObject.SetActive(true);
+        //Timelineが終わったらtrueにしてもらい、Updateの中のHurricaneMoveGo()
+        //のおかげで前進するように見せている
+
+        this.gameObject.SetActive(true);
             //2021 02 19
             Debug.Log("<color=green>アクティブに</color>");
 
-            /*particleSystem.Play();
-            //2021 02 19
-            Debug.Log("<color=green>パーティクルシステム開始</color>");*/
-
-            //2021 02 19
-            Debug.Log("<color=purple>Hurricane前進</color>");
-
-        //Z方向（奥に行ってほしいから）
-        //this.gameObject.transform.position += new Vector3(0, 0, amountOfChange * Time.deltaTime);
-        //}
+        //コルーチンを実装
+        StartCoroutine("WaitingTimeDamage");
     }
 
     public void HurricaneMoveGo()
@@ -58,5 +53,21 @@ public class SpecialHurricaneManager : MonoBehaviour
 
         //Z方向（奥に行ってほしいから）
         this.gameObject.transform.position += new Vector3(0, 0, amountOfChange * Time.deltaTime);
+    
+        
+    }
+
+    public IEnumerator WaitingTimeDamage()
+    {
+        yield return new WaitForSeconds(2.0f);
+        Debug.Log("2.0秒待ったら");
+
+        HurricaneDamage();
+    }
+
+    public void HurricaneDamage()
+    {
+        Debug.Log("<color=yellow>5ダメージ</color>");
+        enemyBos.Damage(5.0f);
     }
 }
