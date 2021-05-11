@@ -216,7 +216,13 @@ public class Player : MonoBehaviour
     {
         playerGauge.GaugeReduction(power);
         life -= power;
-        Debug.Log("残りライフは" + life);
+        //Debug.Log("残りライフは" + life);
+
+        //↓下記は文字＆数字どちらも色を付ける  2021 0511
+        Debug.Log("<color=green>残りのライフは" +life+ "です。</color>");
+
+        //↓下記は文字のみ色を付け、数字は普通のままにしている。
+        //Debug.Log("<color=green>残りのライフは</color>" + life + "<color=green>です。</color>");
 
         //もし、ライフが半分(今は２)になったら
         if (life == lifeHalfSetActive)
