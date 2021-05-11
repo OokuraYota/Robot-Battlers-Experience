@@ -58,7 +58,7 @@ public class BosShottingScript : MonoBehaviour
     public void Shot()
     {
         //Instantiate(生成するオブジェクト,位置,回転)　オブジェクトを指定された位置、回転で生成する
-        GameObject BulletsObject = Instantiate(bulletObject.gameObject, transform.position, Quaternion.identity);
+        GameObject BulletsObject = Instantiate(bulletObject.gameObject, muzzle.transform.position, Quaternion.identity);
         Vector3 Force;  //弾にかける力
         Force = transform.forward * 400; //弾にかける力を重工の前方向に設定する
         BulletsObject.GetComponent<Rigidbody>().AddForce(Force); //弾に力をかける
