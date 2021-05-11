@@ -22,9 +22,14 @@ public class EnemyShotManager : MonoBehaviour
     [SerializeField]
     Transform muzzle = null;
 
-    public Enemy2Shot enemy2Shot;
-    public Enemy3Shot enemy3Shot;
-    public Enemy4Shot enemy4Shot;
+    /// <summary>
+    /// 弾のターゲット
+    /// </summary>
+    public Transform bulletTarget;  //2021 0511
+
+    //public Enemy2Shot enemy2Shot;
+    //public Enemy3Shot enemy3Shot;
+    //public Enemy4Shot enemy4Shot;
 
     //継承先でEnemyの事をここに書く
     void Start()
@@ -32,6 +37,19 @@ public class EnemyShotManager : MonoBehaviour
         //1秒後に１秒毎にShotを繰り返す
         InvokeRepeating("Shot", 1.0f, 1.0f);
         //ここのコードをEnemyMoveのPlayerTagで発見したらShotを繰り出すコードに変更したい
+    }
+
+    void Update()
+    {
+        //2021 0511:bulletTargetの方向に弾が向くようになった 
+        if (bulletTarget)
+        {
+            var direction = bulletTarget.transform.position - transform.position;
+            direction.y = 0;
+
+            var lookRotation = Quaternion.LookRotation(direction, Vector3.up);
+            transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, 0.1f);
+        }
     }
 
     public void Shot()

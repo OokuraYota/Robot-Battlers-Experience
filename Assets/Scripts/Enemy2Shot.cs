@@ -5,7 +5,18 @@ using UnityEngine;
 public class Enemy2Shot : EnemyShotManager
 {
     public Enemy2 enemy2;
-    public GameObject enemy2Gun;
+    //public GameObject enemy2Gun;
+
+
+    void Start()
+    {
+        //🔵秒後に●秒毎にShotを繰り返す
+        //InvokeRepeating("Shot", 🔵f, ●f);
+
+        //2.0秒後、1.3秒ごとにShotを繰り返す。
+        InvokeRepeating("Shot", 2.0f, 1.2f);
+    }
+
 
     public void Enemy2ShotDestroy()
     {
