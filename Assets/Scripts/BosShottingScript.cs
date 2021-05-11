@@ -24,6 +24,10 @@ public class BosShottingScript : MonoBehaviour
 
     public EnemyBos enemyBos;
 
+    /// <summary>
+    /// 弾のターゲット
+    /// </summary>
+    public Transform bulletTarget;  //2021 0511
 
 
     void Start()
@@ -35,6 +39,16 @@ public class BosShottingScript : MonoBehaviour
 
     void Update()
     {
+        //2021 0511:bulletTargetの方向に弾が向くようになった 
+        if (bulletTarget)
+        {
+            var direction = bulletTarget.transform.position - transform.position;
+            direction.y = 0;
+
+            var lookRotation = Quaternion.LookRotation(direction, Vector3.up);
+            transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, 0.1f);
+        }
+
         if (enemyBos.life == 0)
         {
             CancelInvoke("Shot");

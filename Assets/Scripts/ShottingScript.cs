@@ -78,8 +78,6 @@ public class ShottingScript : MonoBehaviour
 
     public void Shot()
     {
-        Debug.Log("2021");
-
         //Instantiate(生成するオブジェクト,位置,回転)　オブジェクトを指定された位置、回転で生成する
         GameObject BulletsObject = Instantiate(bulletObject.gameObject, transform.position, Quaternion.identity);
         Vector3 Force;  //弾にかける力
