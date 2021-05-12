@@ -4,12 +4,20 @@ using UnityEngine.UI;
 
 public class EnemyGauge : MonoBehaviour
 {
+    /// <summary>
+    /// 前に表示されるHP画像
+    /// </summary>
     [SerializeField]
     private Image EnemyGoldHP;
+
+    /// <summary>
+    /// HPが減った際、数秒遅れて減るHP画像
+    /// </summary>
     [SerializeField]
     private Image EnemybackHP;
 
     private EnemyMove enmey;
+
     private Tween EnemyBackTween;
 
 

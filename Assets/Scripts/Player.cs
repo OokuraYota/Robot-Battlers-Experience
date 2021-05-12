@@ -224,14 +224,15 @@ public class Player : MonoBehaviour
         //↓下記は文字のみ色を付け、数字は普通のままにしている。
         //Debug.Log("<color=green>残りのライフは</color>" + life + "<color=green>です。</color>");
 
+
         //もし、ライフが半分(今は２)になったら
         if (life == lifeHalfSetActive)
         {
-
             //機体から故障の煙が出る Start()で非アクティブからアクティブにする
-            Debug.Log("HPが半分になったので、点灯します");
+            //Debug.Log("HPが半分になったので、点灯します");
+
             lifeHalf.SetActive(true);
-            //音も出来れば出したい　きしむ音とか
+            Debug.Log("<color=yellow>HPが半分になったので、機体から故障の煙＆点灯します。</color>");
         }
 
 

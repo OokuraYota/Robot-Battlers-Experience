@@ -36,7 +36,7 @@ public class PlayerDieSceneManager : MonoBehaviour
     private IEnumerator EndBattle()
     {
         Debug.Log("★★★");
-        //3秒経過してから
+        //1.7秒経過してから
         yield return new WaitForSeconds(1.7f);
         //Scene遷移
         SceneManager.LoadScene("PlayerDieScene");

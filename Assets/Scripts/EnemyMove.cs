@@ -12,6 +12,9 @@ public class EnemyMove : MonoBehaviour
     /*[SerializeField]
     private Player Player;*/
 
+    /// <summary>
+    /// NavMeshAgentの変数
+    /// </summary>
     private NavMeshAgent _agent;
 
     private Animator animator;
@@ -48,8 +51,6 @@ public class EnemyMove : MonoBehaviour
 
         EnemyGauge = GameObject.FindObjectOfType<EnemyGauge>();
         EnemyGauge.SetEnemy(this);
-
-        //InvokeRepeating("Shot", 1, 1f);//1秒後に1秒ごとにShotを繰り出す
     }
 
     private void Update()
