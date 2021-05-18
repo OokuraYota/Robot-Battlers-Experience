@@ -96,7 +96,7 @@ public class Player : MonoBehaviour
         // audioSource = GetComponent<AudioSource>();
 
         playerGauge = GameObject.FindObjectOfType<PlayerGauge>();
-        playerGauge.SetPlayer(this);
+        //playerGauge.SetPlayer(this); 20210518
 
         //スクリプト側で参照をとってからアクティブの管理を行う
         //最初はアクティブになっているが、スクリプトで非アクティブにしている。
