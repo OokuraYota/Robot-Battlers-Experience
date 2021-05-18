@@ -119,7 +119,7 @@ public class TitleTimeline : MonoBehaviour
             //2021 02 19
             Debug.Log("<color=yellow>Timelineが終わりました</color>");
 
-            timelineHurricane.timelineHurricaneBool = true;
+            //timelineHurricane.timelineHurricaneBool = true;
             //2021 02 19
             Debug.Log("<color=yellow>TimelineHurricaneをtureにしました。</color>");
 
