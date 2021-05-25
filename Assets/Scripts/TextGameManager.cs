@@ -10,6 +10,8 @@ using UnityEngine.SceneManagement;
 //最終的にテキストファイルから読み出すことを考えて１つのパラメーターから名前も取得することにしてみる
 public class TextGameManager : MonoBehaviour
 {
+    //メモからテキストを読み込んでいる。2021/05/25
+
     //SerializeFiledと書くとprivateなパラメータ―でもインスペクター上で値を変更することが出来る
     [SerializeField]
     private Text mainText;

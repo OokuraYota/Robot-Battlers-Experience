@@ -96,7 +96,7 @@ public class Player : MonoBehaviour
         // audioSource = GetComponent<AudioSource>();
 
         playerGauge = GameObject.FindObjectOfType<PlayerGauge>();
-        //playerGauge.SetPlayer(this); 20210518
+        playerGauge.SetPlayer(this); //2021 05 25 ここを消してしまうと、HPが減らなくなる
 
         //スクリプト側で参照をとってからアクティブの管理を行う
         //最初はアクティブになっているが、スクリプトで非アクティブにしている。

@@ -20970,7 +20970,7 @@ GameObject:
   - component: {fileID: 1600009337}
   - component: {fileID: 1600009336}
   m_Layer: 0
-  m_Name: BGM
+  m_Name: WinSceneBGM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
