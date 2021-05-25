@@ -57,13 +57,11 @@ public class PlayerWinNovelScene : MonoBehaviour
 
     private string _text = "";
 
-
     //MonoBehaviourを継承している場合限定で最初の更新関数(Updateメソッド)が呼ばれるときに呼ばれる
     private void Start()
     {
         //Main Textに指定したTextコンポーネントのテキストパラメーターに代入する。
         //mainText.text = _text;
-
         //ReadLine(_text);
         //OutputChar();
 
@@ -111,7 +109,6 @@ public class PlayerWinNovelScene : MonoBehaviour
         //forech文で配列charsに格納された文字を全て取り出し、Queueに加える。
         foreach (char c in chars) charQueue.Enqueue(c);
         return charQueue;
-
     }
 
     /// <summary>

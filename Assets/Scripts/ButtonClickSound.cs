@@ -14,7 +14,6 @@ public class ButtonClickSound : MonoBehaviour
     /// </summary>
     private AudioSource soundSource;
 
-
     void Start()
     {
         soundSource = GetComponent<AudioSource>();
@@ -23,7 +22,6 @@ public class ButtonClickSound : MonoBehaviour
     public void OnClick()
     {
         //soundSource.PlayOneShot(soundSource.clip);
-
         //2021 02 19
         soundSource.Play();
 

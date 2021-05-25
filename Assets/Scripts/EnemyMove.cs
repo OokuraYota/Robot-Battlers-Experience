@@ -111,8 +111,6 @@ public class EnemyMove : MonoBehaviour
             _agent.destination = collider.transform.position;
             animator.SetBool("Run", true);  //Runにする
 
-
-
             ////InvokeRepeating("Shot", 1, 1f);//1秒後に1秒ごとにShotを繰り出す
 
             //Debug.Log("呼び出されているか？ :" + IsInvoking("Shot"));

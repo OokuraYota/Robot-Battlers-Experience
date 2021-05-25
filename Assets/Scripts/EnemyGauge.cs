@@ -20,7 +20,6 @@ public class EnemyGauge : MonoBehaviour
 
     private Tween EnemyBackTween;
 
-
     public void GaugeReduction(float reducationValue, float time = 1f)
     {
         var valueFrom = enmey.life / enmey.maxLife;

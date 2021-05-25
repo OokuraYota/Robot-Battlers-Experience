@@ -21,7 +21,6 @@ public class PlayerDieSceneManager : MonoBehaviour
             EndBattleCoroutine();
         }
     }
-
     public void EndBattleCoroutine()
     {
         //コルーチンを呼び出す

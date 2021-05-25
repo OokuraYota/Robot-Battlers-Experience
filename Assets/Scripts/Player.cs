@@ -110,8 +110,6 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-
-
         GetInputs();
         //W・Sキー　↕キーで前後移動
         //float z = Input.GetAxisRaw("Vertical") * Time.deltaTime * speed;
@@ -135,8 +133,6 @@ public class Player : MonoBehaviour
 
         //horizontalInputとverticalInputの数値に基づいて移動
         transform.position += transform.forward * verticalInput + transform.right * horizontalInput;
-
-
 
 
         //PlayerのRigidbodyに対してInputにmoveSpeedをかけた値で更新し移動
@@ -169,8 +165,6 @@ public class Player : MonoBehaviour
         {
             transform.rotation = Quaternion.LookRotation(moveForward);
         }*/
-
-
     }
 
     /// <summary>
@@ -255,8 +249,6 @@ public class Player : MonoBehaviour
 
             //ゲームオブジェクトを非アクティブにして、非表示にする
             gameObject.SetActive(false);  //全部非アクティブにする
-
-
 
             //Playerが死亡した場合のSceneに飛ぶ
             //EndBattle();

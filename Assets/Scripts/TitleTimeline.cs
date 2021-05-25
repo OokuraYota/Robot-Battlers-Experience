@@ -13,7 +13,6 @@ public class TitleTimeline : MonoBehaviour
 {
     //タイトルのタイムラインが終わったら、名前が表示される → タイムライン終了時にボタンがアクティブになって点滅。それを押すとゲーム開始になる。
 
-
     //ここにインスペクター上であらかじめ複数のタイムラインアセットをセット
     [SerializeField]
     private PlayableDirector playableDirector;
