@@ -43,7 +43,7 @@ public class TitleTimeline : MonoBehaviour
     //Timelineが終わった判定
     public bool TimelineEnd = false;
 
-    public TimelineHurricane timelineHurricane;
+    //public TimelineHurricane timelineHurricane;
 
     void Start()
     {
