@@ -10,10 +10,7 @@ public class AttackTrigger3 : StateMachineBehaviour
     //public AudioSource audioSource;
     //public AudioSord audioSord;
 
-
-
     //Unity連続攻撃、コンボ攻撃アニメーションを実現する方法
-
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -27,8 +24,6 @@ public class AttackTrigger3 : StateMachineBehaviour
         {
             AudioSource.PlayClipAtPoint(audioClip2, animator.gameObject.transform.position);
         }*/
-
-
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -37,12 +32,8 @@ public class AttackTrigger3 : StateMachineBehaviour
         //AudioSource.PlayClipAtPoint(audioClip, animator.gameObject.transform.position);
         /*if (Input.GetMouseButtonDown(0))//マウスの左クリックを押したら
         {
-
-
             animator.SetBool("Attack", true);
-
             //AudioSource.PlayClipAtPoint(audioClip2, animator.gameObject.transform.position);
-
         }*/
     }
 
@@ -56,8 +47,5 @@ public class AttackTrigger3 : StateMachineBehaviour
             //Attackをfalseにする
             animator.SetBool("Attack", false);
         }*/
-
     }
-
-
 }

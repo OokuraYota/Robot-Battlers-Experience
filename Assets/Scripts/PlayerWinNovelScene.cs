@@ -233,5 +233,4 @@ public class PlayerWinNovelScene : MonoBehaviour
         TextAsset textasset = Resources.Load<TextAsset>(fname);
         return textasset.text.Replace("\n", "").Replace("\r", "");
     }
-
 }

@@ -26,11 +26,6 @@ public class EnemyRobot : MonoBehaviour
     [SerializeField]
     Transform muzzle = null;
 
-    void Start()
-    {
-        
-    }
-
     void Update()
     {
         colliderAttack();

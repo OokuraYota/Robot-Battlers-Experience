@@ -102,7 +102,6 @@ public class SwordAttackCollider : MonoBehaviour
         }
 
         //other.gameObject.GetComponent<EnemyMove>().Damage(1.0f);
-
         //2021 02 04
         //other.gameObject.GetComponent<EnemyBos>().Damage(1.0f);
     }

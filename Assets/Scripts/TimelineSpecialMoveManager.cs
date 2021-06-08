@@ -54,7 +54,9 @@ public class TimelineSpecialMoveManager : MonoBehaviour
     {
         if (enemyBossAppears.TimelineButtonPermit == true)
         {
+            //Update()の中だからずっとDebug.Logに表示される↓
             Debug.Log("<color=blue>TimelineButtonを押していい許可が降りました。</color>");
+
             //もし、キーボードのGを押したら
             if (Input.GetKeyDown(KeyCode.G))
             {
@@ -123,7 +125,6 @@ public class TimelineSpecialMoveManager : MonoBehaviour
             transform.eulerAngles = CameraRotation;
             Debug.Log("Cameraの現在の角度は" + CameraRotation);*/
 
-            ///
             /*camera.transform.position = CameraPosition;
             Debug.Log("Cameraの現在位置は" + CameraPosition);
             camera.transform.eulerAngles = CameraRotation;
@@ -133,7 +134,6 @@ public class TimelineSpecialMoveManager : MonoBehaviour
             Debug.Log("Cameraの現在の位置は" + CameraPlayPosition);
             camera.transform.eulerAngles = CameraPlayRotation;
             Debug.Log("Cameraの現在の角度は" + CameraPlayRotation);
-
 
             TimelineEnd = true;
             //2021 02 19
