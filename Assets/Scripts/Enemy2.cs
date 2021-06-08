@@ -51,11 +51,6 @@ public class Enemy2 : MonoBehaviour //2021 02 09
         enemy2Gauge.SetEnemy2(this);  //2020 02 09
     }
 
-    private void Update()
-    {
-
-    }
-
     public void OnDetectObjectExit(Collider collider)
     {
         if (collider.CompareTag("Player"))
@@ -74,7 +69,8 @@ public class Enemy2 : MonoBehaviour //2021 02 09
         //検知したオブジェクトに『 Player 』のタグが付いていれば、そのオブジェクトを追いかける
         if (collider.CompareTag("Player")) 
         {
-            //要求された目的地に最も近い有効な NavMesh の位置にエージェントを移動させることを要求します。 AI.NavMeshAgent - destination - 
+            //要求された目的地に最も近い有効な NavMesh の位置にエージェントを移動させることを要求します。
+            //AI.NavMeshAgent - destination - 
             _agent.isStopped = false;
             _agent.destination = collider.transform.position;
             animator.SetBool("Run", true);  //Runにする
@@ -87,7 +83,7 @@ public class Enemy2 : MonoBehaviour //2021 02 09
     /// <param name="power"></param>
     public void Damage(float power)
     {
-        enemy2Gauge.GaugeReduction(power);  //2021 02 09
+        enemy2Gauge.GaugeReduction(power);
         Debug.Log(power);
         life -= power;
 

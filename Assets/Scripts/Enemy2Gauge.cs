@@ -34,7 +34,7 @@ public class Enemy2Gauge : MonoBehaviour
         //var valueTo = (enmey2.life - reducationValue) / enmey2.maxLife;
         var valueTo = (enemy2.life - reducationValue) / enemy2.maxLife;
 
-        // 前ゲージ減少
+        //前ゲージ減少
         EnemyGoldHP.fillAmount = valueTo;
 
         if (EnemyBackTween != null)
@@ -42,7 +42,7 @@ public class Enemy2Gauge : MonoBehaviour
             EnemyBackTween.Kill();
         }
 
-        // 後ろのゲージ減少
+        //後ろのゲージ減少
         EnemyBackTween = DOTween.To(
             () => valueFrom,
             x => {
