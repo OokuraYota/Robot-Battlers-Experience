@@ -2547,7 +2547,6 @@ GameObject:
   - component: {fileID: 1268986680}
   - component: {fileID: 1268986679}
   - component: {fileID: 1268986678}
-  - component: {fileID: 1268986677}
   - component: {fileID: 1268986676}
   - component: {fileID: 1268986673}
   - component: {fileID: 1268986672}
@@ -2703,27 +2702,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.85, y: 2, z: 1}
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &1268986677
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1268986671}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1001d1e6eb0fee14a88758f9e0b1157b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 3.7
-  rotateSpeed: 1
-  life: 16
-  maxLife: 16
-  lifeHalf: {fileID: 1405531049}
-  effectDeadPrefab: {fileID: 7325822782179180573, guid: c4b06beba748d004e8c7fd3812f2ad1f,
-    type: 3}
-  playerDieSceneManager: {fileID: 0}
-  audioClip: {fileID: 8300000, guid: 4700c15144edd9846859836bde7d59a7, type: 3}
 --- !u!136 &1268986678
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2791,7 +2769,12 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
-  m_WarningMessage: 
+  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
+    are already bound by a Humanoid avatar. These transforms can only be changed
+    by Humanoid clips.\n\tTransform 'Index_Proximal_Right'\n\tTransform 'Shoulder_Left'\n\tTransform
+    'Index_Intermediate_Right'\n\tTransform 'Index_Distal_Left'\n\tTransform 'Hand_Right'\n\tTransform
+    'UpperLeg_Left'\n\tTransform 'Index_Intermediate_Left'\n\tTransform 'Thumb_Proximal_Left'\n\tTransform
+    'RestOfFingers_Proximal_Left'\n\tTransform 'UpperLeg_Right'\n\tand more ..."
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
