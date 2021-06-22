@@ -8,10 +8,8 @@ public class EnemyBosGauge : MonoBehaviour
     private Image EnemyGoldHP;
     [SerializeField]
     private Image EnemybackHP;
-
     private EnemyBos enemyBos;
     private Tween EnemyBackTween;
-
 
     public void GaugeReduction(float reducationValue, float time = 1f)
     {

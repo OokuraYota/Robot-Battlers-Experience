@@ -29,29 +29,25 @@ public class EnemyBos : MonoBehaviour
     /// </summary>
     public float maxLife;
 
-    protected EnemyBosGauge EnemyBosGauge;  //
-
+    protected EnemyBosGauge EnemyBosGauge;
     protected BosShottingScript shotting;
 
-    // 死亡時に再生するエフェクト 2020/01/11
+    /// <summary>
+    /// 死亡時に再生するエフェクト
+    /// </summary>
     [SerializeField]
     GameObject BosEffectDeadPrefab = null;
 
     //死亡爆破音
     public AudioClip audioClip;
-
     public PlayerWinNovelSceneScript playerWinNovelSceneScript;
-
     public EnemyBossAppears enemyBossAppears = null;
-
     public EnemyMove enemy;
-
 
     /// <summary>
     /// 1回だけ呼び出い処理
     /// </summary>
     bool isCalledOne = false;
-    //private RaycastHit[] _raycastHits = new RaycastHit[10];　今回はレイキャストを使っていないからここはコメントアウトした
 
     public void Start()
     {
