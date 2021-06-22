@@ -8,11 +8,8 @@ using UnityEngine.AI;
 /// 目的地を指定するスクリプト
 /// </summary>
 [RequireComponent(typeof(NavMeshAgent))]
-public class Enemy4 : MonoBehaviour //2021 02 09
+public class Enemy4 : MonoBehaviour
 {
-    /*[SerializeField]
-    private Player Player;*/
-
     private NavMeshAgent _agent;
 
     private Animator animator;
@@ -26,8 +23,6 @@ public class Enemy4 : MonoBehaviour //2021 02 09
     /// ライフの最大値
     /// </summary>
     public float maxLife;
-
-    //protected Enemy2Gauge enemy2Gauge;　//2021 02 09
 
     protected Enemy4Gauge enemy4Gauge;
 
@@ -49,13 +44,8 @@ public class Enemy4 : MonoBehaviour //2021 02 09
         _agent = GetComponent<NavMeshAgent>();//NavMeshAgentを保持しておく
         animator = GetComponent<Animator>();//Animatorを保持しておく
 
-        enemy4Gauge = GameObject.FindObjectOfType<Enemy4Gauge>(); //2021 02 09
-        enemy4Gauge.SetEnemy4(this);  //2020 02 09
-    }
-
-    private void Update()
-    {
-
+        enemy4Gauge = GameObject.FindObjectOfType<Enemy4Gauge>();
+        enemy4Gauge.SetEnemy4(this);
     }
 
     public void OnDetectObjectExit(Collider collider)

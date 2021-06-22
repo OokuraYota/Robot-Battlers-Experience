@@ -10,9 +10,6 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class Enemy3 : MonoBehaviour //2021 02 09
 {
-    /*[SerializeField]
-    private Player Player;*/
-
     private NavMeshAgent _agent;
 
     private Animator animator;
@@ -50,13 +47,8 @@ public class Enemy3 : MonoBehaviour //2021 02 09
         _agent = GetComponent<NavMeshAgent>();//NavMeshAgentを保持しておく
         animator = GetComponent<Animator>();//Animatorを保持しておく
 
-        enemy3Gauge = GameObject.FindObjectOfType<Enemy3Gauge>(); //2021 02 09
-        enemy3Gauge.SetEnemy3(this);  //2020 02 09
-    }
-
-    private void Update()
-    {
-
+        enemy3Gauge = GameObject.FindObjectOfType<Enemy3Gauge>();
+        enemy3Gauge.SetEnemy3(this);
     }
 
     public void OnDetectObjectExit(Collider collider)

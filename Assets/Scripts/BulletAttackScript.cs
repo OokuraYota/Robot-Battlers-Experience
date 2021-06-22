@@ -6,8 +6,6 @@ public class BulletAttackScript : MonoBehaviour
 {
     public Player player;
 
-    //public float DamageValue;
-
     void Start()
     {
         player = GetComponent<Player>();
@@ -28,7 +26,7 @@ public class BulletAttackScript : MonoBehaviour
             //内容：オブジェクト同士が重なった瞬間に呼び出される
 
             Debug.Log("BulletPrefabが" + other.name + "Colliderに重なった！");
-            //Debug.Log("") → Swordが + EnemyのBox + Colliderに重なった
+            //Debug.Log("") → Swordが + EnemyのBox + Colliderに重なった !
         }
     }
 
@@ -66,21 +64,10 @@ public class BulletAttackScript : MonoBehaviour
 
             Debug.Log("BulletPrefabが" + other.name + "Colliderから、今離れました！");
 
-
-            //player.Damage(1);
-
-            //other.gameObject.GetComponent<Player>().Damage(1.0f);  本当のやつ
-
-            if (other.gameObject.GetComponent<Player>() == true)//2021 02 09
+            if (other.gameObject.GetComponent<Player>() == true)
             {
                 other.gameObject.GetComponent<Player>().Damage(1.0f);
             }
-
-
-            //if (other.gameObject.GetComponent<EnemyMove>() == true)
-
-            //DamageValue = player.GetComponent<Player>().Damage(1.0f);
-            //Debug.Log("PlayerのHPは" + player.life);*/
         }
     }
 }

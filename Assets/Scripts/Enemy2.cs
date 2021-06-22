@@ -10,9 +10,6 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class Enemy2 : MonoBehaviour //2021 02 09
 {
-    /*[SerializeField]
-    private Player Player;*/
-
     private NavMeshAgent _agent;
 
     private Animator animator;
@@ -27,7 +24,7 @@ public class Enemy2 : MonoBehaviour //2021 02 09
     /// </summary>
     public float maxLife;
 
-    protected Enemy2Gauge enemy2Gauge;　//2021 02 09
+    protected Enemy2Gauge enemy2Gauge;
 
     protected ShottingScript shotting;
 
@@ -47,8 +44,8 @@ public class Enemy2 : MonoBehaviour //2021 02 09
         _agent = GetComponent<NavMeshAgent>();//NavMeshAgentを保持しておく
         animator = GetComponent<Animator>();//Animatorを保持しておく
 
-        enemy2Gauge = GameObject.FindObjectOfType<Enemy2Gauge>(); //2021 02 09
-        enemy2Gauge.SetEnemy2(this);  //2020 02 09
+        enemy2Gauge = GameObject.FindObjectOfType<Enemy2Gauge>();
+        enemy2Gauge.SetEnemy2(this);
     }
 
     public void OnDetectObjectExit(Collider collider)
