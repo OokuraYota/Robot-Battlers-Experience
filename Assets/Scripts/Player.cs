@@ -13,7 +13,6 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-
     /// <summary>
     /// アニメーター
     /// </summary>
@@ -56,15 +55,22 @@ public class Player : MonoBehaviour
     /// </summary>
     public float maxLife;
 
+    /// <summary>
+    /// プレイヤーのHPゲージ
+    /// </summary>
     protected PlayerGauge playerGauge;
 
-    //ライフが半分になったら煙が出るエフェクト 2021/01/11
+    /// <summary>
+    /// ライフが半分になったら煙が出るエフェクト
+    /// </summary>
     [SerializeField]
     GameObject lifeHalf = null;
 
     float lifeHalfSetActive;
 
-    // 死亡時に再生するエフェクト 2021/01/11
+    /// <summary>
+    /// 死亡時に再生するエフェクト
+    /// </summary>
     [SerializeField]
     GameObject effectDeadPrefab = null;
 
@@ -73,28 +79,12 @@ public class Player : MonoBehaviour
     /// </summary>
     public PlayerDieSceneManager playerDieSceneManager;
 
-
-    //public AudioSource audioSource;
     public AudioClip audioClip;
-
-    /// <summary>
-    /// ロボットの足音
-    /// </summary>
-    //[SerializeField]
-    //private AudioClip robotRunSound;
-
-    /// <summary>
-    /// プレイヤーのポジション
-    /// </summary>
-    //private Vector3 Player_pos;
 
     void Start()
     {
         //Animatorコンポーネントを取得
         animator = GetComponent<Animator>();
-
-        //AudioSourceコンポーネントを取得
-        // audioSource = GetComponent<AudioSource>();
 
         playerGauge = GameObject.FindObjectOfType<PlayerGauge>();
         playerGauge.SetPlayer(this); //2021 05 25 ここを消してしまうと、HPが減らなくなる
@@ -112,18 +102,9 @@ public class Player : MonoBehaviour
     void Update()
     {
         GetInputs();
-        //W・Sキー　↕キーで前後移動
-        //float z = Input.GetAxisRaw("Vertical") * Time.deltaTime * speed;
 
-        //A・Dキー、⇔キーで横移動
-        //float x = Input.GetAxisRaw("Horizontal") * Time.deltaTime * speed;
-
-        //マウスを左クリックした瞬間にanimatorのAttackTrigerを呼ぶ
         if (Input.GetMouseButtonDown(0))
         {
-            //Debug.Log("剣 攻撃１");
-            //animator.SetTrigger("Attack Trigger");
-
             Debug.Log("剣攻撃");
             animator.SetBool("Attack", true);
         }
@@ -149,15 +130,9 @@ public class Player : MonoBehaviour
     {
         //W・Sキー ↕ 入力
         verticalInput = Input.GetAxis("Vertical") * Time.deltaTime * moveSpeed;
-        //verticalInput = Input.GetAxis("Vertical");
 
         //A・Dキー ⇔ 入力
         horizontalInput = Input.GetAxis("Horizontal") * Time.deltaTime * moveSpeed;
-        //horizontalInput = Input.GetAxis("Horizontal");
-
-        //AWSDの入力を受け付けている間ってことは、PlayerRobotが走っている時なので
-        //足音を鳴らします
-        //AudioSource.PlayClipAtPoint(robotRunSound, this.gameObject.transform.position);
     }
 
     /// <summary>
@@ -197,13 +172,9 @@ public class Player : MonoBehaviour
         //もし、ライフが半分(今は２)になったら
         if (life == lifeHalfSetActive)
         {
-            //機体から故障の煙が出る Start()で非アクティブからアクティブにする
-            //Debug.Log("HPが半分になったので、点灯します");
-
             lifeHalf.SetActive(true);
             Debug.Log("<color=yellow>HPが半分になったので、機体から故障の煙＆点灯します。</color>");
         }
-
 
         //もし、現在のライフが０になったら死亡　20200111
         if (life <= 0)
@@ -224,33 +195,6 @@ public class Player : MonoBehaviour
 
             //ゲームオブジェクトを非アクティブにして、非表示にする
             gameObject.SetActive(false);  //全部非アクティブにする
-
-            //Playerが死亡した場合のSceneに飛ぶ
-            //EndBattle();
-
-            //EndBattleCoroutine();  
-            //↑ここに書くと、ゲームオブジェクトが非アクティブになるため、コルーチンが開始できない
         }
     }
-
-    /*public void EndBattleCoroutine()
-    {
-        //コルーチンを呼び出す
-        StartCoroutine("EndBattle");
-    }*/
-
-    //コルーチン
-    /*private IEnumerator EndBattle()
-    {
-        //3秒経過してから
-        yield return new WaitForSeconds(3.0f);
-        //Scene遷移
-        SceneManager.LoadScene("PlayerDieScene");
-    }*/
-
-    /*void EndBattle()
-    {
-            Debug.Log("PlayerのHPが0になった為、ゲーム終了");
-            SceneManager.LoadScene("PlayerDieScene");
-    }*/
 }
