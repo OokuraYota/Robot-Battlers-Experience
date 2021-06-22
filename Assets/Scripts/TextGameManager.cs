@@ -8,10 +8,12 @@ using UnityEngine.SceneManagement;
 
 //MonoBehaviourを継承することでオブジェクトコンポーネントとしてアタッチすることが出来る
 //最終的にテキストファイルから読み出すことを考えて１つのパラメーターから名前も取得することにしてみる
+
+/// <summary>
+/// メモからテキストを読み込む管理
+/// </summary>
 public class TextGameManager : MonoBehaviour
 {
-    //メモからテキストを読み込んでいる。2021/05/25
-
     //SerializeFiledと書くとprivateなパラメータ―でもインスペクター上で値を変更することが出来る
     [SerializeField]
     private Text mainText;
@@ -30,14 +32,13 @@ public class TextGameManager : MonoBehaviour
     /// '」'により、MainTextの１文が終了する。
     /// </summary>
     private const char SEPARATE_MAIN_TEXT_END = '」';
-
     private Queue<char> _charQueue;
 
     /// <summary>
     /// 文字表示までの待ち時間
     /// </summary>
     [SerializeField]
-    private　float captionSpeed = 0.09f;
+    private float captionSpeed = 0.09f;
 
     /// <summary>
     /// ページの区切り文字
@@ -56,19 +57,13 @@ public class TextGameManager : MonoBehaviour
     /// </summary>
     [SerializeField]
     private string textFile = "Texts/Scenario";
-
     private string _text = "";
 
-
-    //MonoBehaviourを継承している場合限定で最初の更新関数(Updateメソッド)が呼ばれるときに呼ばれる
+    /// <summary>
+    /// MonoBehaviourを継承している場合限定で最初の更新関数(Updateメソッド)が呼ばれるときに呼ばれる
+    /// </summary>
     private void Start()
     {
-        //Main Textに指定したTextコンポーネントのテキストパラメーターに代入する。
-        //mainText.text = _text;
-
-        //ReadLine(_text);
-        //OutputChar();
-
         Init();
     }
 
@@ -90,9 +85,7 @@ public class TextGameManager : MonoBehaviour
 
         //配列の一番最初はNameTextに代入する
         nameText.text = name;
-
         mainText.text = "";
-
         _charQueue = SeparateString(main);
 
         //コルーチンを呼び出す
@@ -113,7 +106,7 @@ public class TextGameManager : MonoBehaviour
         //forech文で配列charsに格納された文字を全て取り出し、Queueに加える。
         foreach (char c in chars) charQueue.Enqueue(c);
         return charQueue;
-        
+
     }
 
     /// <summary>
@@ -129,10 +122,8 @@ public class TextGameManager : MonoBehaviour
             nextPageIcon.SetActive(true);
             return false;
         }
-
         //キューから値を取り出し、キュー内からは削除する
         mainText.text += _charQueue.Dequeue();
-
         return true;
     }
 
@@ -180,7 +171,7 @@ public class TextGameManager : MonoBehaviour
                 //だから、現時点では２ページ進んでクリックしたらPlayモードが終了する
                 ////UnityEditor.EditorApplication.isPlaying = false; ←Playモード終了のやつ
 
-                //ここがクリックしたら終わりのところだから、最後の文をクリックしたらSceneをタイトルにする敵な感じ
+                //ここがクリックしたら終わりのところだから、最後の文をクリックしたらSceneをタイトルにする的な感じ
                 //にすればよいかな
                 SceneManager.LoadScene("1.TitleScene");
             }
@@ -221,7 +212,6 @@ public class TextGameManager : MonoBehaviour
 
         //オブジェクトの表示/非表示を設定する
         nextPageIcon.SetActive(false);
-        
         ReadLine(_pageQueue.Dequeue());
         return true;
     }
@@ -238,5 +228,4 @@ public class TextGameManager : MonoBehaviour
         TextAsset textasset = Resources.Load<TextAsset>(fname);
         return textasset.text.Replace("\n", "").Replace("\r", "");
     }
-
 }

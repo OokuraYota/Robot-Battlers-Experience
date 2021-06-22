@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 /// <summary>
-/// 目的地を指定するスクリプト
+/// 4体目の敵
 /// </summary>
 [RequireComponent(typeof(NavMeshAgent))]
 public class Enemy4 : MonoBehaviour

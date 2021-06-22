@@ -5,10 +5,10 @@ using UnityEngine;
 using UnityEngine.AI;
 
 /// <summary>
-/// 目的地を指定するスクリプト
+/// 3体目の敵
 /// </summary>
 [RequireComponent(typeof(NavMeshAgent))]
-public class Enemy3 : MonoBehaviour //2021 02 09
+public class Enemy3 : MonoBehaviour
 {
     private NavMeshAgent _agent;
 

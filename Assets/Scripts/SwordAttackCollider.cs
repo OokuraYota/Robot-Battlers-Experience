@@ -10,25 +10,17 @@ using UnityEngine.UIElements;
 public class SwordAttackCollider : MonoBehaviour
 {
     public EnemyMove enemy;
-
     public EnemyBos enemyBos;
-
-    public Enemy2 enemy2; //2021 02 09
-
+    public Enemy2 enemy2;
     public Enemy3 enemy3;
-
     public Enemy4 enemy4;
 
     void Start()
     {
         enemy = GetComponent<EnemyMove>();
-
         enemyBos = GetComponent<EnemyBos>();
-
         enemy2 = GetComponent<Enemy2>();
-
         enemy3 = GetComponent<Enemy3>();
-
         enemy4 = GetComponent<Enemy4>();
     }
 
@@ -44,7 +36,7 @@ public class SwordAttackCollider : MonoBehaviour
         //内容：オブジェクト同士が重なった瞬間に呼び出される
 
         Debug.Log("Swordが" + other.name + "Colliderに重なった！");
-        //Debug.Log("") → Swordが + EnemyのBox + Colliderに重なった
+        //Debug.Log("") → Swordが + EnemyのBox + Colliderに重なった!
     }
 
     /// <summary>
@@ -85,7 +77,7 @@ public class SwordAttackCollider : MonoBehaviour
             Debug.Log("EnmeyBos");
             other.gameObject.GetComponent<EnemyBos>().Damage(1.0f);
         }
-        else if (other.gameObject.GetComponent<Enemy2>() == true)//2021 02 09
+        else if (other.gameObject.GetComponent<Enemy2>() == true)
         {
             Debug.Log("Enemy2");
             other.gameObject.GetComponent<Enemy2>().Damage(1.0f);
@@ -100,9 +92,5 @@ public class SwordAttackCollider : MonoBehaviour
             Debug.Log("Enemy4");
             other.gameObject.GetComponent<Enemy4>().Damage(1.0f);
         }
-
-        //other.gameObject.GetComponent<EnemyMove>().Damage(1.0f);
-        //2021 02 04
-        //other.gameObject.GetComponent<EnemyBos>().Damage(1.0f);
     }
 }

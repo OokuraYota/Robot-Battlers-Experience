@@ -57,16 +57,9 @@ public class Viewoftheworld : MonoBehaviour
 
     private string _text = "";
 
-
     //MonoBehaviourを継承している場合限定で最初の更新関数(Updateメソッド)が呼ばれるときに呼ばれる
     private void Start()
     {
-        //Main Textに指定したTextコンポーネントのテキストパラメーターに代入する。
-        //mainText.text = _text;
-
-        //ReadLine(_text);
-        //OutputChar();
-
         Init();
     }
 
@@ -88,9 +81,7 @@ public class Viewoftheworld : MonoBehaviour
 
         //配列の一番最初はNameTextに代入する
         nameText.text = name;
-
         mainText.text = "";
-
         _charQueue = SeparateString(main);
 
         //コルーチンを呼び出す
@@ -111,7 +102,6 @@ public class Viewoftheworld : MonoBehaviour
         //forech文で配列charsに格納された文字を全て取り出し、Queueに加える。
         foreach (char c in chars) charQueue.Enqueue(c);
         return charQueue;
-
     }
 
     /// <summary>
@@ -130,7 +120,6 @@ public class Viewoftheworld : MonoBehaviour
 
         //キューから値を取り出し、キュー内からは削除する
         mainText.text += _charQueue.Dequeue();
-
         return true;
     }
 
@@ -238,5 +227,4 @@ public class Viewoftheworld : MonoBehaviour
         TextAsset textasset = Resources.Load<TextAsset>(fname);
         return textasset.text.Replace("\n", "").Replace("\r", "");
     }
-
 }

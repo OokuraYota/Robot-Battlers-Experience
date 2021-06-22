@@ -6,43 +6,18 @@ public class AttackCombo2 : StateMachineBehaviour
 {
     public AudioClip audioClip2;
 
-    //public AudioClip sound1;
-    //public GameObject gameObject;
-    //public AudioSource audioSource;
-    //public AudioSord audioSord;
-
-
-
-    //Unity連続攻撃、コンボ攻撃アニメーションを実現する方法
-
-
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        //AudioSource.PlayClipAtPoint(audioClip, animator.gameObject.transform.position);
-
         animator.SetBool("Attack", false);
         AudioSource.PlayClipAtPoint(audioClip2, animator.gameObject.transform.position);
-
-        /*if (Input.GetMouseButtonDown(0))
-        {
-            AudioSource.PlayClipAtPoint(audioClip2, animator.gameObject.transform.position);
-        }*/
-
-
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-
-        //AudioSource.PlayClipAtPoint(audioClip, animator.gameObject.transform.position);
-        if (Input.GetMouseButtonDown(0))//マウスの左クリックを押したら
+        //マウスの左クリックを押したら
+        if (Input.GetMouseButtonDown(0))
         {
-
-
             animator.SetBool("Attack", true);
-
-            //AudioSource.PlayClipAtPoint(audioClip2, animator.gameObject.transform.position);
-
         }
     }
 

@@ -7,30 +7,15 @@ public class EnemyBossAppears : MonoBehaviour
 {
     public EnemyBos enemyBos;
     public EnemyMove enemy;
-
-    public Enemy2 enemy2; //2021 02 09
-
+    public Enemy2 enemy2;
     public Enemy3 enemy3;
-
     public Enemy4 enemy4;
-
-    //2020 02 10
     public BosTimelineScript bosTimelineScript;
-
     [SerializeField]
     public GameObject BosGauge;
-
     [SerializeField]
     public GameObject TimelineButton;
-
     public bool TimelineButtonPermit = false;
-
-    /// <summary>
-    /// ２体目の敵
-    /// </summary>
-    //public EnemyMove enemy2;  //20210208 追加
-    //public EnemyMove enemy3;
-    //public EnemyMove enemy4;
 
     /// <summary>
     /// 1回だけ呼び出い処理
@@ -48,45 +33,17 @@ public class EnemyBossAppears : MonoBehaviour
         TheBossAppears();
     }
 
-    public void TheBossAppears() //敵が死んだら【ボスを表示する】
+    /// <summary>
+    /// 敵4体が全滅したら、Bossを表示する
+    /// </summary>
+    public void TheBossAppears()
     {
-        /*if (enemy.life <= 0)
-        {
-            Debug.Log("お茶");
-            //EnemyBosをアクティブにする
-            enemyBos.gameObject.SetActive(true);
-        }*/
-
-        //もし、isCalledOneがfalseじゃない時
-        /*if(!isCalledOne)
-        {
-            isCalledOne = true;
-            //もし、enemy.lifeが0以下なら
-            if (enemy.life <= 0)
-            {
-                Debug.Log("お茶");
-                enemyBos.gameObject.SetActive(true);
-            }
-        }*/
-
-        //もし、isCalledOneがfalseではなく、enmeyの１～４体すべてのlifeが0になったら
-        //if (!isCalledOne && enemy.life <= 0 && enemy2.life <= 0 && enemy3.life <= 0 && enemy4.life <= 0)
-        /*{
-            isCalledOne = true;
-            Debug.Log("お茶");
-            enemyBos.gameObject.SetActive(true);
-        }*/
-
         if (!isCalledOne && enemy.life <= 0 && enemy2.life <= 0 && enemy3.life <= 0 && enemy4.life <= 0)
         {
-            //2021 02 10 タイムラインを再生する
-            //bosTimelineScript.BosTimelineStart();
+            //Timelineを再生する。
             BosTimelineStartCoroutine();
-
             isCalledOne = true;
-            Debug.Log("お茶");
-            //enemyBos.gameObject.SetActive(true);
-            //EnemyBosSetActiveTime();
+            Debug.Log("<color=red>Bossが登場します！！！</color>");
             BosTimelineWaitForSeconds();
         }
     }
