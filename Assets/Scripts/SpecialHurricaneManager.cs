@@ -41,8 +41,8 @@ public class SpecialHurricaneManager : MonoBehaviour
         //のおかげで前進するように見せている
 
         this.gameObject.SetActive(true);
-            //2021 02 19
-            Debug.Log("<color=green>アクティブに</color>");
+        //2021 02 19
+        Debug.Log("<color=green>アクティブに</color>");
 
         //コルーチンを実装
         StartCoroutine("WaitingTimeDamage");
@@ -55,8 +55,6 @@ public class SpecialHurricaneManager : MonoBehaviour
 
         //Z方向（奥に行ってほしいから）
         this.gameObject.transform.position += new Vector3(0, 0, amountOfChange * Time.deltaTime);
-    
-        
     }
 
     public IEnumerator WaitingTimeDamage()
@@ -76,10 +74,9 @@ public class SpecialHurricaneManager : MonoBehaviour
         {
             //最初から決めて置いたpositionに置き換える
             this.gameObject.transform.position = HurricanePosition;
-            Debug.Log("<color=green>" + this.gameObject.transform.position +"</color>");
+            Debug.Log("<color=green>" + this.gameObject.transform.position + "</color>");
 
             this.gameObject.SetActive(false);
-
         }
     }
 }

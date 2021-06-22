@@ -5,15 +5,8 @@ using UnityEngine;
 public class AttackCombo3 : StateMachineBehaviour
 {
     public AudioClip audioClip3;
-    //public AudioClip sound1;
-    //public GameObject gameObject;
-    //public AudioSource audioSource;
-    //public AudioSord audioSord;
-
-
 
     //Unity連続攻撃、コンボ攻撃アニメーションを実現する方法
-
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {

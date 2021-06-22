@@ -20,7 +20,6 @@ public class TitleTimelineHurricane : MonoBehaviour
     public void Update()
     {
         TimelineStartWind();
-        //TimelineEndWind();
     }
 
     /// <summary>
