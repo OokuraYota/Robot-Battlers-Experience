@@ -22,29 +22,29 @@ public class BosShottingScript : MonoBehaviour
     [SerializeField]
     Transform muzzle = null;
 
+    /// <summary>
+    /// 敵のボス
+    /// </summary>
     public EnemyBos enemyBos;
 
     /// <summary>
     /// 弾のターゲット
     /// </summary>
-    public Transform bulletTarget;  //2021 0511
-
+    public Transform bulletTarget;
 
     void Start()
     {
         //1秒後に１秒毎にShotを繰り返す
         InvokeRepeating("Shot", 1.0f, 1.0f);
-        //ここのコードをEnemyMoveのPlayerTagで発見したらShotを繰り出すコードに変更したい
     }
 
     void Update()
     {
-        //2021 0511:bulletTargetの方向に弾が向くようになった 
+        //bulletTargetの方向に弾が向くようになった 
         if (bulletTarget)
         {
             var direction = bulletTarget.transform.position - transform.position;
             direction.y = 0;
-
             var lookRotation = Quaternion.LookRotation(direction, Vector3.up);
             transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, 0.1f);
         }
@@ -63,15 +63,7 @@ public class BosShottingScript : MonoBehaviour
         Force = transform.forward * 400; //弾にかける力を重工の前方向に設定する
         BulletsObject.GetComponent<Rigidbody>().AddForce(Force); //弾に力をかける
 
-
-
-        //弾を完全に削除します。（Immediate = 即座）
-        //Destroy(BulletsObject.gameObject, 2);
-
         BosShotDestory();
-
-        //これ結局Enemy爆発して消えるから、this.gameobjectをデストロイした方が良いかも
-        //shotの外に処理を書いてそれを●●（）;にした方が良いかも
     }
 
     public void BosShotDestory()
@@ -82,22 +74,4 @@ public class BosShottingScript : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-
-    /*void colliderJudgment(Collider collider)
-    {
-        if (collider.CompareTag("Player"))
-        {
-            GameObject bulletObjects = Instantiate(bulletObject) as GameObject;
-
-            Vector3 force;
-
-            force = this.gameObject.transform.forward * attackTimingTime;
-
-            //Rigidbodyに力を加えて発射
-            bulletObject.GetComponent<Rigidbody>().AddForce(force);
-
-            //弾の位置を調整
-            bulletObject.transform.position = muzzle.position;
-        }
-    }*/
 }

@@ -32,14 +32,6 @@ public class YOULOSTScript : MonoBehaviour
 
         //コルーチンを実装
         StartCoroutine("WaitingTime");
-
-        //自分のゲームオブジェクトを非アクティブに切り替える
-        //this.gameObject.SetActive(false);
-
-        //コルーチンを実装
-        //ゲームオブジェクト「GameTextManager」が非アクティブであるため
-        //コルーチン「WaitingTime」を開始できませんでした。
-        //StartCoroutine("WaitingTime");
     }
 
     public IEnumerator WaitingTime()
@@ -47,7 +39,6 @@ public class YOULOSTScript : MonoBehaviour
         //0.7秒待ったら
         yield return new WaitForSeconds(1.42f);
         Debug.Log("2.5秒待ったら");
-
         DisplayOnTheScreen();
     }
 
