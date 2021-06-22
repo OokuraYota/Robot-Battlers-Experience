@@ -64,7 +64,6 @@ public class PlayerWinNovelScene : MonoBehaviour
         //mainText.text = _text;
         //ReadLine(_text);
         //OutputChar();
-
         Init();
     }
 

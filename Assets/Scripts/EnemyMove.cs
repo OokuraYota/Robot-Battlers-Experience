@@ -9,9 +9,6 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyMove : MonoBehaviour
 {
-    /*[SerializeField]
-    private Player Player;*/
-
     /// <summary>
     /// NavMeshAgentの変数
     /// </summary>
@@ -36,12 +33,15 @@ public class EnemyMove : MonoBehaviour
     // 死亡時に再生するエフェクト 2020/01/11
     [SerializeField]
     GameObject effectDeadPrefab = null;
-    
-    //死亡爆破音
+
+    /// <summary>
+    /// 死亡爆破音
+    /// </summary>
     public AudioClip audioClip;
 
-    //private RaycastHit[] _raycastHits = new RaycastHit[10];　今回はレイキャストを使っていないからここはコメントアウトした
-
+    /// <summary>
+    /// 銃のオブジェクト
+    /// </summary>
     public GameObject BulletGun;
 
     public void Start()
@@ -53,21 +53,12 @@ public class EnemyMove : MonoBehaviour
         EnemyGauge.SetEnemy(this);
     }
 
-    private void Update()
-    {
-        
-    }
-
     public void OnDetectObjectExit(Collider collider)
     {
         if (collider.CompareTag("Player"))
         {
             _agent.isStopped = true;
             animator.SetBool("Run", false);
-
-            //Invokeを止める
-            //CancelInvoke();
-            //Debug.Log("Playerが範囲を出たので、Invokeを止める");
         }
     }
 
@@ -77,57 +68,11 @@ public class EnemyMove : MonoBehaviour
         //検知したオブジェクトに『 Player 』のタグが付いていれば、そのオブジェクトを追いかける
         if (collider.CompareTag("Player"))
         {
-            //時針とプレイヤーの座標差分を計算
-            //var positionDiff = collider.transform.position - transform.position;
-
-            //プレイヤーとの距離を計算
-            //var distance = positionDiff.magnitude;
-
-            //プレイヤーの方向
-            //var direction = positionDiff.normalized;
-
-            //raycastHitに、ヒットしたColliderや座標情報などが格納される
-            //RaycastAllとRaycastAllocは同等の機能だが、RaycastNonAllocだとメモリにゴミが残らないのでこちらを推奨
-            //var hitCount = Physics.RaycastNonAlloc(transform.position, direction, _raycastHits, distance);
-            //Debug.Log("hitCount :" + hitCount);
-            /*if (hitCount == 0)
-            {
-                //本作のプレイヤーは今のところColliderを使っていないのでRaycastはヒットしない
-                //つまり、ヒット数が0であればプレイヤーとの間に障害物がないということになる
-                _agent.isStopped = false;
-
-                //AI.NavMeshAgent - destination - 
-                //要求された目的地に最も近い有効な NavMesh の位置にエージェントを移動させることを要求します。
-                _agent.destination = collider.transform.position;
-            }
-            else
-            {
-                //見失ったら停止する
-                _agent.isStopped = true;
-            }*/
-
             //要求された目的地に最も近い有効な NavMesh の位置にエージェントを移動させることを要求します。 AI.NavMeshAgent - destination - 
             _agent.isStopped = false;
             _agent.destination = collider.transform.position;
             animator.SetBool("Run", true);  //Runにする
-
-            ////InvokeRepeating("Shot", 1, 1f);//1秒後に1秒ごとにShotを繰り出す
-
-            //Debug.Log("呼び出されているか？ :" + IsInvoking("Shot"));
-            //InvokeRepeating("Shot", 1.0f, 1.0f);
-
-            //1秒後に呼び出され、１秒毎に呼び出される
-            //shotting.InvokeRepeating("Shot", 1, 1);
-            //Invokeが呼び出されているか？
-            //Debug.Log("呼び出されているか :" + IsInvoking("Shot"));
-            //Invoke("Shot", 1); //1秒後に1秒ごとにShotを繰り出す
         }
-        /*else  //もし範囲を出たなら
-        {
-            //Invokeを止める
-            CancelInvoke();
-            Debug.Log("Playerが範囲を出たので、Invokeを止める");
-        }*/
     }
 
     /// <summary>
