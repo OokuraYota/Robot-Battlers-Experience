@@ -117,12 +117,6 @@ public class Player : MonoBehaviour
         transform.position += transform.forward * verticalInput + transform.right * horizontalInput;
     }
 
-    private void FixedUpdate()
-    {
-        Move();
-        Rotate();
-    }
-
     /// <summary>
     /// 入力を受け付ける
     /// </summary>
@@ -133,23 +127,6 @@ public class Player : MonoBehaviour
 
         //A・Dキー ⇔ 入力
         horizontalInput = Input.GetAxis("Horizontal") * Time.deltaTime * moveSpeed;
-    }
-
-    /// <summary>
-    /// 前後に動く
-    /// </summary>
-    private void Move()
-    {
-        //rigid.velocity = transform.up * moveSpeed * verticalInput * Time.deltaTime;
-    }
-
-
-    /// <summary>
-    /// 旋回する
-    /// </summary>
-    private void Rotate()
-    {
-        //rigid.MoveRotation(rigid.rotation + rotateSpeed * -horizontalInput * Time.deltaTime);
     }
 
     /// <summary>

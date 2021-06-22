@@ -4,6 +4,9 @@ using System.Runtime.Remoting.Lifetime;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// PlayerDieSceneに遷移する為の管理
+/// </summary>
 public class PlayerDieSceneManager : MonoBehaviour
 {
     /// <summary>

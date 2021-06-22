@@ -13,12 +13,8 @@ public class CollisionDetector : MonoBehaviour
     [SerializeField]
     private TriggerEvent onTriggerExit = new TriggerEvent();
 
-    //現在のColliderDetectorは、Coliider内にオブジェクトが止まっていることしけ検出出来ませんので、オブジェクトがColldierに重なったときも検知できるようにしましょう。
-
-    /*private void OnTriggerEnter(Collider other)
-    {
-        onTriggerEnter.Invoke(other);
-    }*/
+    //現在のColliderDetectorは、Coliider内にオブジェクトが止まっている事しか検出出来ない。
+    //オブジェクトがColldierに重なったときも検知出来るようにしたい。
 
     private void OnTriggerStay(Collider other)
     {

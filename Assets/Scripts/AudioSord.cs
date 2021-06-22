@@ -14,15 +14,6 @@ public class AudioSord : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    public void Update()
-    {
-        /*if (Input.GetMouseButtonDown(0))
-        {
-            audioSource.PlayOneShot(sound1);
-        }*/
-
-    }
-
     public void AudioSoud1()
     {
         audioSource.PlayOneShot(sound1);

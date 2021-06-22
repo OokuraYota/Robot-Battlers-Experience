@@ -60,10 +60,6 @@ public class PlayerWinNovelScene : MonoBehaviour
     //MonoBehaviourを継承している場合限定で最初の更新関数(Updateメソッド)が呼ばれるときに呼ばれる
     private void Start()
     {
-        //Main Textに指定したTextコンポーネントのテキストパラメーターに代入する。
-        //mainText.text = _text;
-        //ReadLine(_text);
-        //OutputChar();
         Init();
     }
 
@@ -173,10 +169,6 @@ public class PlayerWinNovelScene : MonoBehaviour
                 //UnityエディタのPlayモードを終了する
                 //だから、現時点では２ページ進んでクリックしたらPlayモードが終了する
                 UnityEditor.EditorApplication.isPlaying = false; //←Playモード終了のやつ
-
-                //ここがクリックしたら終わりのところだから、最後の文をクリックしたらSceneをタイトルにする敵な感じ
-                //にすればよいかな
-                //SceneManager.LoadScene("1.TitleScene");
             }
         }
     }

@@ -12,11 +12,6 @@ public class EnemyHPUIRotate : MonoBehaviour
         PlayCamera = GameObject.Find("Main Camera");
     }
 
-    void Update()
-    {
-
-    }
-
     void LateUpdate()
     {
         //  カメラと同じ向きに設定
@@ -24,7 +19,7 @@ public class EnemyHPUIRotate : MonoBehaviour
         //  だから、Camera.mainのCameraの定義を確認してみる。
 
         //transform.rotation = Camera.main.transform.rotation;
-
+        
         transform.rotation = PlayCamera.transform.rotation;
     }
 }
