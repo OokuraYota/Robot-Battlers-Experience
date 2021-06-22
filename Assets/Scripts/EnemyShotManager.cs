@@ -25,11 +25,7 @@ public class EnemyShotManager : MonoBehaviour
     /// <summary>
     /// 弾のターゲット
     /// </summary>
-    public Transform bulletTarget;  //2021 0511
-
-    //public Enemy2Shot enemy2Shot;
-    //public Enemy3Shot enemy3Shot;
-    //public Enemy4Shot enemy4Shot;
+    public Transform bulletTarget;
 
     //継承先でEnemyの事をここに書く
     void Start()

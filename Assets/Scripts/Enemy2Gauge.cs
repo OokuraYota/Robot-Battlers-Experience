@@ -16,22 +16,16 @@ public class Enemy2Gauge : MonoBehaviour
     [SerializeField]
     private Image EnemybackHP;
 
-    //private EnemyMove enmey;
-
-
     /// <summary>
     /// ２体目の敵
     /// </summary>
     private Enemy2 enemy2;
-
     private Tween EnemyBackTween;
 
 
     public void GaugeReduction(float reducationValue, float time = 1f)
     {
-        //var valueFrom = enmey2.life / enmey2.maxLife;
         var valueFrom = enemy2.life / enemy2.maxLife;
-        //var valueTo = (enmey2.life - reducationValue) / enmey2.maxLife;
         var valueTo = (enemy2.life - reducationValue) / enemy2.maxLife;
 
         //前ゲージ減少
@@ -45,7 +39,8 @@ public class Enemy2Gauge : MonoBehaviour
         //後ろのゲージ減少
         EnemyBackTween = DOTween.To(
             () => valueFrom,
-            x => {
+            x =>
+            {
                 EnemybackHP.fillAmount = x;
             },
             valueTo,
