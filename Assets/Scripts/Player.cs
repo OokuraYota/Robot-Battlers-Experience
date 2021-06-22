@@ -5,11 +5,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 //CapsuleColliderとRigidbodyを追加
+/// <summary>
+/// プレイヤーの管理
+/// </summary>
 [RequireComponent(typeof(CapsuleCollider))]
 [RequireComponent(typeof(Rigidbody))]
-/// <summary>
-/// プレイヤー
-/// </summary>
+
 public class Player : MonoBehaviour
 {
 
