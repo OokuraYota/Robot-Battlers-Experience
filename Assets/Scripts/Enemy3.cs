@@ -24,8 +24,6 @@ public class Enemy3 : MonoBehaviour
     /// </summary>
     public float maxLife;
 
-    //protected Enemy2Gauge enemy2Gauge;　//2021 02 09
-
     protected Enemy3Gauge enemy3Gauge;
 
     protected ShottingScript shotting;
@@ -38,7 +36,6 @@ public class Enemy3 : MonoBehaviour
 
     //死亡爆破音
     public AudioClip audioClip;
-
 
     public GameObject BulletGun3;
 

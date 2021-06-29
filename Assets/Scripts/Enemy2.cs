@@ -28,6 +28,9 @@ public class Enemy2 : MonoBehaviour
 
     protected ShottingScript shotting;
 
+    /// <summary>
+    /// 弾丸のオブジェクト
+    /// </summary>
     public GameObject Bullet;
 
     /// <summary>
