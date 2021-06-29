@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class AttackCombo2 : StateMachineBehaviour
 {
+    /// <summary>
+    /// ２コンボ目の攻撃サウンド
+    /// </summary>
     public AudioClip audioClip2;
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

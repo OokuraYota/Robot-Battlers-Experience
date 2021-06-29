@@ -34,9 +34,14 @@ public class Enemy4 : MonoBehaviour
     [SerializeField]
     GameObject effectDeadPrefab = null;
 
-    //死亡爆破音
+    /// <summary>
+    /// 爆破サウンド
+    /// </summary>
     public AudioClip audioClip;
 
+    /// <summary>
+    /// 弾丸のオブジェクト
+    /// </summary>
     public GameObject BulletGun4;
 
     public void Start()
