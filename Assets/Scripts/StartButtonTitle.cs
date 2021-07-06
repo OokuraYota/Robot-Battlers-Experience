@@ -9,10 +9,9 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class StartButtonTitle : MonoBehaviour
 {
-    //2021年 7月6日
-    public void SB()
+    public void PushButton()
     {
-        Debug.Log("ボタンが押された");
+        Debug.Log("<color=yellow>ボタンが押されたので、次のSceneに遷移します。</color>");
         SceneManager.LoadScene("ViewoftheworldScene");
     }
 }

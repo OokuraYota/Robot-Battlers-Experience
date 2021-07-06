@@ -104,17 +104,10 @@ public class TitleTimeline : MonoBehaviour
             //2021 02 19
             Debug.Log("<color=yellow>TimelineHurricaneをtureにしました。</color>");
 
-
-            //2021 07 06
-            
-
-
-
-            //20210518
             //次のSceneに遷移する。
-
-            //2021年 7月6日
             //StartTransition();
+
+            //2021年7月6日
             StartButtonTrue();
         }
     }
@@ -125,14 +118,12 @@ public class TitleTimeline : MonoBehaviour
         playableDirector.stopped -= OnPlayableDirectorStopped;
     }
 
-    //2021年 7月6日
     /*public void StartTransition()
     {
         Debug.Log("遷移を始めます");
         SceneManager.LoadScene("ViewoftheworldScene");
     }*/
 
-    //2021年7月6日
     public void StartButtonTrue()
     {
         StartButton.SetActive(true);
