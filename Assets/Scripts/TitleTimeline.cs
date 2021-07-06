@@ -45,6 +45,12 @@ public class TitleTimeline : MonoBehaviour
 
     //public TimelineHurricane timelineHurricane;
 
+    /// <summary>
+    /// ボタンを押したら、ゲームを開始するオブジェクト
+    /// </summary>
+    public GameObject StartButton; //2021年 7月6日
+    public StartButtonTitle startButtonTitle;
+
     void Start()
     {
         Debug.Log("<color=blue>TitleTimeline開始</color>");
@@ -69,6 +75,9 @@ public class TitleTimeline : MonoBehaviour
         //2021 02 19
         Debug.Log("<color=blue>Timelineが始まりました</color>");
         TimelineStart = true;
+
+        //2021年 7月6日 タイムライン終わるまで非表示
+        StartButton.SetActive(false);
     }
 
     void OnEnable()
@@ -95,9 +104,18 @@ public class TitleTimeline : MonoBehaviour
             //2021 02 19
             Debug.Log("<color=yellow>TimelineHurricaneをtureにしました。</color>");
 
+
+            //2021 07 06
+            
+
+
+
             //20210518
             //次のSceneに遷移する。
-            StartTransition();
+
+            //2021年 7月6日
+            //StartTransition();
+            StartButtonTrue();
         }
     }
 
@@ -107,9 +125,16 @@ public class TitleTimeline : MonoBehaviour
         playableDirector.stopped -= OnPlayableDirectorStopped;
     }
 
-    public void StartTransition()
+    //2021年 7月6日
+    /*public void StartTransition()
     {
         Debug.Log("遷移を始めます");
         SceneManager.LoadScene("ViewoftheworldScene");
+    }*/
+
+    //2021年7月6日
+    public void StartButtonTrue()
+    {
+        StartButton.SetActive(true);
     }
 }
