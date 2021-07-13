@@ -107,7 +107,7 @@ public class TitleTimeline : MonoBehaviour
             //次のSceneに遷移する。
             //StartTransition();
 
-            //2021年7月6日
+            //2021年7月6日に変更した。
             StartButtonTrue();
         }
     }

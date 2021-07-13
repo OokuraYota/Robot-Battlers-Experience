@@ -21,8 +21,6 @@ public class ButtonClickSound : MonoBehaviour
 
     public void OnClick()
     {
-        //soundSource.PlayOneShot(soundSource.clip);
-        //2021 02 19
         soundSource.Play();
 
         StartCoroutine(Checking(() =>
@@ -30,7 +28,6 @@ public class ButtonClickSound : MonoBehaviour
             Debug.Log("END");
 
             StartTransition();
-            //SceneManager.LoadScene("ViewoftheworldScene");
         }));
     }
 
@@ -55,4 +52,3 @@ public class ButtonClickSound : MonoBehaviour
         SceneManager.LoadScene("ViewoftheworldScene");
     }
 }
-
